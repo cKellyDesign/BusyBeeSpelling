@@ -16,6 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+// Angular
+var TrackerApper = angular.module('trackerApper', ['ngCordova']);
+// TrackerApper.run(function($rootScope){ });
+TrackerApper.controller('controlTest', function($scope){
+    $scope.message = "Hello World";
+});
+
+// Cardova / PhoneGap
 var app = {
     // Application Constructor
     initialize: function() {
@@ -34,6 +43,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        TrackerApper.run(function($rootScope){ });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
