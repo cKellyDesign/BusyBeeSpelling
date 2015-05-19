@@ -17,13 +17,6 @@
  * under the License.
  */
 
-// Angular
-var TrackerApp = angular.module('trackerApp', ['ngCordova']);
-// TrackerApp.run(function($rootScope){ });
-TrackerApp.controller('controlTest', function($scope){
-    $scope.message = "Hello World";
-});
-
 // Cardova / PhoneGap
 var app = {
     // Application Constructor
@@ -43,7 +36,6 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        TrackerApp.run(function($rootScope){ });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
