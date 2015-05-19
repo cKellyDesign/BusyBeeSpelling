@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "trackerApp.com.github.ckellydesign"
+        },
+        "io.litehelpers.cordova.sqlite": {
+            "PACKAGE_NAME": "trackerApp.com.github.ckellydesign"
         }
     },
     "dependent_plugins": {}
