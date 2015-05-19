@@ -18,9 +18,9 @@
  */
 
 // Angular
-var TrackerApper = angular.module('trackerApper', ['ngCordova']);
-// TrackerApper.run(function($rootScope){ });
-TrackerApper.controller('controlTest', function($scope){
+var TrackerApp = angular.module('trackerApp', ['ngCordova']);
+// TrackerApp.run(function($rootScope){ });
+TrackerApp.controller('controlTest', function($scope){
     $scope.message = "Hello World";
 });
 
@@ -43,7 +43,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        TrackerApper.run(function($rootScope){ });
+        TrackerApp.run(function($rootScope){ });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
