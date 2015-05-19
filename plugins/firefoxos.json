@@ -8,7 +8,7 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "trackerApper.com.github.ckellydesign"
+            "PACKAGE_NAME": "trackerApp.com.github.ckellydesign"
         }
     },
     "dependent_plugins": {}
