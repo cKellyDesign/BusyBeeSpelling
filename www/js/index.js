@@ -36,7 +36,9 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        window.myDB = window.sqlitePlugin.openDatabase({ name: "my.db" });
+
+        // Option plugin - io.litehelpers.cordova.sqlite
+        // window.myDB = window.sqlitePlugin.openDatabase({ name: "my.db" });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
