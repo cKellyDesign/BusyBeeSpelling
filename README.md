@@ -18,7 +18,7 @@ Third Add Platforms to Project (untracked by git)
 
 Lastly Build the Project
 
-'$ cordova build`
+`$ cordova build`
 
 ### Running The App
 This will open the app in a browser window, replace `browser` with your plaform of choice.
