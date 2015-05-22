@@ -14,7 +14,7 @@ Second Install Codrova CLI
 
 Third Add Platforms to Project (untracked by git)
 
-`& cordova platform add ios && cordova platform add browser && cordova platform add android`
+`$ cordova platform add ios && cordova platform add browser && cordova platform add android`
 
 Lastly Build the Project
 
