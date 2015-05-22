@@ -1,3 +1,3 @@
-# trackerApp
+# BusyBeeSpelling
 
-A simple implementation of a AngularJS with Cordova / PhoneGap
+Implemented of a AngularJS with Cordova / PhoneGap
