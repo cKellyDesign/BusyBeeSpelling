@@ -4,17 +4,11 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {
-            "config.xml": {
-                "parents": {
-                    "/*": []
-                }
-            }
-        }
+        "files": {}
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "trackerApp.com.github.ckellydesign"
+            "PACKAGE_NAME": "busybeespelling.com.github.ckellydesign"
         }
     },
     "dependent_plugins": {}
