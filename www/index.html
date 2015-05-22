@@ -35,16 +35,26 @@
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>TrackerApp</title>
     </head>
-    <body ng-app="trackerApp">
+    <body ng-app="BusyBeeSpelling">
         <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+
+            <!-- Start Markup for Level Selection Screen -->
+            <div ng-show="state.levelSelectControl" ng-controller="levelSelectControl">
+                <h1 ng-click="selectLevel()">{{message}}</h1>
+                <ul>
+                    <li ng-repeat="level in levels" ng-click='selectLevel(level)'>{{level}}</li>
+                </ul>
             </div>
-            <main ng-controller="controlTest">
-                <h1>{{message}}</h1>
-            </main>
+            <!-- End Markup for Level Selection Screen -->
+
+            <!-- Start Markup for Level Screen -->
+            <div ng-show="state.levelControl" ng-controller="levelControl">
+                <h1 ng-click="backToMenu()">{{message}}</h1>
+                <ul>
+                    <li ng-repeat="letter in levelLetters">{{letter}}</li>
+                </ul>
+            </div>
+            <!-- End Markup for Level Screen -->
 
         </div>
         <script type="text/javascript" src="cordova.js"></script>
