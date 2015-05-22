@@ -9,17 +9,18 @@ BusyBeeSpelling.run(function($rootScope){
   $rootScope.currentLevel = "";
 });
 
+
 BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope){
   $scope.message = "HELLO WORLD!";
   $scope.levels = ["lowercase", "UPPERCASE", "numbers"];
 
   $scope.selectLevel = function(level) {
-    console.log("~~~~~~ SELECTING LEVEL: ", level);
     $rootScope.currentLevel = level || "lowercase";
     $rootScope.state.levelSelectControl = false;
     $rootScope.state.levelControl = true;
   };
 });
+
 
 BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
   $scope.message = "Welcome to level 1!";
@@ -27,8 +28,6 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
 
   $rootScope.$watch('currentLevel',
     function(currentLevel){
-      console.log("WATCH: ", currentLevel);
-      $scope.levelLetters = [];
       $scope.generateLetters(currentLevel);
     }
   );
@@ -36,11 +35,11 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
   $scope.backToMenu = function() {
     $rootScope.state.levelControl = false;
     $rootScope.state.levelSelectControl = true;
-    $scope.levelLetters = [];
+    $rootScope.currentLevel = "";
   };
 
   $scope.generateLetters = function(level) {
-    level = level || "lowercase";
+    if (!level) return;
     var key = {
       "lowercase" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
       "UPPERCASE" : "ABCDEFGHIJKLMNOPQRSTUVWXYZAEIOUAEIOUAEIOUAEIOU",
@@ -48,13 +47,10 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     };
 
     var possible = key[level];
-
-    console.log("GENERATING LETTERS!! ", $scope.levelLetters);
+    $scope.levelLetters = [];
 
     for ( var i=0; i < 6; i++ ) {
       $scope.levelLetters.push(possible.charAt(Math.floor(Math.random() * possible.length)));
     }
-
-    console.log("GENERATING NUMBERS!! ", $scope.levelLetters);
   };
 });
