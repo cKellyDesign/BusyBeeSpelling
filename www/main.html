@@ -1,0 +1,76 @@
+ /* fix to landscape mode only
+max width and height?
+*/
+/* The animation code */
+@keyframes honeytube {
+    0%   {background-position: 10px 0px, center;}
+    25%  {background-position: 0px 10px, center;}
+    50%  {background-position: 10px 0px, center;}
+    100% {background-position: 0px 10px, center;}
+}
+@-webkit-keyframes honeytube{
+	0%   {background-position: 10px 0px, center;}
+  25%  {background-position: 0px 10px, center;}
+  50%  {background-position: 10px 0px, center;}
+  100% {background-position: 0px 10px, center;}
+}
+
+.mainshell{
+	margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.main{
+  width: 100%;
+	height: 552px; /*wtf is up with this random number*/
+  background: #219efe;
+  padding:0;
+  z-index: -1;
+  position: absolute;
+}
+.letters{
+
+}
+.character{
+  background: url("imgs/bee.png");
+  width: 200px;
+  height: 200px;
+	background-repeat: no-repeat;
+	z-index: 50;
+	position: absolute;
+  left: 150px;
+  top: 0;
+  /*90 x 120*/
+}
+.home{
+  background: url("imgs/hive.png");
+  z-index: 10;
+  position: absolute;
+  left: -100px;
+  top: 0;
+  height: 370px;
+  width: 300px;
+  background-repeat: no-repeat;
+}
+.hivetube{
+	background: url("imgs/hivetube.png");
+	background-position: 0px 0px, center;
+  z-index: 5;
+  position: absolute;
+  left: 9px;
+  bottom: -40px;
+  height: 333px;
+  width: 65px;
+  background-repeat: no-repeat;
+  animation-name: honeytube;
+  animation-duration: 4s;
+}
+.answerarea{
+	background: url("imgs/honeycomb.png");
+  z-index: 0;
+  position: absolute;
+  bottom: 0;
+  height: 170px;
+  width: 100%;
+  background-repeat: no-repeat;
+}
