@@ -48,11 +48,25 @@
             <!-- End Markup for Level Selection Screen -->
 
             <!-- Start Markup for Level Screen -->
-            <div ng-show="state.levelControl" ng-controller="levelControl">
-                <h1 ng-click="backToMenu()">{{message}}</h1>
-                <ul>
-                    <li ng-repeat="letter in levelLetters">{{letter}}</li>
-                </ul>
+            <div class="mainshell" ng-show="state.levelControl" ng-controller="levelControl">
+
+                <div class="main">
+                    <div class="character" id="character"></div>
+                    <div class="letters"></div>
+                    <div class="landings">
+                        <div class="landing1 flower-reddaisy"></div>
+                        <div class="landing2 flower-yellowdahlia"></div>
+                        <div class="landing3 flower-purpletulip"></div>
+                        <div class="landing4 flower-reddaisy"></div>
+                        <div class="landing5 flower-purpletulip"></div>
+                    </div>
+                    <div class="home" ng-click="backToMenu()"></div>
+                    <ul>
+                        <li ng-repeat="letter in levelLetters">{{letter}}</li>
+                    </ul>
+                    <div class="hivetube"></div>
+                    <div class="answerarea"></div>
+                </div>
             </div>
             <!-- End Markup for Level Screen -->
 
