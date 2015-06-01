@@ -11,6 +11,7 @@ max width and height?
   /*width: 100%;*/
   width: 1200px;
   height: 352px; /*wtf is up with this random number*/
+  overflow-x: hidden;
   background: #219efe;
   padding:0;
   z-index: -1;
@@ -39,7 +40,24 @@ max width and height?
   100% { background-position: -534px; }
 }
 .letters{
-
+  width: 87px;
+  height: 91px;
+  margin-top: 100px;
+}
+.letter-a{
+  background: url("../imgs/letters/a.png");
+}
+.letter-b{
+  background: url("../imgs/letters/b.png");
+}
+.letter-c{
+  background: url("../imgs/letters/c.png");
+}
+.letter-e{
+  background: url("../imgs/letters/e.png");
+}
+.letter-i{
+  background: url("../imgs/letters/i.png");
 }
 .landings{
   width:100%;
@@ -47,7 +65,6 @@ max width and height?
 }
 .flower-reddaisy{
   background: url("../imgs/flowers-daisy.png");
-  /*margin-top: 80px;*/
   width: 303px;
   height: 519px;
   zoom:0.5;
@@ -100,7 +117,37 @@ max width and height?
 .landing5{ /* */
   z-index: 5;
   position: absolute;
-  left: 1050px;
+  left: 1200px;
+  top: 50px;
+}
+.landing6{ /* */
+  z-index: 5;
+  position: absolute;
+  left: 1350px;
+  top: 50px;
+}
+.landing7{ /* */
+  z-index: 5;
+  position: absolute;
+  left: 1650px;
+  top: 50px;
+}
+.landing8{ /* */
+  z-index: 5;
+  position: absolute;
+  left: 1900px;
+  top: 50px;
+}
+.landing9{ /* */
+  z-index: 5;
+  position: absolute;
+  left: 2150px;
+  top: 50px;
+}
+.landing10{ /* */
+  z-index: 5;
+  position: absolute;
+  left: 2250px;
   top: 50px;
 }
 .home{
