@@ -12,7 +12,7 @@ BusyBeeSpelling.run(function($rootScope){
 
 BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope){
   $scope.message = "HELLO WORLD!";
-  $scope.levels = ["lowercase", "UPPERCASE", "numbers"];
+  $scope.levels = ["lowercase", "UPPERCASE", "vowels"];
 
   $scope.selectLevel = function(level) {
     $rootScope.currentLevel = level || "lowercase";
@@ -43,7 +43,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     var key = {
       "lowercase" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
       "UPPERCASE" : "ABCDEFGHIJKLMNOPQRSTUVWXYZAEIOUAEIOUAEIOUAEIOU",
-      "numbers" : "abcdefghijklmnopqrstuvwxyz0123456789012345678901234567890123456789"
+      "vowels" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou"
     };
 
     var possible = key[level];
