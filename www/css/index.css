@@ -1,14 +1,15 @@
- /* fix to landscape mode only
+/* fix to landscape mode only
 max width and height?
 */
-.mainshell{
-    margin: 0;
+.mainshell, .app, body{
+  margin: 0;
   padding: 0;
   width: 100%;
 }
 .main{
-  width: 100%;
-    height: 552px; /*wtf is up with this random number*/
+  /*width: 100%;*/
+  width: 1200px;
+  height: 552px; /*wtf is up with this random number*/
   background: #219efe;
   padding:0;
   z-index: -1;
@@ -19,8 +20,8 @@ max width and height?
   background: url('../imgs/bee-sprite.png') left center;
   width: 178px;
   height: 220px;
-    z-index: 50;
-    position: absolute;
+  z-index: 50;
+  position: absolute;
   left: 150px;
   top: 0;
   -webkit-animation: fly .8s steps(3) infinite;
@@ -28,10 +29,10 @@ max width and height?
   /*90 x 120*/
 }
 @-webkit-keyframes fly {
-   100% { background-position: -534px; }
+  100% { background-position: -534px; }
 }
 @keyframes fly {
-   100% { background-position: -534px; }
+  100% { background-position: -534px; }
 }
 .letters{
 
@@ -45,16 +46,25 @@ max width and height?
   /*margin-top: 80px;*/
   width: 303px;
   height: 519px;
+  background-size: 100% 100%;
+  max-width:20%;
+  max-height:35%;
 }
 .flower-yellowdahlia{
   background: url("../imgs/flowers-dhalia-yello.png");
   width: 355px;
   height: 583px;
+  background-size: 100% 100%;
+  max-width:20%;
+  max-height:35%;
 }
 .flower-purpletulip{
   background: url("../imgs/flowers-tulip-purple.png");
   width: 209px;
   height: 545px;
+  background-size: 100% 100%;
+  /*max-width:20%;*/
+  /*max-height:35%;*/
 }
 .landing1{ /*red daisy*/
   z-index: 30;
@@ -62,12 +72,12 @@ max width and height?
   left: 150px;
   top: 80px;
 }
-.landing2{ 
+.landing2{
   z-index: 35;
   position: absolute;
   left: 350px;
   top: 0px;
-} 
+}
 .landing3{ /*red daisy*/
   z-index: 30;
   position: absolute;
@@ -85,8 +95,8 @@ max width and height?
   background-repeat: no-repeat;
 }
 .hivetube{
-    background: url("../imgs/hivetube.png");
-    background-position: 0px 0px, center;
+  background: url("../imgs/hivetube.png");
+  background-position: 0px 0px, center;
   background-repeat: no-repeat;
   z-index: 5;
   position: absolute;
@@ -102,19 +112,19 @@ max width and height?
 /* The animation code x y coordinates */
 
 @-webkit-keyframes honeytube {
-     0%   {background-position: 0px 20px, center;}
-    25%  {background-position: 0px 30px, center;}
-    50%  {background-position: 0px 20px, center;}
-    100% {background-position: 0px 30px, center;}
+  0%   {background-position: 0px 20px, center;}
+  25%  {background-position: 0px 30px, center;}
+  50%  {background-position: 0px 20px, center;}
+  100% {background-position: 0px 30px, center;}
 }
 @keyframes honeytube {
-    0%   {background-position: 0px 20px, center;}
-    25%  {background-position: 0px 30px, center;}
-    50%  {background-position: 0px 20px, center;}
-    100% {background-position: 0px 30px, center;}
+  0%   {background-position: 0px 20px, center;}
+  25%  {background-position: 0px 30px, center;}
+  50%  {background-position: 0px 20px, center;}
+  100% {background-position: 0px 30px, center;}
 }
 .answerarea{
-    background: url("../imgs/honeycomb.png");
+  background: url("../imgs/honeycomb.png");
   z-index: 0;
   position: absolute;
   bottom: 0;
