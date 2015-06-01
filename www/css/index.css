@@ -5,11 +5,12 @@ max width and height?
   margin: 0;
   padding: 0;
   width: 100%;
+  overflow-y: hidden;
 }
 .main{
   /*width: 100%;*/
   width: 1200px;
-  height: 552px; /*wtf is up with this random number*/
+  height: 352px; /*wtf is up with this random number*/
   background: #219efe;
   padding:0;
   z-index: -1;
@@ -27,6 +28,9 @@ max width and height?
   -webkit-animation: fly .8s steps(3) infinite;
   animation: fly .8s steps(3) infinite;
   /*90 x 120*/
+  zoom:0.5;
+  -moz-transform:scale(0.5);
+  -moz-transform-origin: 0 0;
 }
 @-webkit-keyframes fly {
   100% { background-position: -534px; }
@@ -46,64 +50,85 @@ max width and height?
   /*margin-top: 80px;*/
   width: 303px;
   height: 519px;
-  background-size: 100% 100%;
-  max-width:20%;
-  max-height:35%;
+  zoom:0.5;
+  -moz-transform:scale(0.5);
+  -moz-transform-origin: 0 0;
+  /*background-size: 100% 100%;*/
+  /*max-width:20%;*/
+  /*max-height:35%;*/
 }
 .flower-yellowdahlia{
   background: url("../imgs/flowers-dhalia-yello.png");
   width: 355px;
   height: 583px;
-  background-size: 100% 100%;
-  max-width:20%;
-  max-height:35%;
+  zoom:0.5;
+  -moz-transform:scale(0.5);
+  -moz-transform-origin: 0 0;
 }
 .flower-purpletulip{
   background: url("../imgs/flowers-tulip-purple.png");
   width: 209px;
   height: 545px;
-  background-size: 100% 100%;
-  /*max-width:20%;*/
-  /*max-height:35%;*/
+  zoom:0.5;
+  -moz-transform:scale(0.5);
+  -moz-transform-origin: 0 0;
 }
 .landing1{ /*red daisy*/
-  z-index: 30;
+  z-index: 5;
   position: absolute;
   left: 150px;
   top: 80px;
 }
 .landing2{
-  z-index: 35;
+  z-index: 5;
   position: absolute;
   left: 350px;
   top: 0px;
 }
 .landing3{ /*red daisy*/
-  z-index: 30;
+  z-index: 5;
   position: absolute;
   left: 650px;
   top: 50px;
 }
+.landing4{ /*red daisy*/
+  z-index: 5;
+  position: absolute;
+  left: 900px;
+  top: 50px;
+}
+.landing5{ /* */
+  z-index: 5;
+  position: absolute;
+  left: 1050px;
+  top: 50px;
+}
 .home{
   background: url("../imgs/hive.png");
-  z-index: 10;
+  z-index: 20;
   position: absolute;
   left: -100px;
   top: 0;
   height: 370px;
   width: 300px;
   background-repeat: no-repeat;
+  zoom:0.5;
+  -moz-transform:scale(0.5);
+  -moz-transform-origin: 0 0;
 }
 .hivetube{
   background: url("../imgs/hivetube.png");
   background-position: 0px 0px, center;
   background-repeat: no-repeat;
-  z-index: 5;
+  z-index: 15;
   position: absolute;
-  left: 9px;
-  bottom: -40px;
+  left: 8px;
+  bottom: 0px;
   height: 333px;
   width: 65px;
+  zoom:0.55;
+  -moz-transform:scale(0.55);
+  -moz-transform-origin: 0 0;
 }
 .hivetubeMove{
   -webkit-animation: honeytube 4s infinite;
@@ -125,10 +150,13 @@ max width and height?
 }
 .answerarea{
   background: url("../imgs/honeycomb.png");
-  z-index: 0;
+  z-index: 10;
   position: absolute;
   bottom: 0;
   height: 170px;
   width: 100%;
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
+  zoom:0.75;
+  -moz-transform:scale(0.75);
+  -moz-transform-origin: 0 0;
 }
