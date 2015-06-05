@@ -75,8 +75,18 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
 
     var possible = $scope.letterLegend[level];
 
-    for ( var i=0; i < 6; i++ ) {
-      $scope.levelLetters.push(possible.charAt(Math.floor(Math.random() * possible.length)));
+    for ( var i=0; i < 15; i++ ) {
+      $scope.levelLetters.push({
+        "letter": possible.charAt($scope.genRanNum(possible.length)),
+        "flowerClass": $scope.flowerLegend[$scope.genRanNum($scope.flowerLegend.length)],
+        "left": i === 0 ? 300 : $scope.levelLetters[i - 1].left + $scope.genRanNum(400, 250),
+        "bottom": $scope.genRanNum(200, 50)
+      });
     }
   };
+
+  $scope.genRanNum = function(maxLength, minLength) {
+    minLength = minLength || 0;
+    return Math.floor(Math.random() * (maxLength - minLength) + minLength);
+  }
 });
