@@ -38,8 +38,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
 
   // Number values for Left / Top CSS properties
   $scope.beePosition = {
-    "Left": 10,
-    "Top": 10
+    "left": 50,
+    "top": 10
   };
 
   $rootScope.$watch('currentLevel',
@@ -75,15 +75,15 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
 
     var possible = $scope.letterLegend[level];
 
-    for ( var i=0; i < 15; i++ ) {
+    for ( var i=0; i < 10; i++ ) {
       $scope.levelLetters.push({
         "letter": possible.charAt($scope.genRanNum(possible.length)),
         "flowerClass": $scope.flowerLegend[$scope.genRanNum($scope.flowerLegend.length)],
-        "flowerLeft": i === 0 ? 300 : $scope.levelLetters[i - 1].flowerLeft + $scope.genRanNum(400, 250),
+        "flowerLeft": i === 0 ? 200 : $scope.levelLetters[i - 1].flowerLeft + $scope.genRanNum(350, 250),
         "flowerBottom": $scope.genRanNum(200, 50),
-        "letterLeft": $scope.genRanNum(75,25),
-        "letterBottom": $scope.genRanNum(100, 50),
-        "letterBGnumber": $scope.genRanNum(3)
+        "letterLeft": $scope.genRanNum(66,33),
+        "letterBottom": $scope.genRanNum(80, 50),
+        "letterBGnumber": $scope.genRanNum(4,1)
       });
     }
   };
