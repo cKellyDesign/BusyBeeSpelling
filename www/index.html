@@ -54,8 +54,8 @@
                     <div class="character" id="character" style="left: {{beePosition.left}}px; top: {{beePosition.top}}px;"></div>
                     <div class="home" ng-click="backToMenu()"></div>
                     <ul class="landings">
-                        <li ng-repeat="letter in levelLetters" class="flower {{letter.flowerClass}}" style="left: {{letter.left}}px; bottom: {{letter.bottom}}px;">
-                            <div class="letters">{{letter.letter}}</div>
+                        <li ng-repeat="letter in levelLetters" class="flower {{letter.flowerClass}}" style="left: {{letter.flowerLeft}}px; bottom: {{letter.flowerBottom}}px;">
+                            <div class="letters letterBG_{{letter.letterBGnumber}}" style="left: {{letter.letterLeft}}%; bottom:{{letter.letterBottom}}%;">{{letter.letter}}</div>
                         </li>
                     </ul>
                     <div class="hivetube"></div>

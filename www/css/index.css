@@ -43,6 +43,16 @@ max width and height?
   width: 87px;
   height: 91px;
   margin-top: 100px;
+  position: absolute;
+}
+.letterBG_1 {
+  background: url("../imgs/letterBG_1.png");
+}
+.letterBG_2 {
+  background: url("../imgs/letterBG_2.png");
+}
+.letterBG_3 {
+  background: url("../imgs/letterBG_3.png");
 }
 .letter-a{
   background: url("../imgs/letters/a.png");
