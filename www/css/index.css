@@ -26,6 +26,7 @@ max width and height?
   position: absolute;
   left: 150px;
   top: 0;
+  transition: left 1s, top 1s;
   -webkit-animation: fly .8s steps(3) infinite;
   animation: fly .8s steps(3) infinite;
   /*90 x 120*/
