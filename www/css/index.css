@@ -26,6 +26,7 @@ max width and height?
   position: absolute;
   left: 150px;
   top: 0;
+  transition: left 1s, top 1s;
   -webkit-animation: fly .8s steps(3) infinite;
   animation: fly .8s steps(3) infinite;
   /*90 x 120*/
@@ -43,6 +44,16 @@ max width and height?
   width: 87px;
   height: 91px;
   margin-top: 100px;
+  position: absolute;
+}
+.letterBG_1 {
+  background: url("../imgs/letterBG_1.png");
+}
+.letterBG_2 {
+  background: url("../imgs/letterBG_2.png");
+}
+.letterBG_3 {
+  background: url("../imgs/letterBG_3.png");
 }
 .letter-a{
   background: url("../imgs/letters/a.png");
@@ -60,8 +71,16 @@ max width and height?
   background: url("../imgs/letters/i.png");
 }
 .landings{
+  position: relative;
+  display: inline-block; 
   width:100%;
+  height: 100%;
   top:0;
+}
+.flower {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
 }
 .flower-reddaisy{
   background: url("../imgs/flowers-daisy.png");
