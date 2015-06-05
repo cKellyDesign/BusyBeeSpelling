@@ -1,0 +1,33 @@
+<html>
+<head lang="en">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        setInterval(function(){
+            $("#character").stop(true,true).animate({left: 300}, 1000, 
+                  function(){ $(this).stop(true,true).animate({left: 0}, 1000); 
+            });
+        }, 2000);
+    });
+</script>
+</head>
+<body class="mainshell">
+    <div class="main">
+        <div class="character" id="character"></div>
+        <div class="letters"></div>
+        <div class="landings">
+            <div class="landing1 flower-reddaisy"></div>
+            <div class="landing2 flower-yellowdahlia"></div>
+            <div class="landing3 flower-purpletulip"></div>
+            <div class="landing4 flower-reddaisy"></div>
+            <div class="landing5 flower-purpletulip"></div>
+        </div>
+        <div class="home"></div>
+        <div class="hivetube"></div>
+        <div class="answerarea"></div>
+    </div>
+</body>
+</html>

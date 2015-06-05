@@ -1,0 +1,124 @@
+ /* fix to landscape mode only
+max width and height?
+*/
+.mainshell{
+	margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.main{
+  width: 100%;
+	height: 552px; /*wtf is up with this random number*/
+  background: #219efe;
+  padding:0;
+  z-index: -1;
+  position: absolute;
+}
+
+.character{
+  background: url('imgs/bee-sprite.png') left center;
+  width: 178px;
+  height: 220px;
+	z-index: 50;
+	position: absolute;
+  left: 150px;
+  top: 0;
+  -webkit-animation: fly .8s steps(3) infinite;
+  animation: fly .8s steps(3) infinite;
+  /*90 x 120*/
+}
+@-webkit-keyframes fly {
+   100% { background-position: -534px; }
+}
+@keyframes fly {
+   100% { background-position: -534px; }
+}
+.letters{
+
+}
+.landings{
+  width:100%;
+  top:0;
+}
+.flower-reddaisy{
+  background: url("imgs/flowers-daisy.png");
+  /*margin-top: 80px;*/
+  width: 303px;
+  height: 519px;
+}
+.flower-yellowdahlia{
+  background: url("imgs/flowers-dhalia-yello.png");
+  width: 355px;
+  height: 583px;
+}
+.flower-purpletulip{
+  background: url("imgs/flowers-tulip-purple.png");
+  width: 209px;
+  height: 545px;
+}
+.landing1{ /*red daisy*/
+  z-index: 30;
+  position: absolute;
+  left: 150px;
+  top: 80px;
+}
+.landing2{ 
+  z-index: 35;
+  position: absolute;
+  left: 350px;
+  top: 0px;
+} 
+.landing3{ /*red daisy*/
+  z-index: 30;
+  position: absolute;
+  left: 650px;
+  top: 50px;
+}
+.home{
+  background: url("imgs/hive.png");
+  z-index: 10;
+  position: absolute;
+  left: -100px;
+  top: 0;
+  height: 370px;
+  width: 300px;
+  background-repeat: no-repeat;
+}
+.hivetube{
+	background: url("imgs/hivetube.png");
+	background-position: 0px 0px, center;
+  background-repeat: no-repeat;
+  z-index: 5;
+  position: absolute;
+  left: 9px;
+  bottom: -40px;
+  height: 333px;
+  width: 65px;
+}
+.hivetubeMove{
+  -webkit-animation: honeytube 4s infinite;
+  animation: honeytube 4s infinite;
+}
+/* The animation code x y coordinates */
+
+@-webkit-keyframes honeytube {
+	 0%   {background-position: 0px 20px, center;}
+    25%  {background-position: 0px 30px, center;}
+    50%  {background-position: 0px 20px, center;}
+    100% {background-position: 0px 30px, center;}
+}
+@keyframes honeytube {
+    0%   {background-position: 0px 20px, center;}
+    25%  {background-position: 0px 30px, center;}
+    50%  {background-position: 0px 20px, center;}
+    100% {background-position: 0px 30px, center;}
+}
+.answerarea{
+	background: url("imgs/honeycomb.png");
+  z-index: 0;
+  position: absolute;
+  bottom: 0;
+  height: 170px;
+  width: 100%;
+  background-repeat: no-repeat;
+}
