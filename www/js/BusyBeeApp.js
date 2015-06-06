@@ -21,7 +21,6 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope){
   };
 });
 
-
 BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
   $scope.message = "Welcome to level 1!";
 
@@ -48,23 +47,32 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     }
   );
 
-  $scope.moveBee = function(e) {
-    // Handles screen tap event
+  $scope.backgroundClick = function(e) {
     e.stopPropagation();
-    var target = e.target;
-    var beeLeft = (e.offsetX * 2) - 89;
+    var clickLeft = e.offsetX * 2;
+    var clickTop = e.offsetY;
+    $scope.moveBee(clickTop, clickLeft);
+  }
 
-    // if ( target.hasClass('flowers') ) {
-    //   beeLeft = ((e.offsetX * 2) + target.css('left')) - 89;
-    // } else if ( target.hasClass('letters') ) {
-    //   beeLeft = ((e.offsetX * 2) + target.css('left') + target.parents('.flowers').css('left')) - 89;
-    // } else {
-    //   beeLeft = (e.offsetX * 2) - 89;
-    // }
+  $scope.flowerClick = function(e) {
+    e.stopPropagation();
+    var clickLeft = e.srcElement.offsetLeft + (e.offsetX * 2);
+    var clickTop = e.srcElement.offsetTop + e.offsetY;
+    $scope.moveBee(clickTop, clickLeft);
+  }
+
+  $scope.letterClick = function(e) {
+    e.stopPropagation();
+    var clickLeft = e.srcElement.offsetLeft + e.srcElement.parentElement.offsetLeft + (e.offsetX * 2);
+    var clickTop = e.srcElement.offsetTop + e.offsetY;
+    $scope.moveBee(clickTop, clickLeft);
+  }
+
+  $scope.moveBee = function(beeTop, beeLeft) {
+    beeLeft = beeLeft - 89; // Centers Bee on click point
 
     $scope.beePosition.left = beeLeft;
-    $scope.beePosition.top = e.offsetY;
-    console.log("NEW BE POSITION -  offsetX: ", e.offsetX, " e: ", e);
+    $scope.beePosition.top = beeTop;
   };
 
   $scope.collectLetter = function(e) {
