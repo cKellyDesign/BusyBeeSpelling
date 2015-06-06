@@ -15,22 +15,29 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope){
   $scope.levels = ["lowercase", "UPPERCASE", "vowels"];
 
   $scope.selectLevel = function(level) {
-    $rootScope.currentLevel = level || "lowercase";
+    $rootScope.currentLevel = level || "vowels";
     $rootScope.state.levelSelectControl = false;
     $rootScope.state.levelControl = true;
   };
 });
 
+
 BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
   $scope.message = "Welcome to level 1!";
-
+  $scope.currentLevel = "";
   // For Generating letters for the level
   $scope.letterLegend = {
     "lowercase" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
     "UPPERCASE" : "ABCDEFGHIJKLMNOPQRSTUVWXYZAEIOUAEIOUAEIOUAEIOU",
     "vowels" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
   };
+  // For checking clicked letters
+  $scope.answerLegend = {
+    "vowels" : "aeiou",
+    "numbers": "1234567890"
+  };
   $scope.levelLetters = []; // For binding letters
+  $scope.collectedLetters = [];
 
   // CSS class names for different flowers
   $scope.flowerLegend = ['flower-reddaisy', 'flower-purpletulip', 'flower-yellowdahlia'];
@@ -58,14 +65,18 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     e.stopPropagation();
     var clickLeft = e.srcElement.offsetLeft + (e.offsetX * 2);
     var clickTop = e.srcElement.offsetTop + e.offsetY;
+    var index = angular.element(e.srcElement).parent();
     $scope.moveBee(clickTop, clickLeft);
+    // console.log("INDEX: ", index, "\n", e, "\n");
   }
 
-  $scope.letterClick = function(e) {
+  $scope.letterClick = function(e, i) {
     e.stopPropagation();
     var clickLeft = e.srcElement.offsetLeft + e.srcElement.parentElement.offsetLeft + (e.offsetX * 2);
     var clickTop = e.srcElement.offsetTop + e.offsetY;
     $scope.moveBee(clickTop, clickLeft);
+    $scope.checkAnswer(i);
+    // console.log("\n", e, "\n");
   }
 
   $scope.moveBee = function(beeTop, beeLeft) {
@@ -75,15 +86,16 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     $scope.beePosition.top = beeTop;
   };
 
-  $scope.collectLetter = function(e) {
-    // Handles letter tap event
-    e.stopPropagation();
-
-  };
-
-  $scope.checkAnswer = function() {
+  $scope.checkAnswer = function(i) {
     // Checks answer of collected letter
-  }
+    var letterVal = $scope.levelLetters[i].letter;
+    var isCorrect = $scope.answerLegend[$scope.currentLevel].indexOf(letterVal) !== -1;
+    if (isCorrect) {
+      $scope.collectedLetters.push($scope.levelLetters[i]);
+      // console.log("THIS LETTER IS CORRECT! ", $scope.collectedLetters);
+    }
+    $scope.levelLetters[i].show = !isCorrect;
+  };
 
   $scope.backToMenu = function() {
     $rootScope.state.levelControl = false;
@@ -93,7 +105,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
 
   $scope.generateLetters = function(level) {
     if (!level) return;
-
+    $scope.currentLevel = level;
     var possible = $scope.letterLegend[level];
 
     for ( var i=0; i < 10; i++ ) {
@@ -104,7 +116,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
         "flowerBottom": $scope.genRanNum(200, 50),
         "letterLeft": $scope.genRanNum(66,33),
         "letterBottom": $scope.genRanNum(80, 50),
-        "letterBGnumber": $scope.genRanNum(4,1)
+        "letterBGnumber": $scope.genRanNum(4,1),
+        "show": true
       });
     }
   };

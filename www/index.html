@@ -55,7 +55,7 @@
                     <div class="home" ng-click="backToMenu()"></div>
                     <ul class="landings" ng-click="backgroundClick($event)">
                         <li ng-repeat="letter in levelLetters" class="flower {{letter.flowerClass}}" style="left: {{letter.flowerLeft}}px; bottom: {{letter.flowerBottom}}px;" ng-click="flowerClick($event)">
-                            <div class="letters letterBG_{{letter.letterBGnumber}}" style="left: {{letter.letterLeft}}%; bottom:{{letter.letterBottom}}%;" ng-click="letterClick($event)">{{letter.letter}}</div>
+                            <div class="letters letterBG_{{letter.letterBGnumber}}" style="left: {{letter.letterLeft}}%; bottom:{{letter.letterBottom}}%;" ng-show="letter.show" ng-click="letterClick($event, $index)">{{letter.letter}}</div>
                         </li>
                     </ul>
                     <div class="hivetube"></div>
