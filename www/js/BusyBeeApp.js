@@ -21,24 +21,33 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope){
   };
 });
 
-
 BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
+
   $scope.message = "Welcome to level 1!";
   $scope.currentLevel = "";
+  $scope.levelScore = {
+    "points": 0,
+    "strikes": 0,
+    "possiblePoints": 0,
+    "scoreToWin": 3
+  };
   // For Generating letters for the level
   $scope.letterLegend = {
     "lowercase" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
     "UPPERCASE" : "ABCDEFGHIJKLMNOPQRSTUVWXYZAEIOUAEIOUAEIOUAEIOU",
     "vowels" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
+    "consonants": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
+    "numbers": "1!2@3#4$5%6^7&8*9(0)11-12+13=14/15ab16cd17ef18uo19ij20kl"
   };
   // For checking clicked letters
   $scope.answerLegend = {
     "vowels" : "aeiou",
+    "consonants": "bcdfghjklmnpqrstvwxyz",
     "numbers": "1234567890"
   };
-  $scope.levelLetters = []; // For binding letters
+  // For binding letters
+  $scope.levelLetters = []; 
   $scope.collectedLetters = [];
-
   // CSS class names for different flowers
   $scope.flowerLegend = ['flower-reddaisy', 'flower-purpletulip', 'flower-yellowdahlia'];
 
@@ -75,7 +84,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     var clickLeft = e.srcElement.offsetLeft + e.srcElement.parentElement.offsetLeft + (e.offsetX * 2);
     var clickTop = e.srcElement.offsetTop + e.offsetY;
     $scope.moveBee(clickTop, clickLeft);
-    $scope.checkAnswer(i);
+    setTimeout(function(){
+      $scope.checkAnswer(i);
+    }, 1000);
     // console.log("\n", e, "\n");
   }
 
@@ -89,18 +100,43 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
   $scope.checkAnswer = function(i) {
     // Checks answer of collected letter
     var letterVal = $scope.levelLetters[i].letter;
+    $scope.levelLetters[i].show = false;
     var isCorrect = $scope.answerLegend[$scope.currentLevel].indexOf(letterVal) !== -1;
     if (isCorrect) {
       $scope.collectedLetters.push($scope.levelLetters[i]);
-      // console.log("THIS LETTER IS CORRECT! ", $scope.collectedLetters);
+      $scope.correctAnswerResponse(letterVal);
+      console.log("THIS LETTER IS CORRECT! ", $scope.collectedLetters);
+    } else {
+      $scope.wrongAnswerResponse(letterVal)
     }
-    $scope.levelLetters[i].show = !isCorrect;
+  };
+
+  $scope.wrongAnswerResponse = function() {
+    $scope.levelScore.strikes++;
+    // Trigger "This {{letter.letter}} is not a {{currentLevel}}!"
+    if ($scope.levelScore.strikes === 3) {
+      // Level Fail Feedback
+      $scope.backToMenu();
+    }
+  };
+
+  $scope.correctAnswerResponse = function() {
+    $scope.levelScore.points++;
+    // Trigger Letter Collection Animations?
+    if ($scope.levelScore.points === $scope.levelScore.scoreToWin) {
+      // Level Complete Feedback
+      $scope.backToMenu();
+    }
   };
 
   $scope.backToMenu = function() {
     $rootScope.state.levelControl = false;
     $rootScope.state.levelSelectControl = true;
     $rootScope.currentLevel = "";
+    $scope.levelLetters = [];
+    $scope.collectedLetters = [];
+    $scope.levelScore.points = 0;
+    $scope.levelScore.strikes = 0;
   };
 
   $scope.generateLetters = function(level) {
@@ -120,6 +156,24 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
         "show": true
       });
     }
+
+    $scope.levelScore.possiblePoints = $scope.getPossiblePoints();
+    $scope.levelScore.scoreToWin = ($scope.levelScore.possiblePoints < 3) ? $scope.levelScore.possiblePoints : $scope.levelScore.scoreToWin;
+  };
+
+  $scope.getPossiblePoints = function() {
+    var possiblePoints = 0;
+    var thisLetter;
+    var thisLetterIsCorrect;
+    for (i = 0; i < $scope.levelLetters.length; i++) {
+      thisLetter = $scope.levelLetters[i].letter;
+      thisLetterIsCorrect = $scope.answerLegend[$scope.currentLevel].indexOf(thisLetter) !== -1;
+      if (thisLetterIsCorrect) {
+        possiblePoints++;
+      }
+    }
+    console.log("POSSIBLE POINTS THIS LEVEL!! ", possiblePoints);
+    return possiblePoints;
   };
 
   $scope.genRanNum = function(maxLength, minLength) {
