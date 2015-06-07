@@ -59,7 +59,11 @@
                         </li>
                     </ul>
                     <div class="hivetube"></div>
-                    <div class="answerarea"></div>
+                    <ul class="answerarea">
+                        <li ng-repeat="letter in collectedLetters">
+                            <div class="letters letterBG_{{letter.letterBGnumber}}" ng-hide="letter.show">{{letter.letter}}</div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <!-- End Markup for Level Screen -->
