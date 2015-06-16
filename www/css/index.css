@@ -41,19 +41,25 @@ max width and height?
   100% { background-position: -534px; }
 }
 .letters{
-  width: 87px;
-  height: 91px;
-  margin-top: 100px;
+  width: 85px;
+  height: 85px;
+  /*margin-top: 100px;*/
   position: absolute;
+  font-size: 3em;
+  padding: 10px 0px 0px 20px;
 }
 .letterBG_1 {
   background: url("../imgs/letterBG_1.png");
+  background-repeat: no-repeat;
 }
 .letterBG_2 {
   background: url("../imgs/letterBG_2.png");
+  background-repeat: no-repeat;
+  background-position: -10px -5px;
 }
 .letterBG_3 {
   background: url("../imgs/letterBG_3.png");
+  background-repeat: no-repeat;
 }
 .letter-a{
   background: url("../imgs/letters/a.png");
@@ -219,7 +225,7 @@ max width and height?
   z-index: 10;
   position: absolute;
   bottom: 0;
-  height: 170px;
+  height: 130px;
   width: 100%;
   background-repeat: repeat-x;
   zoom:0.75;
