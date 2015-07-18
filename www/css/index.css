@@ -1,11 +1,17 @@
 /* fix to landscape mode only
 max width and height?
 */
+@font-face {
+  font-family: titleFont;
+  src: url(../fonts/ClarendonLTStd-Bold.otf);
+}
+
 .mainshell, .app, body{
   margin: 0;
   padding: 0;
   width: 100%;
   overflow-y: hidden;
+  font-family: titleFont;
 }
 .main{
   /*width: 100%;*/
@@ -21,7 +27,7 @@ max width and height?
   width: 58px;
   height: 60px;
   z-index: 50;
-  position: absolute;
+  position: fixed;
   left: 520px;
   /*float:right;*/
   top: 0;
@@ -31,7 +37,7 @@ max width and height?
   display: none;
   background-color: rgba(166, 211, 245, 0.8);
   z-index: 100;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
@@ -39,7 +45,6 @@ max width and height?
 .menu-nav{
   background: url('../imgs/menu-back.png') left center;
   z-index: 110;
-  /*position: absolute;*/
   float:right;
   width: 288px;
   height: 100%;
@@ -65,6 +70,11 @@ max width and height?
 }
 @keyframes fly {
   100% { background-position: -534px; }
+}
+.gamearea{
+  width:100%;
+  height:100%;
+  z-index: 40;
 }
 .letters{
   width: 85px;
@@ -108,6 +118,7 @@ max width and height?
   width:100%;
   height: 100%;
   top:0;
+  z-index: 10;
 }
 .flower {
   display: inline-block;
@@ -249,7 +260,8 @@ max width and height?
 .answerarea{
   background: url("../imgs/honeycomb.png");
   z-index: 10;
-  position: absolute;
+  position: fixed;
+  margin:0 auto;
   bottom: 0;
   height: 130px;
   width: 100%;
@@ -263,7 +275,7 @@ max width and height?
   background-repeat: repeat-x;
   width: 100%;
   height: 130px;
-  z-index: 0;
+  z-index: 1;
   position: absolute;
   top:0;
   /*border: 1px solid red;*/
