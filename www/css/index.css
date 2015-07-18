@@ -21,7 +21,7 @@ max width and height?
   width: 58px;
   height: 60px;
   z-index: 50;
-  position: absolute;
+  position: fixed;
   left: 520px;
   /*float:right;*/
   top: 0;
@@ -255,7 +255,8 @@ max width and height?
 .answerarea{
   background: url("../imgs/honeycomb.png");
   z-index: 10;
-  position: absolute;
+  position: fixed;
+  margin:0 auto;
   bottom: 0;
   height: 130px;
   width: 100%;
