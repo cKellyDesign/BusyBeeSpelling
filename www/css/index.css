@@ -23,6 +23,15 @@ max width and height?
   z-index: -1;
   position: absolute;
 }
+.main h1 {
+  position: absolute;
+}
+.levelName {
+  font-size: 3em;
+  display: block;
+  text-align: center;
+  padding-top: 80px;
+}
 .menu-icon{
   width: 58px;
   height: 60px;
@@ -83,6 +92,7 @@ max width and height?
   position: absolute;
   font-size: 3em;
   padding: 10px 0px 0px 20px;
+  z-index: 5;
 }
 .letterBG_1 {
   background: url("../imgs/letterBG_1.png");
@@ -119,11 +129,20 @@ max width and height?
   height: 100%;
   top:0;
   z-index: 10;
+  margin: 0;
+  padding: 0;
+}
+.levelSelect .landings {
+  padding-top: 80px;
 }
 .flower {
   display: inline-block;
   position: absolute;
   bottom: 0;
+  z-index: 2;
+}
+.levelSelect .flower {
+  position: relative;
 }
 .flower-reddaisy{
   background: url("../imgs/flowers-daisy.png");
