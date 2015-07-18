@@ -37,12 +37,13 @@
     </head>
     <body ng-app="BusyBeeSpelling">
         <div class="app">
-
             <!-- Start Markup for Level Selection Screen -->
-            <div ng-show="state.levelSelectControl" ng-controller="levelSelectControl">
+            <div ng-show="state.levelSelectControl" ng-controller="levelSelectControl" class="main">
                 <h1 ng-click="selectLevel()">{{message}}</h1>
-                <ul>
-                    <li ng-repeat="level in levels" ng-click='selectLevel(level)'>{{level}}</li>
+                <ul class="landings">
+                    <li ng-repeat="level in levels" ng-click='selectLevel(level)' class="flower flower-reddaisy">
+                        <div class="letters letterBG_{{letter.letterBGnumber}}" style="left: {{letter.letterLeft}}%; bottom:{{letter.letterBottom}}%;">{{level}}</div>
+                    </li>
                 </ul>
             </div>
             <!-- End Markup for Level Selection Screen -->

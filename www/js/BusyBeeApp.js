@@ -11,8 +11,8 @@ BusyBeeSpelling.run(function($rootScope){
 
 
 BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope){
-  $scope.message = "HELLO WORLD!";
-  $scope.levels = ["lowercase", "UPPERCASE", "vowels"];
+  $scope.message = "Busy Bee Spelling";
+  $scope.levels = ["lowercase", "diagraphs", "vowels"];
 
   $scope.selectLevel = function(level) {
     $rootScope.currentLevel = level || "vowels";
