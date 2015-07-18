@@ -66,6 +66,11 @@ max width and height?
 @keyframes fly {
   100% { background-position: -534px; }
 }
+.gamearea{
+  width:100%;
+  height:100%;
+  z-index: 40;
+}
 .letters{
   width: 85px;
   height: 85px;
@@ -108,6 +113,7 @@ max width and height?
   width:100%;
   height: 100%;
   top:0;
+  z-index: 10;
 }
 .flower {
   display: inline-block;
@@ -263,7 +269,7 @@ max width and height?
   background-repeat: repeat-x;
   width: 100%;
   height: 130px;
-  z-index: 0;
+  z-index: 1;
   position: absolute;
   top:0;
   /*border: 1px solid red;*/

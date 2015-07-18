@@ -62,20 +62,22 @@
                     <div class="character" id="character" style="left: {{beePosition.left}}px; top: {{beePosition.top}}px;"></div>
                     <div class="hivetube"></div>
                     <div class="home" ng-click="backToMenu()"></div>
-                    <!--<div>-->
-                        <ul class="landings" ng-click="backgroundClick($event)">
-                        <li ng-repeat="letter in levelLetters" class="flower {{letter.flowerClass}}" style="left: {{letter.flowerLeft}}px; bottom: {{letter.flowerBottom}}px;" ng-click="flowerClick($event)">
-                            <div class="letters letterBG_{{letter.letterBGnumber}}" style="left: {{letter.letterLeft}}%; bottom:{{letter.letterBottom}}%;" ng-show="letter.show" ng-click="letterClick($event, $index)">{{letter.letter}}</div>
-                        </li>
-                        </ul>
-                    <!--</div>-->
-                    <!--<div>-->
-                       <ul class="answerarea">
-                            <li ng-repeat="letter in collectedLetters">
-                                <div class="letters letterBG_{{letter.letterBGnumber}}" ng-hide="letter.show">{{letter.letter}}</div>
+                    <div class="gamearea">
+                        <!--<div>-->
+                            <ul class="landings" ng-click="backgroundClick($event)">
+                            <li ng-repeat="letter in levelLetters" class="flower {{letter.flowerClass}}" style="left: {{letter.flowerLeft}}px; bottom: {{letter.flowerBottom}}px;" ng-click="flowerClick($event)">
+                                <div class="letters letterBG_{{letter.letterBGnumber}}" style="left: {{letter.letterLeft}}%; bottom:{{letter.letterBottom}}%;" ng-show="letter.show" ng-click="letterClick($event, $index)">{{letter.letter}}</div>
                             </li>
-                        </ul>
-                    <!--</div>-->
+                            </ul>
+                        <!--</div>-->
+                        <!--<div>-->
+                           <ul class="answerarea">
+                                <li ng-repeat="letter in collectedLetters">
+                                    <div class="letters letterBG_{{letter.letterBGnumber}}" ng-hide="letter.show">{{letter.letter}}</div>
+                                </li>
+                            </ul>
+                        <!--</div>-->
+                    </div>
                     <div class="clouds"></div>
                 </div>
             </div>
