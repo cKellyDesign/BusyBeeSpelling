@@ -53,8 +53,10 @@
                 <div class="main">
                     <div class="menu">
                         <div class="menu-nav">
-                            <ul>
-                                <li></li>
+                            <ul class="landings">
+                                <li ng-repeat="level in levels" ng-click='selectLevel(level)' class="flower flower-reddaisy">
+                                    <div class="letters letterBG_{{letter.letterBGnumber}}" style="left: {{letter.letterLeft}}%; bottom:{{letter.letterBottom}}%;">{{level}}</div>
+                                </li>
                             </ul>
                         </div>
                     </div>
