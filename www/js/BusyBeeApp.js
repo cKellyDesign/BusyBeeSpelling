@@ -7,12 +7,40 @@ BusyBeeSpelling.run(function($rootScope){
   };
 
   $rootScope.currentLevel = "";
+
+  // CSS class names for different flowers
+  $rootScope.flowerLegend = ['flower-reddaisy', 'flower-purpletulip', 'flower-yellowdahlia'];
+
+  $rootScope.genRanNum = function(maxLength, minLength) {
+    minLength = minLength || 0;
+    return Math.floor(Math.random() * (maxLength - minLength) + minLength);
+  }
 });
 
 
 BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope){
   $scope.message = "Busy Bee Spelling";
-  $scope.levels = ["lowercase", "diagraphs", "vowels"];
+
+  $scope.levels = [{
+    "name": "lowercase",
+    "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
+    "letterLeft": $rootScope.genRanNum(66,33),
+    "letterBottom": $rootScope.genRanNum(80, 50),
+    "letterBGnumber": $rootScope.genRanNum(4,1)
+  }, {
+    "name": "diagraphs",
+    "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
+    "letterLeft": $rootScope.genRanNum(66,33),
+    "letterBottom": $rootScope.genRanNum(80, 50),
+    "letterBGnumber": $rootScope.genRanNum(4,1)
+  }, {
+    "name": "vowels",
+    "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
+    "letterLeft": $rootScope.genRanNum(66,33),
+    "letterBottom": $rootScope.genRanNum(80, 50),
+    "letterBGnumber": $rootScope.genRanNum(4,1)
+  }];
+  
 
   $scope.selectLevel = function(level) {
     $rootScope.currentLevel = level || "vowels";
@@ -33,8 +61,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
   };
   // For Generating letters for the level
   $scope.letterLegend = {
-    "lowercase" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
-    "UPPERCASE" : "ABCDEFGHIJKLMNOPQRSTUVWXYZAEIOUAEIOUAEIOUAEIOU",
+    "lowercase" : "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ",
+    "uppercase" : "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ",
     "vowels" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
     "consonants": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
     "numbers": "1!2@3#4$5%6^7&8*9(0)11-12+13=14/15ab16cd17ef18uo19ij20kl"
@@ -43,13 +71,13 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
   $scope.answerLegend = {
     "vowels" : "aeiou",
     "consonants": "bcdfghjklmnpqrstvwxyz",
-    "numbers": "1234567890"
+    "numbers": "1234567890",
+    "lowercase": "abcdefghijklmnopqrstuvwxy",
+    "uppercase": "ABCDEFGHIJKLMNOPQRSTUVWXY"
   };
   // For binding letters
   $scope.levelLetters = []; 
   $scope.collectedLetters = [];
-  // CSS class names for different flowers
-  $scope.flowerLegend = ['flower-reddaisy', 'flower-purpletulip', 'flower-yellowdahlia'];
 
   // Number values for Left / Top CSS properties
   $scope.beePosition = {
@@ -101,7 +129,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     // Checks answer of collected letter
     var letterVal = $scope.levelLetters[i].letter;
     $scope.levelLetters[i].show = false;
-    var isCorrect = $scope.answerLegend[$scope.currentLevel].indexOf(letterVal) !== -1;
+    var isCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(letterVal) !== -1;
     if (isCorrect) {
       $scope.collectedLetters.push($scope.levelLetters[i]);
       $scope.correctAnswerResponse(letterVal);
@@ -142,17 +170,17 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
   $scope.generateLetters = function(level) {
     if (!level) return;
     $scope.currentLevel = level;
-    var possible = $scope.letterLegend[level];
+    var possible = $scope.letterLegend[level.name];
 
     for ( var i=0; i < 10; i++ ) {
       $scope.levelLetters.push({
-        "letter": possible.charAt($scope.genRanNum(possible.length)),
-        "flowerClass": $scope.flowerLegend[$scope.genRanNum($scope.flowerLegend.length)],
-        "flowerLeft": i === 0 ? 200 : $scope.levelLetters[i - 1].flowerLeft + $scope.genRanNum(350, 250),
-        "flowerBottom": $scope.genRanNum(200, 50),
-        "letterLeft": $scope.genRanNum(66,33),
-        "letterBottom": $scope.genRanNum(80, 50),
-        "letterBGnumber": $scope.genRanNum(4,1),
+        "letter": possible.charAt($rootScope.genRanNum(possible.length)),
+        "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
+        "flowerLeft": i === 0 ? 200 : $scope.levelLetters[i - 1].flowerLeft + $rootScope.genRanNum(350, 250),
+        "flowerBottom": $rootScope.genRanNum(200, 50),
+        "letterLeft": $rootScope.genRanNum(66,33),
+        "letterBottom": $rootScope.genRanNum(80, 50),
+        "letterBGnumber": $rootScope.genRanNum(4,1),
         "show": true
       });
     }
@@ -167,7 +195,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     var thisLetterIsCorrect;
     for (i = 0; i < $scope.levelLetters.length; i++) {
       thisLetter = $scope.levelLetters[i].letter;
-      thisLetterIsCorrect = $scope.answerLegend[$scope.currentLevel].indexOf(thisLetter) !== -1;
+      thisLetterIsCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(thisLetter) !== -1;
       if (thisLetterIsCorrect) {
         possiblePoints++;
       }
@@ -175,9 +203,4 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     console.log("POSSIBLE POINTS THIS LEVEL!! ", possiblePoints);
     return possiblePoints;
   };
-
-  $scope.genRanNum = function(maxLength, minLength) {
-    minLength = minLength || 0;
-    return Math.floor(Math.random() * (maxLength - minLength) + minLength);
-  }
 });
