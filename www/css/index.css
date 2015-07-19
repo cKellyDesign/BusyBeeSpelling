@@ -32,15 +32,25 @@ max width and height?
   text-align: center;
   padding-top: 80px;
 }
+.in-level-menu {
+  position: fixed;
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  z-index: 50;
+  width: 288px;
+  background: url('../imgs/menu-back.png') left top no-repeat;
+  transition: left .5s;
+}
+.in-level-menu.open {
+  left: calc(100% - 288px);
+}
 .menu-icon{
   width: 58px;
   height: 60px;
-  z-index: 50;
-  position: fixed;
-  left: 520px;
-  /*float:right;*/
-  top: 0;
-  /*border: 1px red solid;*/
+  position: absolute;
+  display: block;
+  left: -55px;
 }
 .menu{
   display: none;

@@ -60,7 +60,12 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="menu-icon"><a href=""><img src="imgs/menu.png"></a></div>
+                    <div class="in-level-menu" ng-init="isOpen = false" ng-class="{'open': isOpen }">
+                        <a class="menu-icon" ng-click="isOpen = !isOpen"><img src="imgs/menu.png"></a>
+                        <div class="menu-panel">
+                            <!-- Let's place the contents of this menu here so it sits on top of the BG Image! -->
+                        </div>
+                    </div>
                     <div class="character" id="character" style="left: {{beePosition.left}}px; top: {{beePosition.top}}px;"></div>
                     <div class="hivetube"></div>
                     <div class="home" ng-click="backToMenu()"></div>
