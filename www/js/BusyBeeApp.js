@@ -28,13 +28,13 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
     "letterBottom": $rootScope.genRanNum(80, 50),
     "letterBGnumber": $rootScope.genRanNum(4,1)
   }, {
-    "name": "diagraphs",
+    "name": "digraph",
     "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
     "letterLeft": $rootScope.genRanNum(66,33),
     "letterBottom": $rootScope.genRanNum(80, 50),
     "letterBGnumber": $rootScope.genRanNum(4,1)
   }, {
-    "name": "vowels",
+    "name": "vowel",
     "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
     "letterLeft": $rootScope.genRanNum(66,33),
     "letterBottom": $rootScope.genRanNum(80, 50),
@@ -43,7 +43,7 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
   
 
   $scope.selectLevel = function(level) {
-    $rootScope.currentLevel = level || "vowels";
+    $rootScope.currentLevel = level || "vowel";
     $rootScope.state.levelSelectControl = false;
     $rootScope.state.levelControl = true;
   };
@@ -63,17 +63,19 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.letterLegend = {
     "lowercase" : "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ",
     "uppercase" : "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ",
-    "vowels" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
-    "consonants": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
-    "numbers": "1!2@3#4$5%6^7&8*9(0)11-12+13=14/15ab16cd17ef18uo19ij20kl"
+    "vowel" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
+    "consonant": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
+    "numbers": "1!2@3#4$5%6^7&8*9(0)11-12+13=14/15ab16cd17ef18uo19ij20kl",
+    "digraph": ["th", "ch", "sh", "ph"]
   };
   // For checking clicked letters
   $scope.answerLegend = {
-    "vowels" : "aeiou",
-    "consonants": "bcdfghjklmnpqrstvwxyz",
+    "vowel" : "aeiou",
+    "consonant": "bcdfghjklmnpqrstvwxyz",
     "numbers": "1234567890",
     "lowercase": "abcdefghijklmnopqrstuvwxy",
-    "uppercase": "ABCDEFGHIJKLMNOPQRSTUVWXY"
+    "uppercase": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+    "digraph": ["th", "ch", "sh", "ph", "wh", "tch", "kn", "gh"]
   };
   // For binding letters
   $scope.levelLetters = []; 
@@ -178,9 +180,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.currentLevel = level;
     var possible = $scope.letterLegend[level.name];
 
-    for ( var i=0; i < 10; i++ ) {
+    for ( var i=0; i < 8; i++ ) {
       $scope.levelLetters.push({
-        "letter": possible.charAt($rootScope.genRanNum(possible.length)),
+        "letter": (level.name !== "digraph") ? possible.charAt($rootScope.genRanNum(possible.length)) : $scope.determineDigraph(possible),
         "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
         "flowerLeft": i === 0 ? 200 : $scope.levelLetters[i - 1].flowerLeft + $rootScope.genRanNum(350, 250),
         "flowerBottom": $rootScope.genRanNum(200, 50),
@@ -193,6 +195,16 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
     $scope.levelScore.possiblePoints = $scope.getPossiblePoints();
     $scope.levelScore.scoreToWin = ($scope.levelScore.possiblePoints < 3) ? $scope.levelScore.possiblePoints : $scope.levelScore.scoreToWin;
+  };
+
+  $scope.determineDigraph = function(possible) {
+    var isdigraph = $scope.genRanNum(100) < 50;
+    if (isdigraph) {
+      return possible[$rootScope.genRanNum(possible.length)];
+    } else {
+      possible = $scope.answerLegend.lowercase;
+      return possible.charAt($rootScope.genRanNum(possible.length)) + possible.charAt($rootScope.genRanNum(possible.length));
+    }
   };
 
   $scope.getPossiblePoints = function() {
