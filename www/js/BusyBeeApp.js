@@ -125,6 +125,11 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     $scope.beePosition.top = beeTop;
   };
 
+  //  This should become a Service / Directive and should have:
+  //    1. Answer Checking Logic
+  //    2. Point / Strike Tracking logic
+  //    3. Level Complete Logic 
+  //    4. DOM / Visual Representation via Panel element
   $scope.checkAnswer = function(i) {
     // Checks answer of collected letter
     var letterVal = $scope.levelLetters[i].letter;
