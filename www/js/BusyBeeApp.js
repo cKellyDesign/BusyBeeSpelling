@@ -139,7 +139,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       $scope.showCollectAnswerPanel = true;
       $scope.collectedAnswer = answerVal;
       $scope.collectedAnswerBG = $scope.levelLetters[i].letterBGnumber;
-
+      $scope.levelScore.possiblePoints--;
     } else {
       $scope.levelLetters[i].show = false;
     }
@@ -152,30 +152,15 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     // Animate Letter to Hive opening
     $timeout(function(){
       $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
-    },500);
+      // TODO:
+      //   Use Classes to position / animate answer over to hive
+      //   Bee should make BeeLine to hive so we don't have to worry about syncing ups and downs of Bee + Answer 
+    }, 500);
     
     // Trigger hive ungulation here
     $timeout(function(){
       $scope.collectedLetters.push($scope.levelLetters[i]);
     }, 2000);
-  };
-
-  $scope.wrongAnswerResponse = function() {
-    $scope.levelScore.strikes++;
-    // Trigger "This {{letter.letter}} is not a {{currentLevel}}!"
-    if ($scope.levelScore.strikes === 3) {
-      // Level Fail Feedback
-      $scope.backToMenu();
-    }
-  };
-
-  $scope.correctAnswerResponse = function() {
-    $scope.levelScore.points++;
-    // Trigger Letter Collection Animations?
-    if ($scope.levelScore.points === $scope.levelScore.scoreToWin) {
-      // Level Complete Feedback
-      $scope.backToMenu();
-    }
   };
 
   $scope.backToMenu = function() {
@@ -221,7 +206,6 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         possiblePoints++;
       }
     }
-    console.log("POSSIBLE POINTS THIS LEVEL!! ", possiblePoints);
     return possiblePoints;
   };
 });

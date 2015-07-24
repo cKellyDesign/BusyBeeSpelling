@@ -98,7 +98,8 @@
                         <h2>That's right!!</h2>
                         <div class="letters letterBG_{{collectedAnswerBG}}">{{collectedAnswer}}</div>
                         <span>Is a {{currentLevel.name}}</span>
-                        <button ng-click="acceptAnswer()">Keep Going!!</button>
+                        <button ng-click="acceptAnswer()" ng-show="levelScore.possiblePoints">Only {{levelScore.possiblePoints}} Left!!</button>
+                        <button ng-click="backToMenu()" ng-hide="levelScore.possiblePoints">YOU DID IT!!</button>
                     </div>
                 </div>
             </div>
