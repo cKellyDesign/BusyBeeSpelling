@@ -87,18 +87,18 @@
                         <!--<div>-->
                            <ul class="answerarea">
                                 <li ng-repeat="letter in collectedLetters">
-                                    <div class="letters letterBG_{{letter.letterBGnumber}}" ng-hide="letter.show">{{letter.letter}}</div>
+                                    <div class="letters letterBG_{{letter.letterBGnumber}}">{{letter.letter}}</div>
                                 </li>
                             </ul>
                         <!--</div>-->
                     </div>
                     <div class="clouds"></div>
 
-                    <div ng-controller="collectAnswer" class="collectAnswerPanel" ng-show="isVisible">
+                    <div class="collectAnswerPanel" ng-show="showCollectAnswerPanel">
                         <h2>That's right!!</h2>
-                        <div class="letters letterBG_{{thisAnswerBG}}">{{thisAnswer}}</div>
+                        <div class="letters letterBG_{{collectedAnswerBG}}">{{collectedAnswer}}</div>
                         <span>Is a {{currentLevel.name}}</span>
-                        <button ng-click="continueGame()">Keep Going!!</button>
+                        <button ng-click="showCollectAnswerPanel = !showCollectAnswerPanel">Keep Going!!</button>
                     </div>
                 </div>
             </div>

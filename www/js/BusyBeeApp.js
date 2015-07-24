@@ -79,6 +79,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
   $scope.levelLetters = []; 
   $scope.collectedLetters = [];
 
+  // Letter Collection Response Panel Vars
   $scope.showCollectAnswerPanel = false;
   $scope.collectedAnswer = "";
 
@@ -127,29 +128,27 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     }, 1000);
   }
 
-  //  This should become a Service / Directive and should have:
-  //    1. Answer Checking Logic
-  //    2. Point / Strike Tracking logic
-  //    3. Level Complete Logic 
-  //    4. DOM / Visual Representation via Panel element
   $scope.checkAnswer = function(i) {
-    $scope.levelLetters[i].show = false;
+    console.log("showCollectAnswerPanel: ", $scope.showCollectAnswerPanel);
+    // $scope.levelLetters[i].show = false;
     var answerVal = $scope.levelLetters[i].letter; 
     var isCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(answerVal) !== -1;
 
 
     if (isCorrect) {
-      // $scope.collectedLetters.push();
-      $scope.showCollectAnswerPanel = true;
-      $scope.collectedAnswer = {
-        'answerVal': answerVal,
-        'answer': $scope.levelLetters[i]
-      };
+      // Animate Letter to Hive opening
+      console.log($scope.levelLetters[i]);
+      $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
+      // $scope.levelLetters[i].left = 0;
+      // $scope.levelLetters[i].top = 0;
 
-      // $scope.correctAnswerResponse(letterVal);
-      // console.log("THIS LETTER IS CORRECT! ", $scope.collectedLetters);
-    // } else {
-      // $scope.wrongAnswerResponse(letterVal);
+      // Show Answer Panel with true
+      $scope.showCollectAnswerPanel = true;
+      $scope.collectedAnswer = answerVal;
+      $scope.collectedAnswerBG = $scope.levelLetters[i].letterBGnumber;
+
+      // Trigger hive ungulation here
+      $scope.collectedLetters.push($scope.levelLetters[i]);
     }
   };
 
@@ -217,24 +216,4 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     console.log("POSSIBLE POINTS THIS LEVEL!! ", possiblePoints);
     return possiblePoints;
   };
-});
-
-BusyBeeSpelling.controller('collectAnswer', function($scope) {
-  $scope.isVisible; // Used to toggle panel
-  $scope.thisAnswer; // Used to display selected letter
-  $scope.thisAnswerBG;
-  $scope.answerToPush;
-  
-  $scope.$watch('showCollectAnswerPanel', function(isVisible){
-    $scope.isVisible = isVisible;
-    $scope.thisAnswer = $scope.collectedAnswer.answerVal;
-    $scope.answerToPush = $scope.collectedAnswer.answer;
-    $scope.thisAnswerBG = $scope.collectedAnswer.answer.letterBGnumber;
-  });
-
-  $scope.continueGame = function() {
-    // call function to ungulate hive tube here
-    $scope.collectedLetters.push($scope.answerToPush);
-    $scope.showCollectAnswerPanel = false;
-  }
 });
