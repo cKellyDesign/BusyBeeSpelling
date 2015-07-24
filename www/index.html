@@ -51,6 +51,8 @@
             <!-- Start Markup for Level Screen -->
             <div class="mainshell" ng-show="state.levelControl" ng-controller="levelControl">
                 <div class="main">
+
+                <!--    Did I break this at some point???
                     <div class="menu">
                         <div class="menu-nav">
                             <ul class="landings">
@@ -59,14 +61,19 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
+
+                    <!-- In Level Menu -->
                     <div class="in-level-menu" ng-init="isOpen = false" ng-class="{'open': isOpen }">
                         <a class="menu-icon" ng-click="isOpen = !isOpen"><img src="imgs/menu.png"></a>
                         <div class="menu-panel">
                             <!-- Let's place the contents of this menu here so it sits on top of the BG Image! -->
                         </div>
                     </div>
+
+                    <!-- BusyBee -->
                     <div class="character" id="character" style="left: {{beePosition.left}}px; top: {{beePosition.top}}px;"></div>
+
                     <div class="hivetube"></div>
                     <div class="home" ng-click="backToMenu()"></div>
                     <div class="gamearea">
@@ -86,6 +93,13 @@
                         <!--</div>-->
                     </div>
                     <div class="clouds"></div>
+
+                    <div ng-controller="collectAnswer" class="collectAnswerPanel" ng-show="isVisible">
+                        <h2>That's right!!</h2>
+                        <div class="letters letterBG_{{thisAnswerBG}}">{{thisAnswer}}</div>
+                        <span>Is a {{currentLevel.name}}</span>
+                        <button ng-click="continueGame()">Keep Going!!</button>
+                    </div>
                 </div>
             </div>
             <!-- End Markup for Level Screen -->

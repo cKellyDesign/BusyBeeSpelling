@@ -79,6 +79,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
   $scope.levelLetters = []; 
   $scope.collectedLetters = [];
 
+  $scope.showCollectAnswerPanel = false;
+  $scope.collectedAnswer = "";
+
   // Number values for Left / Top CSS properties
   $scope.beePosition = {
     "left": 50,
@@ -90,6 +93,13 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
       $scope.generateLetters(currentLevel);
     }
   );
+
+  $scope.moveBee = function(beeTop, beeLeft) {
+    beeLeft = beeLeft - 89; // Centers Bee on click point
+
+    $scope.beePosition.left = beeLeft;
+    $scope.beePosition.top = beeTop;
+  };
 
   $scope.backgroundClick = function(e) {
     e.stopPropagation();
@@ -115,15 +125,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     setTimeout(function(){
       $scope.checkAnswer(i);
     }, 1000);
-    // console.log("\n", e, "\n");
   }
-
-  $scope.moveBee = function(beeTop, beeLeft) {
-    beeLeft = beeLeft - 89; // Centers Bee on click point
-
-    $scope.beePosition.left = beeLeft;
-    $scope.beePosition.top = beeTop;
-  };
 
   //  This should become a Service / Directive and should have:
   //    1. Answer Checking Logic
@@ -131,16 +133,23 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
   //    3. Level Complete Logic 
   //    4. DOM / Visual Representation via Panel element
   $scope.checkAnswer = function(i) {
-    // Checks answer of collected letter
-    var letterVal = $scope.levelLetters[i].letter;
     $scope.levelLetters[i].show = false;
-    var isCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(letterVal) !== -1;
+    var answerVal = $scope.levelLetters[i].letter; 
+    var isCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(answerVal) !== -1;
+
+
     if (isCorrect) {
-      $scope.collectedLetters.push($scope.levelLetters[i]);
-      $scope.correctAnswerResponse(letterVal);
-      console.log("THIS LETTER IS CORRECT! ", $scope.collectedLetters);
-    } else {
-      $scope.wrongAnswerResponse(letterVal)
+      // $scope.collectedLetters.push();
+      $scope.showCollectAnswerPanel = true;
+      $scope.collectedAnswer = {
+        'answerVal': answerVal,
+        'answer': $scope.levelLetters[i]
+      };
+
+      // $scope.correctAnswerResponse(letterVal);
+      // console.log("THIS LETTER IS CORRECT! ", $scope.collectedLetters);
+    // } else {
+      // $scope.wrongAnswerResponse(letterVal);
     }
   };
 
@@ -208,4 +217,24 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     console.log("POSSIBLE POINTS THIS LEVEL!! ", possiblePoints);
     return possiblePoints;
   };
+});
+
+BusyBeeSpelling.controller('collectAnswer', function($scope) {
+  $scope.isVisible; // Used to toggle panel
+  $scope.thisAnswer; // Used to display selected letter
+  $scope.thisAnswerBG;
+  $scope.answerToPush;
+  
+  $scope.$watch('showCollectAnswerPanel', function(isVisible){
+    $scope.isVisible = isVisible;
+    $scope.thisAnswer = $scope.collectedAnswer.answerVal;
+    $scope.answerToPush = $scope.collectedAnswer.answer;
+    $scope.thisAnswerBG = $scope.collectedAnswer.answer.letterBGnumber;
+  });
+
+  $scope.continueGame = function() {
+    // call function to ungulate hive tube here
+    $scope.collectedLetters.push($scope.answerToPush);
+    $scope.showCollectAnswerPanel = false;
+  }
 });
