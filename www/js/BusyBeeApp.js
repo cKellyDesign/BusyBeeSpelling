@@ -1,6 +1,6 @@
 var BusyBeeSpelling = angular.module('BusyBeeSpelling', ['ngCordova']);
 
-BusyBeeSpelling.run(function($rootScope){ 
+BusyBeeSpelling.run(function($rootScope, $timeout){ 
   $rootScope.state = {
     "levelSelectControl" : true,
     "levelControl" : false
@@ -18,7 +18,7 @@ BusyBeeSpelling.run(function($rootScope){
 });
 
 
-BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope){
+BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $timeout){
   $scope.message = "Busy Bee Spelling";
 
   $scope.levels = [{
@@ -49,7 +49,7 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope){
   };
 });
 
-BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
+BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout){
 
   $scope.message = "Welcome to level 1!";
   $scope.currentLevel = "";
@@ -82,6 +82,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
   // Letter Collection Response Panel Vars
   $scope.showCollectAnswerPanel = false;
   $scope.collectedAnswer = "";
+  $scope.levelAnswerIndex = 0;
 
   // Number values for Left / Top CSS properties
   $scope.beePosition = {
@@ -123,33 +124,40 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope){
     var clickLeft = e.srcElement.offsetLeft + e.srcElement.parentElement.offsetLeft + (e.offsetX * 2);
     var clickTop = e.srcElement.offsetTop + e.offsetY;
     $scope.moveBee(clickTop, clickLeft);
-    setTimeout(function(){
+    $timeout(function(){
       $scope.checkAnswer(i);
     }, 1000);
   }
 
   $scope.checkAnswer = function(i) {
-    console.log("showCollectAnswerPanel: ", $scope.showCollectAnswerPanel);
-    // $scope.levelLetters[i].show = false;
+    $scope.levelAnswerIndex = i;
     var answerVal = $scope.levelLetters[i].letter; 
     var isCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(answerVal) !== -1;
 
-
     if (isCorrect) {
-      // Animate Letter to Hive opening
-      console.log($scope.levelLetters[i]);
-      $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
-      // $scope.levelLetters[i].left = 0;
-      // $scope.levelLetters[i].top = 0;
-
       // Show Answer Panel with true
       $scope.showCollectAnswerPanel = true;
       $scope.collectedAnswer = answerVal;
       $scope.collectedAnswerBG = $scope.levelLetters[i].letterBGnumber;
 
-      // Trigger hive ungulation here
-      $scope.collectedLetters.push($scope.levelLetters[i]);
+    } else {
+      $scope.levelLetters[i].show = false;
     }
+  };
+
+  $scope.acceptAnswer = function() {
+    var i = $scope.levelAnswerIndex;
+    $scope.showCollectAnswerPanel = false;
+
+    // Animate Letter to Hive opening
+    $timeout(function(){
+      $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
+    },500);
+    
+    // Trigger hive ungulation here
+    $timeout(function(){
+      $scope.collectedLetters.push($scope.levelLetters[i]);
+    }, 2000);
   };
 
   $scope.wrongAnswerResponse = function() {
