@@ -68,6 +68,7 @@
                         <a class="menu-icon" ng-click="isOpen = !isOpen"><img src="imgs/menu.png"></a>
                         <div class="menu-panel">
                             <!-- Let's place the contents of this menu here so it sits on top of the BG Image! -->
+                            <a ng-click="backToMenu(); isOpen = false">Home</a>
                         </div>
                     </div>
 
@@ -75,11 +76,12 @@
                     <div 
                         id="character"
                         ng-class="{ 'faceLeft': busyBee.faceLeft }" 
-                        style="left: {{busyBee.left}}px; top: {{busyBee.top}}px;">
+                        style="left: {{busyBee.left}}px; top: {{busyBee.top}}px;"
+                        ng-click="busyBee.takeAnswerToHive()">
                     </div>
 
                     <div class="hivetube"></div>
-                    <div class="home" ng-click="backToMenu()"></div>
+                    <div class="home" ng-click="hiveClick($event)"></div>
                     <div class="gamearea">
                         <!--<div>-->
                             <ul class="landings" ng-click="backgroundClick($event)">

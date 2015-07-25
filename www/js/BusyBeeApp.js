@@ -51,7 +51,6 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
 
 BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout){
 
-  $scope.message = "Welcome to level 1!";
   $scope.currentLevel = "";
   $scope.levelScore = {
     "points": 0,
@@ -91,11 +90,30 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "left": 50,
     "top": 10,
     "faceLeft": false,
-    "move": function(beeTop, beeLeft) {
+
+    move: function(beeTop, beeLeft) {
+      console.log("Top: ", beeTop, "  Left: ", beeLeft);
       this.top = beeTop;
       this.left = beeLeft - 89;
     },
-    "refresh": function() {
+
+    takeAnswerToHive: function() {
+      // todo: Somehow get window to animated scroll with busyBee, or get every thing else to scroll around busyBee
+      var currLeft = this.left;
+      var currTop = this.top;
+      var currX = (window.pageXOffset || document.documentElement.scrollLeft) - (document.documentElement.clientLeft || 0);
+      this.faceLeft = true;
+      this.top = 70;
+      this.left = 90;
+      console.log("current Scroll X position: ", currX);
+      $timeout(function(){
+        $scope.busyBee.top = currTop;
+        $scope.busyBee.left = currLeft;
+        $scope.busyBee.faceLeft = false;
+      }, 3000);
+    },
+
+    refresh: function() {
       this.top = 10;
       this.left = 50;
       this.faceLeft = false;
@@ -108,12 +126,20 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     }
   );
 
+  $scope.hiveClick = function(e) {
+    e.stopPropagation();
+    var clickLeft = e.srcElement.offsetLeft + (e.offsetX * 2);
+    var clickTop = e.srcElement.offsetTop + e.offsetY;
+    var index = angular.element(e.srcElement).parent();
+    $scope.busyBee.move(clickTop, clickLeft);
+  };
+
   $scope.backgroundClick = function(e) {
     e.stopPropagation();
     var clickLeft = e.offsetX * 2;
     var clickTop = e.offsetY;
     $scope.busyBee.move(clickTop, clickLeft);
-  }
+  };
 
   $scope.flowerClick = function(e) {
     e.stopPropagation();
@@ -121,8 +147,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     var clickTop = e.srcElement.offsetTop + e.offsetY;
     var index = angular.element(e.srcElement).parent();
     $scope.busyBee.move(clickTop, clickLeft);
-    // console.log("INDEX: ", index, "\n", e, "\n");
-  }
+  };
 
   $scope.letterClick = function(e, i) {
     e.stopPropagation();
@@ -132,7 +157,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $timeout(function(){
       $scope.checkAnswer(i);
     }, 1000);
-  }
+  };
 
   $scope.checkAnswer = function(i) {
     $scope.levelAnswerIndex = i;
@@ -176,6 +201,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.collectedLetters = [];
     $scope.levelScore.points = 0;
     $scope.busyBee.refresh();
+    window.scroll(0,0);
   };
 
   $scope.generateLetters = function(level) {
