@@ -221,9 +221,20 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.currentLevel = level;
     var possible = $scope.letterLegend[level.name];
     var flowerHeightCap = window.innerHeight - 250;
-    for ( var i=0; i < 8; i++ ) {
+    var notToRepeat = [];
+    var thisAnswer;
+    for ( var i=0; i < 8; i++) {
+
+      thisAnswer = (level.name !== "digraph") ? possible.charAt($rootScope.genRanNum(possible.length)) : $scope.determineDigraph(possible);
+      if ( notToRepeat.indexOf(thisAnswer) > 0 ) {
+        i--;
+        continue;
+      } else {
+        notToRepeat.push(thisAnswer);
+      }
+
       $scope.levelLetters.push({
-        "letter": (level.name !== "digraph") ? possible.charAt($rootScope.genRanNum(possible.length)) : $scope.determineDigraph(possible),
+        "letter": thisAnswer,
         "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
         "flowerLeft": i === 0 ? 200 : $scope.levelLetters[i - 1].flowerLeft + $rootScope.genRanNum(350, 250),
         "flowerBottom": $rootScope.genRanNum(flowerHeightCap, 50),
@@ -233,6 +244,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         "show": true
       });
     }
+
     var lastFlower = $scope.levelLetters[$scope.levelLetters.length - 1];
     $rootScope.levelWidth = (($scope.levelLetters[$scope.levelLetters.length - 1].flowerLeft + 400) / 2) + "px";
     console.log($rootScope.levelWidth);
