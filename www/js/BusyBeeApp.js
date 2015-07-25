@@ -197,25 +197,36 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $rootScope.state.levelControl = false;
     $rootScope.state.levelSelectControl = true;
     $rootScope.currentLevel = "";
+    $scope.refreshLevel(true);
+  };
+
+  $scope.refreshLevel = function(isDifferentLevel) {
     $scope.levelLetters = [];
     $scope.collectedLetters = [];
     $scope.levelScore.points = 0;
     $scope.busyBee.refresh();
     $rootScope.levelWidth = "100%";
-    window.scroll(0,0);
+    $scope.showCollectAnswerPanel = false;
+    $scope.collectedAnswer = "";
+
+    if (!isDifferentLevel) {
+      $scope.generateLetters($rootScope.currentLevel);
+      window.scroll(0,0);
+    }
   };
 
   $scope.generateLetters = function(level) {
     if (!level) return;
+    console.log(level);
     $scope.currentLevel = level;
     var possible = $scope.letterLegend[level.name];
-
+    var flowerHeightCap = window.innerHeight - 250;
     for ( var i=0; i < 8; i++ ) {
       $scope.levelLetters.push({
         "letter": (level.name !== "digraph") ? possible.charAt($rootScope.genRanNum(possible.length)) : $scope.determineDigraph(possible),
         "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
         "flowerLeft": i === 0 ? 200 : $scope.levelLetters[i - 1].flowerLeft + $rootScope.genRanNum(350, 250),
-        "flowerBottom": $rootScope.genRanNum(200, 50),
+        "flowerBottom": $rootScope.genRanNum(flowerHeightCap, 50),
         "letterLeft": $rootScope.genRanNum(66,33),
         "letterBottom": $rootScope.genRanNum(80, 50),
         "letterBGnumber": $rootScope.genRanNum(4,1),

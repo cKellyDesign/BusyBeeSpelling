@@ -69,6 +69,7 @@
                         <div class="menu-panel">
                             <!-- Let's place the contents of this menu here so it sits on top of the BG Image! -->
                             <a ng-click="backToMenu(); isOpen = false">Home</a>
+                            <a ng-click="refreshLevel(); isOpen = false">Restart Level</a>
                         </div>
                     </div>
 
@@ -106,6 +107,7 @@
                         <span>Is a {{currentLevel.name}}</span>
                         <button ng-click="acceptAnswer()" ng-show="levelScore.possiblePoints">Only {{levelScore.possiblePoints}} Left!!</button>
                         <button ng-click="backToMenu()" ng-hide="levelScore.possiblePoints">YOU DID IT!!</button>
+                        <button ng-click="refreshLevel()" ng-hide="levelScore.possiblePoints">Play Again!</button>
                     </div>
                 </div>
             </div>
