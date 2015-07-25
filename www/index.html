@@ -72,7 +72,11 @@
                     </div>
 
                     <!-- BusyBee -->
-                    <div class="character" id="character" style="left: {{beePosition.left}}px; top: {{beePosition.top}}px;"></div>
+                    <div 
+                        id="character"
+                        ng-class="{ 'faceLeft': busyBee.faceLeft }" 
+                        style="left: {{busyBee.left}}px; top: {{busyBee.top}}px;">
+                    </div>
 
                     <div class="hivetube"></div>
                     <div class="home" ng-click="backToMenu()"></div>

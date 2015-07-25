@@ -86,11 +86,20 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.collectedAnswer = "";
   $scope.levelAnswerIndex = 0;
 
-  // Number values for Left / Top CSS properties
-  // Todo: Embed functions to animate different actions
-  $scope.beePosition = {
+  // Vars and Funcs to Manipulate Busy Bee
+  $scope.busyBee = {
     "left": 50,
-    "top": 10
+    "top": 10,
+    "faceLeft": false,
+    "move": function(beeTop, beeLeft) {
+      this.top = beeTop;
+      this.left = beeLeft - 89;
+    },
+    "refresh": function() {
+      this.top = 10;
+      this.left = 50;
+      this.faceLeft = false;
+    }
   };
 
   $rootScope.$watch('currentLevel',
@@ -99,18 +108,11 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     }
   );
 
-  $scope.moveBee = function(beeTop, beeLeft) {
-    beeLeft = beeLeft - 89; // Centers Bee on click point
-
-    $scope.beePosition.left = beeLeft;
-    $scope.beePosition.top = beeTop;
-  };
-
   $scope.backgroundClick = function(e) {
     e.stopPropagation();
     var clickLeft = e.offsetX * 2;
     var clickTop = e.offsetY;
-    $scope.moveBee(clickTop, clickLeft);
+    $scope.busyBee.move(clickTop, clickLeft);
   }
 
   $scope.flowerClick = function(e) {
@@ -118,7 +120,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     var clickLeft = e.srcElement.offsetLeft + (e.offsetX * 2);
     var clickTop = e.srcElement.offsetTop + e.offsetY;
     var index = angular.element(e.srcElement).parent();
-    $scope.moveBee(clickTop, clickLeft);
+    $scope.busyBee.move(clickTop, clickLeft);
     // console.log("INDEX: ", index, "\n", e, "\n");
   }
 
@@ -126,7 +128,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     e.stopPropagation();
     var clickLeft = e.srcElement.offsetLeft + e.srcElement.parentElement.offsetLeft + (e.offsetX * 2);
     var clickTop = e.srcElement.offsetTop + e.offsetY;
-    $scope.moveBee(clickTop, clickLeft);
+    $scope.busyBee.move(clickTop, clickLeft);
     $timeout(function(){
       $scope.checkAnswer(i);
     }, 1000);
@@ -173,7 +175,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.levelLetters = [];
     $scope.collectedLetters = [];
     $scope.levelScore.points = 0;
-    $scope.levelScore.strikes = 0;
+    $scope.busyBee.refresh();
   };
 
   $scope.generateLetters = function(level) {
