@@ -92,7 +92,6 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "faceLeft": false,
 
     move: function(beeTop, beeLeft) {
-      console.log("Top: ", beeTop, "  Left: ", beeLeft);
       this.top = beeTop;
       this.left = beeLeft - 89;
     },
@@ -105,7 +104,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       this.faceLeft = true;
       this.top = 70;
       this.left = 90;
-      console.log("current Scroll X position: ", currX);
+      // console.log("current Scroll X position: ", currX);
       $timeout(function(){
         $scope.busyBee.top = currTop;
         $scope.busyBee.left = currLeft;
@@ -217,12 +216,13 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   $scope.generateLetters = function(level) {
     if (!level) return;
-    console.log(level);
+
     $scope.currentLevel = level;
     var possible = $scope.letterLegend[level.name];
     var flowerHeightCap = window.innerHeight - 250;
     var notToRepeat = [];
     var thisAnswer;
+
     for ( var i=0; i < 8; i++) {
 
       thisAnswer = (level.name !== "digraph") ? possible.charAt($rootScope.genRanNum(possible.length)) : $scope.determineDigraph(possible);
@@ -247,9 +247,6 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
     var lastFlower = $scope.levelLetters[$scope.levelLetters.length - 1];
     $rootScope.levelWidth = (($scope.levelLetters[$scope.levelLetters.length - 1].flowerLeft + 400) / 2) + "px";
-    console.log($rootScope.levelWidth);
-    console.log(lastFlower.flowerLeft);
-
     $scope.levelScore.possiblePoints = $scope.getPossiblePoints();
     $scope.levelScore.scoreToWin = ($scope.levelScore.possiblePoints < 3) ? $scope.levelScore.possiblePoints : $scope.levelScore.scoreToWin;
   };
