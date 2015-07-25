@@ -14,14 +14,14 @@ max width and height?
   font-family: titleFont;
 }
 .main{
-  /*width: 100%;*/
-  width: 1200px;
-  height: 352px; /*wtf is up with this random number*/
-  overflow-x: hidden;
+  width: 100%;
+  overflow: hidden;
   background: #219efe;
   padding:0;
   z-index: -1;
   position: absolute;
+  top: 0;
+  bottom: 0;
 }
 .main h1 {
   position: absolute;

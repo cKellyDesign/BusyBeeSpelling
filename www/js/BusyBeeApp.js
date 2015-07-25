@@ -7,7 +7,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
   };
 
   $rootScope.currentLevel = "";
-
+  $rootScope.levelWidth = "100%";
   // CSS class names for different flowers
   $rootScope.flowerLegend = ['flower-reddaisy', 'flower-purpletulip', 'flower-yellowdahlia'];
 
@@ -201,6 +201,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.collectedLetters = [];
     $scope.levelScore.points = 0;
     $scope.busyBee.refresh();
+    $rootScope.levelWidth = "100%";
     window.scroll(0,0);
   };
 
@@ -221,6 +222,10 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         "show": true
       });
     }
+    var lastFlower = $scope.levelLetters[$scope.levelLetters.length - 1];
+    $rootScope.levelWidth = (($scope.levelLetters[$scope.levelLetters.length - 1].flowerLeft + 400) / 2) + "px";
+    console.log($rootScope.levelWidth);
+    console.log(lastFlower.flowerLeft);
 
     $scope.levelScore.possiblePoints = $scope.getPossiblePoints();
     $scope.levelScore.scoreToWin = ($scope.levelScore.possiblePoints < 3) ? $scope.levelScore.possiblePoints : $scope.levelScore.scoreToWin;
