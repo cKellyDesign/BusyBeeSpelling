@@ -87,6 +87,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.levelAnswerIndex = 0;
 
   // Number values for Left / Top CSS properties
+  // Todo: Embed functions to animate different actions
   $scope.beePosition = {
     "left": 50,
     "top": 10
