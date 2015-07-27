@@ -14,14 +14,14 @@ max width and height?
   font-family: titleFont;
 }
 .main{
-  /*width: 100%;*/
-  width: 1200px;
-  height: 352px; /*wtf is up with this random number*/
-  overflow-x: hidden;
+  width: 100%;
+  overflow: hidden;
   background: #219efe;
   padding:0;
   z-index: -1;
   position: absolute;
+  top: 0;
+  bottom: 0;
 }
 .main h1 {
   position: absolute;
@@ -68,7 +68,7 @@ max width and height?
   width: 288px;
   height: 100%;
 }
-.character{
+#character{
   background: url('../imgs/bee-sprite.png') left center;
   width: 178px;
   height: 220px;
@@ -90,6 +90,9 @@ max width and height?
 @keyframes fly {
   100% { background-position: -534px; }
 }
+#character.faceLeft {
+  transform: rotate(180deg);
+}
 .gamearea{
   width:100%;
   height:100%;
@@ -103,6 +106,7 @@ max width and height?
   font-size: 3em;
   padding: 10px 0px 0px 20px;
   z-index: 5;
+  transition: top 1.5s, left 1.5s; /* todo: add easing */
 }
 .letterBG_1 {
   background: url("../imgs/letterBG_1.png");
@@ -308,4 +312,15 @@ max width and height?
   position: absolute;
   top:0;
   /*border: 1px solid red;*/
+}
+
+/* Answer Collect Panel Styles */
+.collectAnswerPanel {
+  position: fixed;
+  top: 2.5%;
+  bottom: 2.5%;
+  left: 5%;
+  right: 5%;
+  background-color: rgba(255,255,255,.8);
+  z-index: 100;
 }
