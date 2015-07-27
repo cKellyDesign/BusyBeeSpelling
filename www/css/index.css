@@ -37,6 +37,7 @@ max width and height?
   left: 100%;
   top: 0;
   bottom: 0;
+  padding-left: 130px;
   z-index: 50;
   width: 288px;
   background: url('../imgs/menu-back.png') left top no-repeat;
@@ -51,6 +52,9 @@ max width and height?
   position: absolute;
   display: block;
   left: -55px;
+}
+.open .menu-icon{
+  display: none;
 }
 .menu{
   display: none;
@@ -68,6 +72,63 @@ max width and height?
   width: 288px;
   height: 100%;
 }
+.menu-panel{
+  color: #fff;
+  font-size: 20px;
+  line-height: 20px;
+}
+.easy{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 0px 0px;
+  width: 40px;
+  /*height: 40px;*/
+  display: inline-block;
+  padding-top: 40px;
+  margin-bottom:10px;
+  margin-right: 20px;
+  font-size: 18px;
+  line-height: 14px;
+}
+.lesseasy{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 0px -45px;
+  width: 40px;
+  /*height: 40px;*/
+  display: inline-block;
+  padding-top: 50px;
+  margin-bottom:10px;
+  margin-right: 35px;
+  font-size: 16px;
+  line-height: 14px;
+}
+
+.sound{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: -100px 0px;
+  width: 34px;
+  height: 40px;
+  padding-bottom: 25px;
+  display: inline-block;
+}
+.vowels{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 0px -50px;
+  display: block;
+  padding-top: 45px;
+}
+.lowercase{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 0px -115px;
+  display: block;
+  padding-top: 45px;
+}
+.diagraphs{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 0px -190px;
+  display: block;
+  padding-top: 45px;
+}
+
 #character{
   background: url('../imgs/bee-sprite.png') left center;
   width: 178px;
