@@ -3,6 +3,10 @@ max width and height?
 */
 @font-face {
   font-family: titleFont;
+  src: url(../fonts/ClarendonLTStd.otf);
+}
+@font-face {
+  font-family: titleFontBold;
   src: url(../fonts/ClarendonLTStd-Bold.otf);
 }
 
@@ -27,30 +31,45 @@ max width and height?
   position: absolute;
 }
 .levelName {
-  font-size: 3em;
+  font-size: 2.8em;
   display: block;
   text-align: center;
-  padding-top: 80px;
+  padding-top: 130px;
+  font-family: titleFontBold;
+  color: #f9d00e;
+  text-shadow: 4px 4px 0 #000,
+  -4px 4px 0 #000,
+  4px -4px 0 #000,
+  -4px -4px 0 #000,
+  0px 4px 0 #000,
+  0px -4px 0 #000,
+  -4px 0px 0 #000,
+  4px 0px 0 #000,
+  6px 6px 0 #000,
+  -6px 6px 0 #000,
+  6px -6px 0 #000,
+  -6px -6px 0 #000,
+  0px 6px 0 #000,
+  0px -6px 0 #000,
+  -6px 0px 0 #000,
+  6px 0px 0 #000,
+  4px 6px 0 #000,
+  -4px 6px 0 #000,
+  4px -6px 0 #000,
+  -4px -6px 0 #000,
+  6px 4px 0 #000,
+  -6px 4px 0 #000,
+  6px -4px 0 #000,
+  -6px -4px 0 #000;
+  /*-webkit-text-stroke-width: 3px;*/
+  /*-webkit-text-stroke-color: black;*/
 }
-.in-level-menu {
-  position: fixed;
-  left: 100%;
-  top: 0;
-  bottom: 0;
-  z-index: 50;
-  width: 288px;
-  background: url('../imgs/menu-back.png') left top no-repeat;
-  transition: left .5s;
-}
-.in-level-menu.open {
-  left: calc(100% - 288px);
-}
-.menu-icon{
-  width: 58px;
-  height: 60px;
-  position: absolute;
-  display: block;
-  left: -55px;
+
+/* end opening screen   */
+
+/* menu screen   */
+.open .menu-icon{
+  display: none;
 }
 .menu{
   display: none;
@@ -67,6 +86,86 @@ max width and height?
   float:right;
   width: 288px;
   height: 100%;
+}
+.menu-panel{
+  color: #fff;
+  font-size: 20px;
+  line-height: 20px;
+}
+.easy{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 0px 0px;
+  width: 40px;
+  /*height: 40px;*/
+  display: inline-block;
+  padding-top: 40px;
+  margin-bottom:10px;
+  margin-right: 20px;
+  font-size: 18px;
+  line-height: 14px;
+}
+.lesseasy{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 0px -45px;
+  width: 40px;
+  /*height: 40px;*/
+  display: inline-block;
+  padding-top: 50px;
+  margin-bottom:10px;
+  margin-right: 35px;
+  font-size: 16px;
+  line-height: 14px;
+}
+
+.sound{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: -100px 0px;
+  width: 34px;
+  height: 40px;
+  padding-bottom: 25px;
+  display: inline-block;
+}
+.vowels{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 0px -50px;
+  display: block;
+  padding-top: 45px;
+}
+.lowercase{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 0px -115px;
+  display: block;
+  padding-top: 45px;
+}
+.diagraphs{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 0px -190px;
+  display: block;
+  padding-top: 45px;
+}
+/* end menu screen   */
+
+/* play screen   */
+.in-level-menu {
+  position: fixed;
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  padding-left: 130px;
+  z-index: 50;
+  width: 288px;
+  background: url('../imgs/menu-back.png') left top no-repeat;
+  transition: left .5s;
+}
+.in-level-menu.open {
+  left: calc(100% - 288px);
+}
+.menu-icon{
+  width: 58px;
+  height: 60px;
+  position: absolute;
+  display: block;
+  left: -55px;
 }
 #character{
   background: url('../imgs/bee-sprite.png') left center;
@@ -106,7 +205,9 @@ max width and height?
   font-size: 3em;
   padding: 10px 0px 0px 20px;
   z-index: 5;
+  font-family: titleFontBold;
   transition: top 1.5s, left 1.5s; /* todo: add easing */
+  zoom: 1.25;
 }
 .letterBG_1 {
   background: url("../imgs/letterBG_1.png");
@@ -145,7 +246,13 @@ max width and height?
   z-index: 10;
   margin: 0;
   padding: 0;
+  /*font-size: 2.5em;*/
 }
+
+.main.landings li{
+  margin-left: 50px;
+}
+
 .levelSelect .landings {
   padding-top: 80px;
 }
@@ -184,6 +291,7 @@ max width and height?
   zoom:0.5;
   -moz-transform:scale(0.5);
   -moz-transform-origin: 0 0;
+  margin: 0 60px 0 20px;
 }
 .landing1{ /*red daisy*/
   z-index: 5;
