@@ -151,14 +151,21 @@ max width and height?
   left: 100%;
   top: 0;
   bottom: 0;
-  padding-left: 130px;
   z-index: 50;
-  width: 288px;
+  transition: left .25s;
+}
+.menu-panel{
+  padding-left: 130px;
+  height:100%;
+  width: 148px;
   background: url('../imgs/menu-back.png') left top no-repeat;
-  transition: left .5s;
+  left: calc(100% - 275px);
+  position: relative;
 }
 .in-level-menu.open {
-  left: calc(100% - 288px);
+  left:0;
+  background-color: rgba(166,211,245,.8);
+  width:100%;
 }
 .menu-icon{
   width: 58px;
