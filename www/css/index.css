@@ -203,7 +203,7 @@ max width and height?
   /*margin-top: 100px;*/
   position: absolute;
   font-size: 3em;
-  padding: 10px 0px 0px 20px;
+  padding: 18px 0px 0px 20px;
   z-index: 5;
   font-family: titleFontBold;
   transition: top 1.5s, left 1.5s; /* todo: add easing */
@@ -368,35 +368,41 @@ max width and height?
 }
 .hivetube{
   background: url("../imgs/hivetube.png");
-  background-position: 0px 0px, center;
+  background-position: 0px 0px, left top;
   background-repeat: no-repeat;
   z-index: 20;
   position: absolute;
-  left: 8px;
-  bottom: 0px;
-  height: 333px;
-  width: 65px;
+  bottom: -245px;
+  height: 516px; /* 333px */
+  width: 74px;
   zoom:0.55;
   -moz-transform:scale(0.55);
   -moz-transform-origin: 0 0;
 }
 .hivetubeMove{
-  -webkit-animation: honeytube 4s infinite;
-  animation: honeytube 4s infinite;
+  background: url("../imgs/hivetube-sprite.png");
+  background-position: 0px 0px, left top;
+  background-repeat: no-repeat;
+  z-index: 20;
+  position: absolute;
+  bottom: -245px;
+  height: 516px;
+  width: 74px;
+  zoom:0.55;
+  -moz-transform:scale(0.55);
+  -moz-transform-origin: 0 0;
+  -webkit-animation: honeytube 4s steps(4) infinite;
+  animation: honeytube 1s steps(4) infinite;
 }
 /* The animation code x y coordinates */
 
 @-webkit-keyframes honeytube {
-  0%   {background-position: 0px 20px, center;}
-  25%  {background-position: 0px 30px, center;}
-  50%  {background-position: 0px 20px, center;}
-  100% {background-position: 0px 30px, center;}
+  100% { background-position: -300px; }
+  /* sprites total width */
 }
 @keyframes honeytube {
-  0%   {background-position: 0px 20px, center;}
-  25%  {background-position: 0px 30px, center;}
-  50%  {background-position: 0px 20px, center;}
-  100% {background-position: 0px 30px, center;}
+  100% { background-position: -300px; }
+  /* sprites total width */
 }
 .answerarea{
   background: url("../imgs/honeycomb.png");
@@ -415,7 +421,7 @@ max width and height?
   background: url("../imgs/clouds.png");
   background-repeat: repeat-x;
   width: 100%;
-  height: 130px;
+  height: 112px;
   z-index: 1;
   position: absolute;
   top:0;
@@ -425,10 +431,29 @@ max width and height?
 /* Answer Collect Panel Styles */
 .collectAnswerPanel {
   position: fixed;
-  top: 2.5%;
-  bottom: 2.5%;
+  top: 0;
+  padding: 10% ;
+  /*bottom: 2.5%;
   left: 5%;
-  right: 5%;
-  background-color: rgba(255,255,255,.8);
+  right: 5%;*/
+  width:100%;
+  height:100%;
+  background-color: rgba(80,71,29,.8);
   z-index: 100;
+  display: table;
+}
+.collectAnswerPanel .letters{
+  display: inline-block;
+  float: left;
+  width: 20%;
+  position: relative;
+  zoom: 1.5;
+}
+.collectAnswerPanel .answerText{
+  display: inline-block;
+  width: 36%;
+  font-size: 2em;
+  font-family: titleFontBold;
+  color: #f9d00e;
+  height: 130px;
 }

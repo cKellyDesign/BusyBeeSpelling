@@ -39,6 +39,12 @@
         <div class="app">
             <!-- Start Markup for Level Selection Screen -->
             <div ng-show="state.levelSelectControl" ng-controller="levelSelectControl" class="main levelSelect">
+                <div
+                        id="character"
+                        ng-class="{ 'faceLeft': busyBee.faceLeft }"
+                        style="left: {{busyBee.left}}px; top: {{busyBee.top}}px;"
+                        ng-click="busyBee.takeAnswerToHive()">
+                </div>
                 <h1 ng-click="selectLevel()">{{message}}</h1>
                 <ul class="landings">
                     <li ng-repeat="level in levels" ng-click='selectLevel(level)' class="flower {{level.flowerClass}}">
@@ -107,9 +113,9 @@
                     <div class="clouds"></div>
 
                     <div class="collectAnswerPanel" ng-show="showCollectAnswerPanel">
-                        <h2>That's right!!</h2>
+                        <!--<h2>That's right!!</h2>-->
                         <div class="letters letterBG_{{collectedAnswerBG}}">{{collectedAnswer}}</div>
-                        <span>Is a {{currentLevel.name}}</span>
+                        <span class="answerText">Says " " and is not a {{currentLevel.name}}</span>
                         <button ng-click="acceptAnswer()" ng-show="levelScore.possiblePoints">Only {{levelScore.possiblePoints}} Left!!</button>
                         <button ng-click="backToMenu()" ng-hide="levelScore.possiblePoints">YOU DID IT!!</button>
                         <button ng-click="refreshLevel()" ng-hide="levelScore.possiblePoints">Play Again!</button>
