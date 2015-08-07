@@ -223,10 +223,12 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     var notToRepeat = [];
     var thisAnswer;
 
-    for ( var i=0; i < 8; i++) {
+    for ( var i=0; i < 8; i++ ) {
+      thisAnswer = (level.name !== "digraph") ? 
+          possible.charAt($rootScope.genRanNum(possible.length)) : 
+          $scope.determineDigraph(possible);
 
-      thisAnswer = (level.name !== "digraph") ? possible.charAt($rootScope.genRanNum(possible.length)) : $scope.determineDigraph(possible);
-      if ( notToRepeat.indexOf(thisAnswer) > 0 ) {
+      if ( notToRepeat.indexOf(thisAnswer) !== -1 ) {
         i--;
         continue;
       } else {
