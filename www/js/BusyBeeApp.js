@@ -98,9 +98,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
     takeAnswerToHive: function() {
       // todo: Somehow get window to animated scroll with busyBee, or get every thing else to scroll around busyBee
-      $('html, body').animate({
-        scrollLeft: 0
-      }, 1000);
+      $('html, body').animate({ scrollLeft: 0 }, 500);
       var currLeft = this.left;
       var currTop = this.top;
       var currX = (window.pageXOffset || document.documentElement.scrollLeft) - (document.documentElement.clientLeft || 0);
@@ -112,6 +110,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         $scope.busyBee.top = currTop;
         $scope.busyBee.left = currLeft;
         $scope.busyBee.faceLeft = false;
+        $('html, body').animate({ scrollLeft: currX }, 500);
       }, 3000);
     },
 
