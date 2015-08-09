@@ -98,6 +98,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
     takeAnswerToHive: function() {
       // todo: Somehow get window to animated scroll with busyBee, or get every thing else to scroll around busyBee
+      $('html, body').animate({
+        scrollLeft: 0
+      }, 1000);
       var currLeft = this.left;
       var currTop = this.top;
       var currX = (window.pageXOffset || document.documentElement.scrollLeft) - (document.documentElement.clientLeft || 0);
@@ -142,16 +145,17 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   $scope.flowerClick = function(e) {
     e.stopPropagation();
-    var clickLeft = e.srcElement.offsetLeft + (e.offsetX * 2);
-    var clickTop = e.srcElement.offsetTop + e.offsetY;
+    console.log("\n\nFlower click event:", e, "\n\n");
+    var clickLeft = e.currentTarget.offsetLeft + (e.offsetX * 2);
+    var clickTop = e.currentTarget.offsetTop + e.offsetY;
     var index = angular.element(e.srcElement).parent();
     $scope.busyBee.move(clickTop, clickLeft);
   };
 
   $scope.letterClick = function(e, i) {
     e.stopPropagation();
-    var clickLeft = e.srcElement.offsetLeft + e.srcElement.parentElement.offsetLeft + (e.offsetX * 2);
-    var clickTop = e.srcElement.offsetTop + e.offsetY - 100;
+    var clickLeft = e.currentTarget.offsetLeft + e.currentTarget.parentElement.offsetLeft + (e.offsetX * 2);
+    var clickTop = e.currentTarget.offsetTop + e.offsetY - 100;
     $scope.busyBee.move(clickTop, clickLeft);
     $timeout(function(){
       $scope.checkAnswer(i);
