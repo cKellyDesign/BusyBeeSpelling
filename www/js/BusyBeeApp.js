@@ -182,7 +182,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $timeout(function(){
       $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
       // TODO:
-      //   Use Classes to position / animate answer over to hive
+      //   Use Classes (.hivetubeMove = is animation for honey tube) to position / animate answer over to hive
       //   Bee should make BeeLine to hive so we don't have to worry about syncing ups and downs of Bee + Answer 
     }, 500);
     

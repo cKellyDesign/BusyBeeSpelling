@@ -186,7 +186,7 @@ max width and height?
   -webkit-animation: fly .8s steps(3) infinite;
   animation: fly .8s steps(3) infinite;
   /*90 x 120*/
-  zoom:0.5;
+  zoom:0.35;
   -moz-transform:scale(0.5);
   -moz-transform-origin: 0 0;
 }
