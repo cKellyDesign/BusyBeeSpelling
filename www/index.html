@@ -53,7 +53,18 @@
                 </ul>
                 <div class="clouds"></div>
             </div>
+            <!-- In Level Menu -->
+            <div class="in-level-menu" ng-init="isOpen = false" ng-class="{'open': isOpen }">
+                <a class="menu-icon" ng-click="isOpen = !isOpen"><img src="imgs/menu.png"></a>
+                <div class="menu-panel">
+                    <!-- Let's place the contents of this menu here so it sits on top of the BG Image! -->
+                    <a class="lesseasy">less easy</a> <a class="sound"> </a>
+                    <a ng-click="backToMenu(); isOpen = false" class="vowels">Vowels</a>
+                    <a ng-click="backToMenu(); isOpen = false" class="lowercase">Lowercase</a>
+                    <a ng-click="backToMenu(); isOpen = false" class="diagraphs">Diagraphs</a>
 
+                </div>
+            </div>
             <!-- End Markup for Level Selection Screen -->
 
             <!-- Start Markup for Level Screen -->
