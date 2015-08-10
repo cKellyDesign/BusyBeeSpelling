@@ -254,7 +254,22 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $rootScope.levelWidth = (($scope.levelLetters[$scope.levelLetters.length - 1].flowerLeft + 400) / 2) + "px";
     $scope.levelScore.possiblePoints = $scope.getPossiblePoints();
     $scope.levelScore.scoreToWin = ($scope.levelScore.possiblePoints < 3) ? $scope.levelScore.possiblePoints : $scope.levelScore.scoreToWin;
+    $scope.introLevel(); // launches into audio, displays play button  
   };
+
+  $scope.introLevel = function() {
+    // show level start panel w/ message 
+    // play level audio, callback => display play button
+    // play button click launches into level screen
+    // startLevel()
+    $scope.startLevel();
+  };
+
+  $scope.startLevel = function() {
+    
+    // move bee to far side of level and back
+    // scroll window with bee
+  }
 
   $scope.determineDigraph = function(possible) {
     var isdigraph = $scope.genRanNum(100) < 50;
