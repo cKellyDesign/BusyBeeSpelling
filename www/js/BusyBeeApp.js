@@ -129,9 +129,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   $scope.hiveClick = function(e) {
     e.stopPropagation();
-    var clickLeft = e.srcElement.offsetLeft + (e.offsetX * 2);
-    var clickTop = e.srcElement.offsetTop + e.offsetY;
-    var index = angular.element(e.srcElement).parent();
+    var clickLeft = e.currentTarget.offsetLeft + (e.offsetX * 2);
+    var clickTop = e.currentTarget.offsetTop + e.offsetY;
+    var index = angular.element(e.currentTarget).parent();
     $scope.busyBee.move(clickTop, clickLeft);
   };
 
@@ -266,7 +266,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   };
 
   $scope.startLevel = function() {
-    
+
     // move bee to far side of level and back
     // scroll window with bee
   }
