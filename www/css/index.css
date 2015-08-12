@@ -379,7 +379,7 @@ max width and height?
   background-repeat: no-repeat;
   z-index: 20;
   position: absolute;
-  bottom: -245px;
+  top: 315px;
   height: 516px; /* 333px */
   width: 74px;
   zoom:0.55;
@@ -392,7 +392,7 @@ max width and height?
   background-repeat: no-repeat;
   z-index: 20;
   position: absolute;
-  bottom: -245px;
+  top: 315px;
   height: 516px;
   width: 74px;
   zoom:0.55;
@@ -463,4 +463,13 @@ max width and height?
   font-family: titleFontBold;
   color: #f9d00e;
   height: 130px;
+}
+.answerarea li{
+  display:inline-block;
+}
+
+.answerarea li .letters{
+  position: relative;
+  float: left;
+  width: 64px;
 }
