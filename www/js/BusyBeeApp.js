@@ -98,6 +98,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
     takeAnswerToHive: function() {
       // todo: Somehow get window to animated scroll with busyBee, or get every thing else to scroll around busyBee
+      $('html, body').animate({ scrollLeft: 0 }, 500);
       var currLeft = this.left;
       var currTop = this.top;
       var currX = (window.pageXOffset || document.documentElement.scrollLeft) - (document.documentElement.clientLeft || 0);
@@ -109,6 +110,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         $scope.busyBee.top = currTop;
         $scope.busyBee.left = currLeft;
         $scope.busyBee.faceLeft = false;
+        $('html, body').animate({ scrollLeft: currX }, 500);
       }, 3000);
     },
 
@@ -127,9 +129,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   $scope.hiveClick = function(e) {
     e.stopPropagation();
-    var clickLeft = e.srcElement.offsetLeft + (e.offsetX * 2);
-    var clickTop = e.srcElement.offsetTop + e.offsetY;
-    var index = angular.element(e.srcElement).parent();
+    var clickLeft = e.currentTarget.offsetLeft + (e.offsetX * 2);
+    var clickTop = e.currentTarget.offsetTop + e.offsetY;
+    var index = angular.element(e.currentTarget).parent();
     $scope.busyBee.move(clickTop, clickLeft);
   };
 
@@ -142,16 +144,17 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   $scope.flowerClick = function(e) {
     e.stopPropagation();
-    var clickLeft = e.srcElement.offsetLeft + (e.offsetX * 2);
-    var clickTop = e.srcElement.offsetTop + e.offsetY;
+    console.log("\n\nFlower click event:", e, "\n\n");
+    var clickLeft = e.currentTarget.offsetLeft + (e.offsetX * 2);
+    var clickTop = e.currentTarget.offsetTop + e.offsetY;
     var index = angular.element(e.srcElement).parent();
     $scope.busyBee.move(clickTop, clickLeft);
   };
 
   $scope.letterClick = function(e, i) {
     e.stopPropagation();
-    var clickLeft = e.srcElement.offsetLeft + e.srcElement.parentElement.offsetLeft + (e.offsetX * 2);
-    var clickTop = e.srcElement.offsetTop + e.offsetY - 100;
+    var clickLeft = e.currentTarget.offsetLeft + e.currentTarget.parentElement.offsetLeft + (e.offsetX * 2);
+    var clickTop = e.currentTarget.offsetTop + e.offsetY - 100;
     $scope.busyBee.move(clickTop, clickLeft);
     $timeout(function(){
       $scope.checkAnswer(i);
@@ -251,7 +254,22 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $rootScope.levelWidth = (($scope.levelLetters[$scope.levelLetters.length - 1].flowerLeft + 400) / 2) + "px";
     $scope.levelScore.possiblePoints = $scope.getPossiblePoints();
     $scope.levelScore.scoreToWin = ($scope.levelScore.possiblePoints < 3) ? $scope.levelScore.possiblePoints : $scope.levelScore.scoreToWin;
+    $scope.introLevel(); // launches into audio, displays play button  
   };
+
+  $scope.introLevel = function() {
+    // show level start panel w/ message 
+    // play level audio, callback => display play button
+    // play button click launches into level screen
+    // startLevel()
+    $scope.startLevel();
+  };
+
+  $scope.startLevel = function() {
+
+    // move bee to far side of level and back
+    // scroll window with bee
+  }
 
   $scope.determineDigraph = function(possible) {
     var isdigraph = $scope.genRanNum(100) < 50;
