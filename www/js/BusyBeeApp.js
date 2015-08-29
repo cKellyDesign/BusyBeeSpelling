@@ -123,7 +123,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   $rootScope.$watch('currentLevel',
     function(currentLevel){
-      $scope.generateLetters(currentLevel);
+      while ( $scope.levelScore.possiblePoints < 3 ) {
+        $scope.generateLetters(currentLevel);
+      }
     }
   );
 
