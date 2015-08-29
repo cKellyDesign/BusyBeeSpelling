@@ -163,9 +163,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   $scope.checkAnswer = function(i) {
     var answerVal = $scope.levelLetters[i].letter; 
-    var isCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(answerVal) !== -1;
 
-    if (isCorrect) {
+    if ( $scope.answerIsCorrect(answerVal) ) {
       $scope.collectedAnswer = answerVal;
       $scope.collectedAnswerBG = $scope.levelLetters[i].letterBGnumber;
       $scope.levelScore.possiblePoints--;
@@ -233,6 +232,10 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       if ( notToRepeat.indexOf(thisAnswer) !== -1 ) {
         i--;
         continue;
+      } else if ( $scope.getPossiblePoints() > 4 && $scope.answerIsCorrect(thisAnswer) ) {
+        notToRepeat.push(thisAnswer);
+        i--;
+        continue;
       } else {
         notToRepeat.push(thisAnswer);
       }
@@ -269,6 +272,10 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     // move bee to far side of level and back
     // scroll window with bee
   }
+
+  $scope.answerIsCorrect = function(toCheck) {
+    return $scope.answerLegend[$scope.currentLevel.name].indexOf(toCheck) !== -1;
+  };
 
   $scope.determineDigraph = function(possible) {
     var isdigraph = $scope.genRanNum(100) < 50;
