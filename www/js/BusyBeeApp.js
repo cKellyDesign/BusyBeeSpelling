@@ -124,7 +124,6 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $rootScope.$watch('currentLevel',
     function(currentLevel){
       while ( $scope.levelScore.possiblePoints < 3 ) {
-        $scope.levelLetters = [];
         $scope.generateLetters(currentLevel);
       }
     }
@@ -193,6 +192,10 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     // Trigger hive ungulation here
     $timeout(function(){
       $scope.collectedLetters.push($scope.levelLetters[i]);
+
+      if ( !$scope.levelScore.possiblePoints ) {
+        $scope.concludeLevel();
+      }
     }, 2000);
   };
 
@@ -221,6 +224,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.generateLetters = function(level) {
     if (!level) return;
 
+    $scope.levelLetters = [];
     $scope.currentLevel = level;
     var possible = $scope.letterLegend[level.name];
     var flowerHeightCap = window.innerHeight - 250;
@@ -274,7 +278,12 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
     // move bee to far side of level and back
     // scroll window with bee
-  }
+  };
+
+  $scope.concludeLevel = function(){
+    alert("CONGATULATIONS!!"); // todo: we can initialize some level complete screen?
+    $scope.refreshLevel(); // todo: change this to $rootScope.selectLevel(nextLevel)
+  };
 
   $scope.answerIsCorrect = function(toCheck) {
     return $scope.answerLegend[$scope.currentLevel.name].indexOf(toCheck) !== -1;
