@@ -38,13 +38,7 @@
     <body ng-app="BusyBeeSpelling">
         <div class="app">
             <!-- Start Markup for Level Selection Screen -->
-            <div ng-show="state.levelSelectControl" ng-controller="levelSelectControl" class="main levelSelect">
-                <div
-                        id="character"
-                        ng-class="{ 'faceLeft': busyBee.faceLeft }"
-                        style="left: {{busyBee.left}}px; top: {{busyBee.top}}px;"
-                        ng-click="busyBee.takeAnswerToHive()">
-                </div>
+            <div ng-show="state.levelSelectControl" ng-controller="levelSelectControl" class="main levelSelect" ng-init="selectLevel()">
                 <h1 ng-click="selectLevel()">{{message}}</h1>
                 <ul class="landings">
                     <li ng-repeat="level in levels" ng-click='selectLevel(level)' class="flower {{level.flowerClass}}">
@@ -52,7 +46,8 @@
                     </li>
                 </ul>
                 <div class="clouds"></div>
-            </div>
+            </div> 
+
             <!-- In Level Menu -->
             <div class="in-level-menu" ng-init="isOpen = false" ng-class="{'open': isOpen }">
                 <a class="menu-icon" ng-click="isOpen = !isOpen"><img src="imgs/menu.png"></a>

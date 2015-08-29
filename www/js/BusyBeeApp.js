@@ -43,7 +43,7 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
   
 
   $scope.selectLevel = function(level) {
-    $rootScope.currentLevel = level || "vowel";
+    $rootScope.currentLevel = level || $scope.levels[0];
     $rootScope.state.levelSelectControl = false;
     $rootScope.state.levelControl = true;
   };
