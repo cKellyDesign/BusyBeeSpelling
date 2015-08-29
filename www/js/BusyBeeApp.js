@@ -162,28 +162,27 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   };
 
   $scope.checkAnswer = function(i) {
-    $scope.levelAnswerIndex = i;
     var answerVal = $scope.levelLetters[i].letter; 
     var isCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(answerVal) !== -1;
 
     if (isCorrect) {
-      // Show Answer Panel with true
-      $scope.showCollectAnswerPanel = true;
       $scope.collectedAnswer = answerVal;
       $scope.collectedAnswerBG = $scope.levelLetters[i].letterBGnumber;
       $scope.levelScore.possiblePoints--;
+      $scope.acceptAnswer(i);
     } else {
+      // Show Answer Panel with true
+      $scope.showCollectAnswerPanel = true;      
       $scope.levelLetters[i].show = false;
+      $scope.collectedAnswer = answerVal;
     }
   };
 
-  $scope.acceptAnswer = function() {
-    var i = $scope.levelAnswerIndex;
-    $scope.showCollectAnswerPanel = false;
-
+  $scope.acceptAnswer = function(i) {
     // Animate Letter to Hive opening
+    $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
+    
     $timeout(function(){
-      $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
       // TODO:
       //   Use Classes (.hivetubeMove = is animation for honey tube) to position / animate answer over to hive
       //   Bee should make BeeLine to hive so we don't have to worry about syncing ups and downs of Bee + Answer 
