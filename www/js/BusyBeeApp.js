@@ -153,8 +153,10 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   $scope.letterClick = function(e, i) {
     e.stopPropagation();
+
     var clickLeft = e.currentTarget.offsetLeft + e.currentTarget.parentElement.offsetLeft + (e.offsetX * 2);
     var clickTop = e.currentTarget.offsetTop + e.offsetY - 100;
+
     $scope.busyBee.move(clickTop, clickLeft);
     $timeout(function(){
       $scope.checkAnswer(i);
