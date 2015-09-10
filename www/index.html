@@ -56,12 +56,17 @@
             <!-- In Level Menu -->
             <div class="in-level-menu" ng-init="isOpen = false" ng-class="{'open': isOpen }">
                 <a class="menu-icon" ng-click="isOpen = !isOpen"><img src="imgs/menu.png"></a>
-                <div class="menu-panel">
+                <div ng-show="state.levelSelectControl" ng-controller="levelSelectControl" class="menu-panel">
                     <!-- Let's place the contents of this menu here so it sits on top of the BG Image! -->
                     <a class="lesseasy">less easy</a> <a class="sound"> </a>
-                    <a ng-click="backToMenu(); isOpen = false" class="vowels">Vowels</a>
-                    <a ng-click="backToMenu(); isOpen = false" class="lowercase">Lowercase</a>
-                    <a ng-click="backToMenu(); isOpen = false" class="diagraphs">Diagraphs</a>
+                    <!--<a ng-click="backToMenu(); isOpen = false" class="vowels">Vowels</a>-->
+                    <!--<a ng-click="backToMenu(); isOpen = false" class="lowercase">Lowercase</a>-->
+                    <!--<a ng-click="backToMenu(); isOpen = false" class="diagraphs">Diagraphs</a>-->
+                    <ul class="landings">
+                        <li ng-repeat="level in levels" ng-click='selectLevel(level)' class="{{level.name}}">
+                            <a ng-click="backToMenu(); isOpen = false">{{level.name}}</a>
+                        </li>
+                    </ul>
 
                 </div>
             </div>
@@ -87,10 +92,10 @@
                         <a class="menu-icon" ng-click="isOpen = !isOpen"><img src="imgs/menu.png"></a>
                         <div class="menu-panel">
                             <!-- Let's place the contents of this menu here so it sits on top of the BG Image! -->
-                            <a class="lesseasy">less easy</a> <a class="sound"> </a>
-                            <a ng-click="backToMenu(); isOpen = false" class="vowels">Vowels</a>
-                            <a ng-click="backToMenu(); isOpen = false" class="lowercase">Lowercase</a>
-                            <a ng-click="backToMenu(); isOpen = false" class="diagraphs">Diagraphs</a>
+                            <!--<a class="lesseasy">less easy</a> <a class="sound"> </a>-->
+                            <!--<a ng-click="backToMenu(); isOpen = false" class="vowels">Vowels</a>-->
+                            <!--<a ng-click="backToMenu(); isOpen = false" class="lowercase">Lowercase</a>-->
+                            <!--<a ng-click="backToMenu(); isOpen = false" class="diagraphs">Diagraphs</a>-->
 
                         </div>
                     </div>
@@ -127,7 +132,7 @@
                         <!--<h2>That's right!!</h2>-->
                         <div class="letters letterBG_{{collectedAnswerBG}}">{{collectedAnswer}}</div>
                         <span class="answerText">Says " " and is not a {{currentLevel.name}}</span>
-                        <button ng-click="acceptAnswer()" ng-show="levelScore.possiblePoints">Only {{levelScore.possiblePoints}} Left!!</button>
+                        <button ng-click="closeAnswerPanel()" ng-show="levelScore.possiblePoints">Only {{levelScore.possiblePoints}} Left!!</button>
                         <button ng-click="backToMenu()" ng-hide="levelScore.possiblePoints">YOU DID IT!!</button>
                         <button ng-click="refreshLevel()" ng-hide="levelScore.possiblePoints">Play Again!</button>
                     </div>

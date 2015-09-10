@@ -125,7 +125,7 @@ max width and height?
   padding-bottom: 25px;
   display: inline-block;
 }
-.vowels{
+.vowel{
   background: url('../imgs/menu-sprite.png') left center;
   background-position: 0px -50px;
   display: block;
@@ -137,7 +137,7 @@ max width and height?
   display: block;
   padding-top: 45px;
 }
-.diagraphs{
+.diagraph{
   background: url('../imgs/menu-sprite.png') left center;
   background-position: 0px -190px;
   display: block;

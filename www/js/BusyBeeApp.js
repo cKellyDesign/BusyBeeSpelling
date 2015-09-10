@@ -28,7 +28,7 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
     "letterBottom": $rootScope.genRanNum(80, 50),
     "letterBGnumber": $rootScope.genRanNum(4,1)
   }, {
-    "name": "digraph",
+    "name": "diagraph",
     "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
     "letterLeft": $rootScope.genRanNum(66,33),
     "letterBottom": $rootScope.genRanNum(80, 50),
@@ -65,7 +65,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "vowel" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
     "consonant": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
     "numbers": "1!2@3#4$5%6^7&8*9(0)11-12+13=14/15ab16cd17ef18uo19ij20kl",
-    "digraph": ["th", "ch", "sh", "ph"]
+    "diagraph": ["th", "ch", "sh", "ph"]
   };
   // For checking clicked letters
   $scope.answerLegend = {
@@ -74,7 +74,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "numbers": "1234567890",
     "lowercase": "abcdefghijklmnopqrstuvwxy",
     "uppercase": "ABCDEFGHIJKLMNOPQRSTUVWXY",
-    "digraph": ["th", "ch", "sh", "ph", "wh", "tch", "kn", "gh"]
+    "diagraph": ["th", "ch", "sh", "ph", "wh", "tch", "kn", "gh"]
   };
   // For binding letters
   $scope.levelLetters = []; 
@@ -164,16 +164,17 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.checkAnswer = function(i) {
     $scope.levelAnswerIndex = i;
     var answerVal = $scope.levelLetters[i].letter; 
-    var isCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(answerVal) !== -1;
+    var isNotCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(answerVal) == -1;
 
-    if (isCorrect) {
+    if (isNotCorrect) {
       // Show Answer Panel with true
       $scope.showCollectAnswerPanel = true;
       $scope.collectedAnswer = answerVal;
       $scope.collectedAnswerBG = $scope.levelLetters[i].letterBGnumber;
-      $scope.levelScore.possiblePoints--;
+      //$scope.levelScore.possiblePoints--;
     } else {
       $scope.levelLetters[i].show = false;
+      $scope.acceptAnswer();
     }
   };
 
@@ -192,6 +193,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     // Trigger hive ungulation here
     $timeout(function(){
       $scope.collectedLetters.push($scope.levelLetters[i]);
+
     }, 2000);
   };
 
@@ -201,6 +203,10 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $rootScope.currentLevel = "";
     $scope.refreshLevel(true);
   };
+
+  $scope.closeAnswerPanel = function() {
+    $scope.showCollectAnswerPanel = false;
+  }
 
   $scope.refreshLevel = function(isDifferentLevel) {
     $scope.levelLetters = [];
@@ -227,9 +233,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     var thisAnswer;
 
     for ( var i=0; i < 8; i++ ) {
-      thisAnswer = (level.name !== "digraph") ? 
+      thisAnswer = (level.name !== "diagraph") ?
           possible.charAt($rootScope.genRanNum(possible.length)) : 
-          $scope.determineDigraph(possible);
+          $scope.determineDiagraph(possible);
 
       if ( notToRepeat.indexOf(thisAnswer) !== -1 ) {
         i--;
@@ -268,12 +274,13 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.startLevel = function() {
 
     // move bee to far side of level and back
+    $scope.busyBee.move(windowTop, windowLeft);
     // scroll window with bee
   }
 
-  $scope.determineDigraph = function(possible) {
-    var isdigraph = $scope.genRanNum(100) < 50;
-    if (isdigraph) {
+  $scope.determineDiagraph = function(possible) {
+    var isdiagraph = $scope.genRanNum(100) < 50;
+    if (isdiagraph) {
       return possible[$rootScope.genRanNum(possible.length)];
     } else {
       possible = $scope.answerLegend.lowercase;
@@ -284,11 +291,11 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.getPossiblePoints = function() {
     var possiblePoints = 0;
     var thisLetter;
-    var thisLetterIsCorrect;
+    var thisLetterIsNotCorrect;
     for (i = 0; i < $scope.levelLetters.length; i++) {
       thisLetter = $scope.levelLetters[i].letter;
-      thisLetterIsCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(thisLetter) !== -1;
-      if (thisLetterIsCorrect) {
+      thisLetterIsNotCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(thisLetter) !== -1;
+      if (thisLetterIsNotCorrect) {
         possiblePoints++;
       }
     }
