@@ -274,7 +274,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.startLevel = function() {
 
     // move bee to far side of level and back
-    $scope.busyBee.move(windowTop, windowLeft);
+    $scope.busyBee.move(50, 50);
+    //$scope.busyBee.move(windowTop, windowLeft)
     // scroll window with bee
   }
 
