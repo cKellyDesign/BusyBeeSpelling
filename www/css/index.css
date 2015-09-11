@@ -384,6 +384,7 @@ max width and height?
   -moz-transform-origin: 0 0;
 }
 .hivetubeMove{
+  display:none;
   background: url("../imgs/hivetube-sprite.png");
   background-position: 0px 0px, left top;
   background-repeat: no-repeat;
