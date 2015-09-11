@@ -184,7 +184,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.acceptAnswer = function(i) {
     // Animate Letter to Hive opening
     $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
-    
+
     $timeout(function(){
       // TODO:
       //   Use Classes (.hivetubeMove = is animation for honey tube) to position / animate answer over to hive
