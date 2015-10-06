@@ -437,7 +437,7 @@ max width and height?
 }
 
 /* Answer Collect Panel Styles */
-.collectAnswerPanel {
+.collectAnswerPanel, .introPanel{
   position: fixed;
   top: 0;
   padding: 10% ;
@@ -446,7 +446,7 @@ max width and height?
   right: 5%;*/
   width:100%;
   height:100%;
-  background-color: rgba(80,71,29,.8);
+  background-color: rgba(80,71,29,.9);
   z-index: 100;
   display: table;
 }
@@ -457,13 +457,16 @@ max width and height?
   position: relative;
   zoom: 1.5;
 }
-.collectAnswerPanel .answerText{
+.collectAnswerPanel .answerText, .introPanel .answerText {
   display: inline-block;
   width: 36%;
   font-size: 2em;
   font-family: titleFontBold;
   color: #f9d00e;
   height: 130px;
+}
+.introPanel .answerText{
+  width: 80%;
 }
 .answerarea li{
   display:inline-block;

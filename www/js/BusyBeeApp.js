@@ -48,6 +48,18 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
     $rootScope.state.levelControl = true;
   };
 });
+//
+//BusyBeeSpelling.controller('soundLoad', function($scope, $rootScope, $timeout){
+//  $scope.currentLevel = "";
+//  playStream: function() {
+//  var myaudio = new Audio('../sound/consonants.mp3');
+//    myaudio.id = 'playerMyAudio';
+//    myaudio.play();
+//  };
+//  catch (e) {
+//    alert('no audio support!');
+//  };
+//});
 
 BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout){
 
@@ -60,8 +72,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   };
   // For Generating letters for the level
   $scope.letterLegend = {
-    "lowercase" : "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ",
-    "uppercase" : "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ",
+    "lowercase" : "aAbBdDeEfFgGhHiIjJlLnNqQrRtTyY",
+    "uppercase" : "aAbBdDeEfFgGhHiIjJlLnNqQrRtTyY",
     "vowel" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
     "consonant": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
     "numbers": "1!2@3#4$5%6^7&8*9(0)11-12+13=14/15ab16cd17ef18uo19ij20kl",
@@ -72,8 +84,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "vowel" : "aeiou",
     "consonant": "bcdfghjklmnpqrstvwxyz",
     "numbers": "1234567890",
-    "lowercase": "abcdefghijklmnopqrstuvwxy",
-    "uppercase": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+    "lowercase": "abdefghijlnqrty",
+    "uppercase": "ABDEFGHIJLNQRTY",
     "diagraph": ["th", "ch", "sh", "ph", "wh", "tch", "kn", "gh"]
   };
   // For binding letters
@@ -277,11 +289,15 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   };
 
   $scope.introLevel = function() {
-    // show level start panel w/ message 
+    // show level start panel w/ message
+    $scope.showIntroPanel = true;
+    $timeout(function(){
+      $scope.showIntroPanel = false;
+    }, 3000);
     // play level audio, callback => display play button
-    // play button click launches into level screen
+    // timer after audio launches into level screen
     // startLevel()
-    $scope.startLevel();
+      $scope.startLevel();
   };
 
   $scope.startLevel = function() {
