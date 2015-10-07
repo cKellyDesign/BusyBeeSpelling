@@ -370,6 +370,12 @@ max width and height?
   -moz-transform:scale(0.5);
   -moz-transform-origin: 0 0;
 }
+.hiveLayer{
+  position: fixed;
+  top: 0;
+  left: -10px;
+  z-index: 100;
+}
 .hivetube{
   background: url("../imgs/hivetube.png");
   background-position: 0px 0px, left top;

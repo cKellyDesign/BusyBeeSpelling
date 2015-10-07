@@ -91,10 +91,11 @@
                         style="left: {{busyBee.left}}px; top: {{busyBee.top}}px;"
                         ng-click="busyBee.takeAnswerToHive()">
                     </div>
-
-                    <div class="hivetube"></div>
-                    <div class="hivetubeMove"></div>
-                    <div class="home" ng-click="hiveClick($event)"></div>
+                    <div class="hiveLayer">
+                        <div class="hivetube"></div>
+                        <div class="hivetubeMove"></div>
+                        <div class="home" ng-click="hiveClick($event)"></div>
+                    </div>
                     <div class="gamearea">
                         <!--<div>-->
                             <ul class="landings" ng-click="backgroundClick($event)">
