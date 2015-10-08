@@ -175,7 +175,7 @@ max width and height?
   background: url('../imgs/bee-sprite.png') left center;
   width: 178px;
   height: 220px;
-  z-index: 50;
+  z-index: 100;
   position: absolute;
   left: 150px;
   top: 0;
@@ -374,7 +374,7 @@ max width and height?
   position: fixed;
   top: 0;
   left: -10px;
-  z-index: 100;
+  z-index: 80;
 }
 .hivetube{
   background: url("../imgs/hivetube.png");
