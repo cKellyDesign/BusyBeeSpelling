@@ -175,7 +175,7 @@ max width and height?
   background: url('../imgs/bee-sprite.png') left center;
   width: 178px;
   height: 220px;
-  z-index: 50;
+  z-index: 100;
   position: absolute;
   left: 150px;
   top: 0;
@@ -370,6 +370,12 @@ max width and height?
   -moz-transform:scale(0.5);
   -moz-transform-origin: 0 0;
 }
+.hiveLayer{
+  position: fixed;
+  top: 0;
+  left: -10px;
+  z-index: 80;
+}
 .hivetube{
   background: url("../imgs/hivetube.png");
   background-position: 0px 0px, left top;
@@ -384,6 +390,7 @@ max width and height?
   -moz-transform-origin: 0 0;
 }
 .hivetubeMove{
+  display:none;
   background: url("../imgs/hivetube-sprite.png");
   background-position: 0px 0px, left top;
   background-repeat: no-repeat;

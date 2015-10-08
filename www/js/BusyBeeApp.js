@@ -187,13 +187,16 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
       // TODO:
       //   Use Classes (.hivetubeMove = is animation for honey tube) to position / animate answer over to hive
-      //   Bee should make BeeLine to hive so we don't have to worry about syncing ups and downs of Bee + Answer 
+      //   Bee should make BeeLine to hive so we don't have to worry about syncing ups and downs of Bee + Answer
+      $( ".hivetubeMove" ).show();
+      $( ".hivetube" ).hide();
     }, 500);
     
     // Trigger hive ungulation here
     $timeout(function(){
       $scope.collectedLetters.push($scope.levelLetters[i]);
-
+      $( ".hivetubeMove" ).hide();
+      $( ".hivetube" ).show();
     }, 2000);
   };
 
