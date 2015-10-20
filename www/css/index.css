@@ -149,7 +149,10 @@ max width and height?
   bottom: 0;
   padding-top: 0;
   z-index: 50;
-  transition: left .25s;
+  /*transition: left .25s;*/
+  left:0;
+  background-color: rgba(166,211,245,.8);
+  width:100%;
 }
 .menu-panel{
   padding-left: 130px;
@@ -159,17 +162,13 @@ max width and height?
   left: calc(100% - 275px);
   position: relative;
 }
-.in-level-menu.open {
-  left:0;
-  background-color: rgba(166,211,245,.8);
-  width:100%;
-}
 .menu-icon{
   width: 58px;
   height: 60px;
-  position: absolute;
+  position: fixed;
   display: block;
-  left: -55px;
+  right: 0px;
+  z-index: 60;
 }
 #character{
   background: url('../imgs/bee-sprite.png') left center;
@@ -440,7 +439,7 @@ max width and height?
 }
 
 /* Answer Collect Panel Styles */
-.collectAnswerPanel {
+.collectAnswerPanel, .introPanel{
   position: fixed;
   top: 0;
   padding: 10% ;
@@ -449,7 +448,7 @@ max width and height?
   right: 5%;*/
   width:100%;
   height:100%;
-  background-color: rgba(80,71,29,.8);
+  background-color: rgba(80,71,29,.9);
   z-index: 100;
   display: table;
 }
@@ -460,13 +459,16 @@ max width and height?
   position: relative;
   zoom: 1.5;
 }
-.collectAnswerPanel .answerText{
+.collectAnswerPanel .answerText, .introPanel .answerText {
   display: inline-block;
   width: 36%;
   font-size: 2em;
   font-family: titleFontBold;
   color: #f9d00e;
   height: 130px;
+}
+.introPanel .answerText{
+  width: 80%;
 }
 .answerarea li{
   display:inline-block;

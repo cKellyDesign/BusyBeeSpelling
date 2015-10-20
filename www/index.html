@@ -37,14 +37,9 @@
     </head>
     <body ng-app="BusyBeeSpelling">
         <div class="app">
+
             <!-- Start Markup for Level Selection Screen -->
-            <div ng-show="state.levelSelectControl" ng-controller="levelSelectControl" class="main levelSelect">
-                <div
-                        id="character"
-                        ng-class="{ 'faceLeft': busyBee.faceLeft }"
-                        style="left: {{busyBee.left}}px; top: {{busyBee.top}}px;"
-                        ng-click="busyBee.takeAnswerToHive()">
-                </div>
+            <div ng-show="state.levelSelectControl" ng-controller="levelSelectControl" class="main levelSelect" ng-init="selectLevel()">
                 <h1 ng-click="selectLevel()">{{message}}</h1>
                 <ul class="landings">
                     <li ng-repeat="level in levels" ng-click='selectLevel(level)' class="flower {{level.flowerClass}}">
@@ -52,38 +47,27 @@
                     </li>
                 </ul>
                 <div class="clouds"></div>
-                <!-- In Level Menu- todo: make this a directive so it doesn't need to be repeated -->
-                <div ng-show="state.levelSelectControl" class="in-level-menu" ng-init="isOpen = false" ng-class="{'open': isOpen }">
-                    <a class="menu-icon" ng-click="isOpen = !isOpen"><img src="imgs/menu.png"></a>
-                    <div ng-show="isOpen" ng-controller="levelSelectControl" class="menu-panel">
-                        <!-- Let's place the contents of this menu here so it sits on top of the BG Image! -->
-                        <a class="lesseasy">less easy</a> <a class="sound"> </a>
-                        <ul class="menu-nav">
-                            <li ng-repeat="level in levels" ng-click='selectLevel(level)' class="{{level.name}}">
-                                <a ng-click="backToMenu(); isOpen = false">{{level.name}}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
             <!-- End Markup for Level Selection Screen -->
+            </div>
 
             <!-- Start Markup for Level Screen -->
             <div class="mainshell" ng-show="state.levelControl" ng-controller="levelControl">
                 <div class="main" style="width:{{levelWidth}}">
-                    <!-- In Level Menu - todo: make this a directive so it doesn't need to be repeated -->
-                    <div ng-hide="state.levelSelectControl" class="in-level-menu" ng-init="isOpen = false" ng-class="{'open': isOpen }">
-                        <a class="menu-icon" ng-click="isOpen = !isOpen"><img src="imgs/menu.png"></a>
-                        <div ng-show="isOpen" ng-controller="levelSelectControl" class="menu-panel">
-                            <!-- this is the inside  Let's place the contents of this menu here so it sits on top of the BG Image! -->
+
+                    <!-- In Level Menu -->
+                    <a class="menu-icon" ng-show="!menuIsOpen" ng-click="menuIsOpen = !menuIsOpen"><img src="imgs/menu.png"></a>
+                    <div class="in-level-menu" ng-show="menuIsOpen" ng-click="menuIsOpen = false">
+                        <div class="menu-panel">
                             <a class="lesseasy">less easy</a> <a class="sound"> </a>
-                            <ul class="menu-nav">
-                                <li ng-repeat="level in levels" ng-click='selectLevel(level)' class="{{level.name}}">
-                                    <a ng-click="backToMenu(); isOpen = false">{{level.name}}</a>
+                            <ul class="landings">
+                                <li ng-repeat="level in $root.levels" ng-click='selectLevel(level)' class="{{level.name}}">
+                                    <a>{{level.name}}</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
+
                     <!-- BusyBee -->
                     <div
                         id="character"
@@ -91,11 +75,13 @@
                         style="left: {{busyBee.left}}px; top: {{busyBee.top}}px;"
                         ng-click="busyBee.takeAnswerToHive()">
                     </div>
+
                     <div class="hiveLayer">
                         <div class="hivetube"></div>
                         <div class="hivetubeMove"></div>
                         <div class="home" ng-click="hiveClick($event)"></div>
                     </div>
+
                     <div class="gamearea">
                         <!--<div>-->
                             <ul class="landings" ng-click="backgroundClick($event)">
@@ -115,12 +101,17 @@
                     <div class="clouds"></div>
 
                     <div class="collectAnswerPanel" ng-show="showCollectAnswerPanel">
-                        <!--<h2>That's right!!</h2>-->
                         <div class="letters letterBG_{{collectedAnswerBG}}">{{collectedAnswer}}</div>
-                        <span class="answerText">Says " " and is not a {{currentLevel.name}}</span>
-                        <button ng-click="closeAnswerPanel()" ng-show="levelScore.possiblePoints">Only {{levelScore.possiblePoints}} Left!!</button>
+
+                        <span class="answerText">Says "{{collectedAnswer}}" and is not a {{currentLevel.name}}</span>
+                        <button ng-click="showCollectAnswerPanel = false" ng-show="levelScore.possiblePoints">There are {{levelScore.possiblePoints}} Left!!</button>
+
                         <button ng-click="backToMenu()" ng-hide="levelScore.possiblePoints">YOU DID IT!!</button>
                         <button ng-click="refreshLevel()" ng-hide="levelScore.possiblePoints">Play Again!</button>
+                    </div>
+
+                    <div class="introPanel" ng-show="showIntroPanel">
+                        <span class="answerText">Look for all {{collectedAnswer}} of the {{currentLevel.name}}</span>
                     </div>
                 </div>
             </div>
