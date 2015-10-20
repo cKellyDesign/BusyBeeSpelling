@@ -67,33 +67,20 @@
             <!-- Start Markup for Level Screen -->
             <div class="mainshell" ng-show="state.levelControl" ng-controller="levelControl">
                 <div class="main" style="width:{{levelWidth}}">
-                    <!-- In Level Menu - todo: make this a directive so it doesn't need to be repeated -->
-                    <div ng-hide="state.levelSelectControl" class="in-level-menu" ng-init="isOpen = false" ng-class="{'open': isOpen }">
-                        <a class="menu-icon" ng-click="isOpen = !isOpen"><img src="imgs/menu.png"></a>
-                        <div ng-show="isOpen" ng-controller="levelSelectControl" class="menu-panel">
-                            <!-- this is the inside  Let's place the contents of this menu here so it sits on top of the BG Image! -->
-                            <a class="lesseasy">less easy</a> <a class="sound"> </a>
-                            <ul class="menu-nav">
-                                <li ng-repeat="level in levels" ng-click='selectLevel(level)' class="{{level.name}}">
-                                    <a ng-click="backToMenu(); isOpen = false">{{level.name}}</a>
-                                </li>
-                            </ul>
-                        </div>
 
-                    </div> 
 
                     <!-- In Level Menu -->
-                    <div class="in-level-menu" ng-init="isOpen = false" ng-class="{open: isOpen}">
-                        <a class="menu-icon" ng-click="isOpen = !isOpen"><img src="imgs/menu.png"></a>
-                        <div ng-show="isOpen" ng-controller="levelSelectControl" class="menu-panel">
+                    <a class="menu-icon" ng-show="!menuIsOpen" ng-click="menuIsOpen = !menuIsOpen"><img src="imgs/menu.png"></a>
+                    <div class="in-level-menu" ng-show="menuIsOpen">
+                        <div class="menu-panel">
                             <!-- Let's place the contents of this menu here so it sits on top of the BG Image! -->
                             <a class="lesseasy">less easy</a> <a class="sound"> </a>
-                            <a ng-click="isOpen = false; backToMenu()" class="vowels">Vowels</a>
+                           <!--  <a ng-click="isOpen = false; backToMenu()" class="vowels">Vowels</a>
                             <a ng-click="isOpen = false; backToMenu()" class="lowercase">Lowercase</a>
-                            <a ng-click="isOpen = false; backToMenu()" class="diagraphs">Diagraphs</a>
+                            <a ng-click="isOpen = false; backToMenu()" class="diagraphs">Diagraphs</a> -->
                             <ul class="landings">
-                                <li ng-repeat="level in levels" ng-click='selectLevel(level)' class="{{level.name}}">
-                                    <a ng-click="isOpen = false; backToMenu()">{{level.name}}</a>
+                                <li ng-repeat="level in $root.levels" ng-click='selectLevel(level)' class="{{level.name}}">
+                                    <a>{{level.name}}</a>
                                 </li>
                             </ul>
                         </div>

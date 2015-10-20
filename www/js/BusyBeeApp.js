@@ -15,13 +15,8 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
     minLength = minLength || 0;
     return Math.floor(Math.random() * (maxLength - minLength) + minLength);
   }
-});
 
-
-BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $timeout){
-  $scope.message = "Busy Bee Spelling";
-
-  $scope.levels = [{
+  $rootScope.levels = [{
     "name": "lowercase",
     "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
     "letterLeft": $rootScope.genRanNum(66,33),
@@ -40,6 +35,14 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
     "letterBottom": $rootScope.genRanNum(80, 50),
     "letterBGnumber": $rootScope.genRanNum(4,1)
   }];
+
+});
+
+
+BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $timeout){
+  $scope.message = "Busy Bee Spelling";
+
+  $scope.levels = $rootScope.levels;
   
 
   $scope.selectLevel = function(level) {
@@ -98,6 +101,13 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.levelAnswerIndex = 0;
 
   $scope.menuIsOpen = false;
+  $scope.selectLevel = function(level) {
+    console.log(level);
+    $rootScope.currentLevel = level || $rootScope.levels[0];
+    $rootScope.state.levelSelectControl = false;
+    $rootScope.state.levelControl = true;
+    $scope.refreshLevel(false);
+  };
 
   // Vars and Funcs to Manipulate Busy Bee
   $scope.busyBee = {
@@ -301,7 +311,6 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   };
 
   $scope.startLevel = function() {
-
     // move bee to far side of level and back
     $scope.busyBee.move(50, 50);
     // scroll window with bee
