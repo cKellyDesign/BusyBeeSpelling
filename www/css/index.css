@@ -81,11 +81,7 @@ max width and height?
   top: 0;
 }
 .menu-nav{
-  background: url('../imgs/menu-back.png') left center;
-  z-index: 110;
-  float:right;
-  width: 288px;
-  height: 100%;
+  padding:0;
 }
 .menu-panel{
   color: #fff;
@@ -151,6 +147,7 @@ max width and height?
   left: 100%;
   top: 0;
   bottom: 0;
+  padding-top: 0;
   z-index: 50;
   transition: left .25s;
 }
@@ -178,7 +175,7 @@ max width and height?
   background: url('../imgs/bee-sprite.png') left center;
   width: 178px;
   height: 220px;
-  z-index: 50;
+  z-index: 100;
   position: absolute;
   left: 150px;
   top: 0;
@@ -372,6 +369,12 @@ max width and height?
   zoom:0.5;
   -moz-transform:scale(0.5);
   -moz-transform-origin: 0 0;
+}
+.hiveLayer{
+  position: fixed;
+  top: 0;
+  left: -10px;
+  z-index: 80;
 }
 .hivetube{
   background: url("../imgs/hivetube.png");
