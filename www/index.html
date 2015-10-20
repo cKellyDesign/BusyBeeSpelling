@@ -37,6 +37,7 @@
     </head>
     <body ng-app="BusyBeeSpelling">
         <div class="app">
+            
             <!-- Start Markup for Level Selection Screen -->
             <div ng-show="state.levelSelectControl" ng-controller="levelSelectControl" class="main levelSelect" ng-init="selectLevel()">
                 <h1 ng-click="selectLevel()">{{message}}</h1>
@@ -47,20 +48,6 @@
                 </ul>
                 <div class="clouds"></div>
 
-                <!-- In Level Menu- todo: make this a directive so it doesn't need to be repeated 
-                <div ng-show="state.levelSelectControl" class="in-level-menu" ng-init="isOpen = false" ng-class="{'open': isOpen }">
-                    <a class="menu-icon" ng-click="isOpen = !isOpen"><img src="imgs/menu.png"></a>
-                    <div ng-show="isOpen" ng-controller="levelSelectControl" class="menu-panel">
-                        <!-- Let's place the contents of this menu here so it sits on top of the BG Image!
-                        <a class="lesseasy">less easy</a> <a class="sound"> </a>
-                        <ul class="menu-nav">
-                            <li ng-repeat="level in levels" ng-click='selectLevel(level)' class="{{level.name}}">
-                                <a ng-click="backToMenu(); isOpen = false">{{level.name}}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            
             <!-- End Markup for Level Selection Screen -->
             </div>
 
@@ -68,16 +55,11 @@
             <div class="mainshell" ng-show="state.levelControl" ng-controller="levelControl">
                 <div class="main" style="width:{{levelWidth}}">
 
-
                     <!-- In Level Menu -->
                     <a class="menu-icon" ng-show="!menuIsOpen" ng-click="menuIsOpen = !menuIsOpen"><img src="imgs/menu.png"></a>
                     <div class="in-level-menu" ng-show="menuIsOpen">
                         <div class="menu-panel">
-                            <!-- Let's place the contents of this menu here so it sits on top of the BG Image! -->
                             <a class="lesseasy">less easy</a> <a class="sound"> </a>
-                           <!--  <a ng-click="isOpen = false; backToMenu()" class="vowels">Vowels</a>
-                            <a ng-click="isOpen = false; backToMenu()" class="lowercase">Lowercase</a>
-                            <a ng-click="isOpen = false; backToMenu()" class="diagraphs">Diagraphs</a> -->
                             <ul class="landings">
                                 <li ng-repeat="level in $root.levels" ng-click='selectLevel(level)' class="{{level.name}}">
                                     <a>{{level.name}}</a>
@@ -85,7 +67,6 @@
                             </ul>
                         </div>
                     </div>
-            
 
                     <!-- BusyBee -->
                     <div
