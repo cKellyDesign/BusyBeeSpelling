@@ -37,7 +37,7 @@
     </head>
     <body ng-app="BusyBeeSpelling">
         <div class="app">
-            
+
             <!-- Start Markup for Level Selection Screen -->
             <div ng-show="state.levelSelectControl" ng-controller="levelSelectControl" class="main levelSelect" ng-init="selectLevel()">
                 <h1 ng-click="selectLevel()">{{message}}</h1>
@@ -57,7 +57,7 @@
 
                     <!-- In Level Menu -->
                     <a class="menu-icon" ng-show="!menuIsOpen" ng-click="menuIsOpen = !menuIsOpen"><img src="imgs/menu.png"></a>
-                    <div class="in-level-menu" ng-show="menuIsOpen">
+                    <div class="in-level-menu" ng-show="menuIsOpen" ng-click="menuIsOpen = false">
                         <div class="menu-panel">
                             <a class="lesseasy">less easy</a> <a class="sound"> </a>
                             <ul class="landings">
