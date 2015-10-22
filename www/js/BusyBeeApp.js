@@ -36,6 +36,56 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
     "letterBGnumber": $rootScope.genRanNum(4,1)
   }];
 
+  $rootScope.newLevels = [
+    {
+      "name": "level1",
+      "challenges": [
+        {
+          "goal": "Find the uppercase Vowels",
+          "slug": "upVow"
+        },
+        {
+          "goal": "Find the lowercase Vowels",
+          "slug": "lowVow"
+        },
+        {
+          "goal": "Find the uppercase Consonants",
+          "slug": "upCons"
+        },
+        {
+          "goal": "Find the lowercase Consonants",
+          "slug": "lowCons"
+        }
+      ]
+    }, 
+    {
+      "name": "level2",
+      "challenges": [
+        {
+          "goal": "Find the Vowels",
+          "slug": "mixVow"
+        },
+        {
+          "goal": "Find the Consonants",
+          "slug": "mixCons"
+        }
+      ]
+    },
+    {
+      "name": "level3",
+      "challenges": [
+        {
+          "goal": "Find the Digraphs",
+          "slug": "dig"
+        },
+        {
+          "goal": "Find the Blends",
+          "slug": "blend"
+        }
+      ]
+    }
+  ]
+
 });
 
 
@@ -46,7 +96,8 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
   
 
   $scope.selectLevel = function(level) {
-    $rootScope.currentLevel = level || $scope.levels[0];
+    // $rootScope.currentLevel = level || $scope.levels[0];
+    $rootScope.currentLevel = level || $rootScope.newLevels[0];
     $rootScope.state.levelSelectControl = false;
     $rootScope.state.levelControl = true;
   };
@@ -67,6 +118,15 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
 BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout){
 
   $scope.currentLevel = "";
+  $scope.levelDifficulty = {
+    "currentLevelIndex": 0,
+    "currentChallengeIndex": 0,
+    "challengesCap": 0,
+    setChallengesCap: function() {
+      this.challengesCap = $rootScope.newLevels[this.currentLevelIndex].challenges.length - 1;
+    }
+
+  };
   $scope.levelScore = {
     "points": 0,
     "strikes": 0,
@@ -80,7 +140,11 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "vowel" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
     "consonant": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
     "numbers": "1!2@3#4$5%6^7&8*9(0)11-12+13=14/15ab16cd17ef18uo19ij20kl",
-    "diagraph": ["th", "ch", "sh", "ph"]
+    "diagraph": ["th", "ch", "sh", "ph"],
+    "upVow": "ABCDEFGHIJKLMNOPQRSTUVWXYZAEIOUAEIOUAEIOUAEIOU",
+    "lowVow": "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
+    "lowCons": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
+    "upCons": "BCAEIOUDFGHJKLAEIOUMNPQRAEIOUSTVWXYZAEIOU"
   };
   // For checking clicked letters
   $scope.answerLegend = {
@@ -89,7 +153,11 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "numbers": "1234567890",
     "lowercase": "abdefghijlnqrty",
     "uppercase": "ABDEFGHIJLNQRTY",
-    "diagraph": ["th", "ch", "sh", "ph", "wh", "tch", "kn", "gh"]
+    "diagraph": ["th", "ch", "sh", "ph", "wh", "tch", "kn", "gh"],
+    "lowVow": "aeiou",
+    "upVow": "AEIOU",
+    "upCons": "BCDFGHJKLMNPQRSTVWXYZ",
+    "lowCons": "bcdfghjklmnpqrstvwxyz"
   };
   // For binding letters
   $scope.levelLetters = []; 
@@ -257,8 +325,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     if (!level) return;
 
     $scope.levelLetters = [];
-    $scope.currentLevel = level;
-    var possible = $scope.letterLegend[level.name];
+    $scope.currentLevel = level.challenges[$scope.levelDifficulty.currentChallengeIndex];
+
+    var possible = $scope.letterLegend[$scope.currentLevel.slug];
     var flowerHeightCap = window.innerHeight - 250;
     var notToRepeat = [];
     var thisAnswer;
@@ -322,7 +391,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   };
 
   $scope.answerIsCorrect = function(toCheck) {
-    return $scope.answerLegend[$scope.currentLevel.name].indexOf(toCheck) !== -1;
+    return $scope.answerLegend[$scope.currentLevel.slug].indexOf(toCheck) !== -1;
   };
 
   $scope.determineDiagraph = function(possible) {
@@ -338,11 +407,12 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.getPossiblePoints = function() {
     var possiblePoints = 0;
     var thisLetter;
-    var thisLetterIsNotCorrect;
+    var thisLetterIsCorrect;
+    var possibleAnsers = $scope.answerLegend[$scope.currentLevel.slug];
     for (i = 0; i < $scope.levelLetters.length; i++) {
       thisLetter = $scope.levelLetters[i].letter;
-      thisLetterIsNotCorrect = $scope.answerLegend[$scope.currentLevel.name].indexOf(thisLetter) !== -1;
-      if (thisLetterIsNotCorrect) {
+      thisLetterIsCorrect = possibleAnsers.indexOf(thisLetter) !== -1;
+      if (thisLetterIsCorrect) {
         possiblePoints++;
       }
     }
