@@ -195,7 +195,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "lowCons": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
     "upCons": "BCAEIOUDFGHJKLAEIOUMNPQRAEIOUSTVWXYZAEIOU",
     "mixVow": "ABCDEFGHIJKLMNOPQRSTUVWXYZAEIOUAEIOUAEIOUAEIOUabcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
-    "mixCons": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiouBCAEIOUDFGHJKLAEIOUMNPQRAEIOUSTVWXYZAEIOU"
+    "mixCons": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiouBCAEIOUDFGHJKLAEIOUMNPQRAEIOUSTVWXYZAEIOU",
+    "dig": ["st", "sh", "ch", "th", "wh", "ph", "ee", "ea", "ow", "ng", "ck"],
+    "blend": ["fl", "bl", "cl", "sl", "pl", "bl", "gr", "tr", "br", "cr", "dr", "fr", "wh", "str", "sw", "sp", "sc", "sn", "sm", "sk"]
   };
   // For checking clicked letters
   $scope.answerLegend = {
@@ -211,7 +213,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "upCons": "BCDFGHJKLMNPQRSTVWXYZ",
     "lowCons": "bcdfghjklmnpqrstvwxyz",
     "mixVow": "aeiouAEIOU",
-    "mixCons": "BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz"
+    "mixCons": "BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz",
+    "dig": ["st", "sh", "ch", "th", "wh", "ph", "ee", "ea", "ow", "ng", "ck"],
+    "blend": ["fl", "bl", "cl", "sl", "pl", "bl", "gr", "tr", "br", "cr", "dr", "fr", "wh", "str", "sw", "sp", "sc", "sn", "sm", "sk"]
   };
   // For binding letters
   $scope.levelLetters = []; 
@@ -390,10 +394,11 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     var thisAnswer;
 
     for ( var i=0; i < 8; i++ ) {
-      thisAnswer = ($scope.currentLevel.slug !== "dig") ?
-          possible.charAt($rootScope.genRanNum(possible.length)) : 
-          $scope.determineDiagraph(possible);
-
+      if ( ($scope.currentLevel.slug === "dig") || ($scope.currentLevel.slug === "blend") ) {
+        thisAnswer = $scope.determineDiagraph(possible);        
+      } else { 
+        thisAnswer = possible.charAt($rootScope.genRanNum(possible.length));
+      }
       if ( notToRepeat.indexOf(thisAnswer) !== -1 ) {
         i--;
         continue;
