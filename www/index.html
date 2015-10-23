@@ -60,6 +60,7 @@
                     <div class="in-level-menu" ng-show="menuIsOpen" ng-click="menuIsOpen = false">
                         <div class="menu-panel">
                             <a class="lesseasy" ng-click="handleIncrease()">less easy</a> <a class="sound"> </a>
+                            <a class="lesseasy" ng-click="handleDecrease()">more easy</a> <a class="sound"> </a>
                             <ul class="landings">
                                 <li ng-repeat="level in $root.levels" ng-click='selectLevel(level)' class="{{level.name}}">
                                     <a>{{level.name}}</a>

@@ -174,6 +174,11 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.levelDifficultyControl.increaseDifficulty();
     $scope.refreshLevel();
   };
+  
+  $scope.handleDecrease = function() {
+    $scope.levelDifficultyControl.decreaseDifficulty();
+    $scope.refreshLevel();
+  };
 
   $scope.levelScore = {
     "points": 0,
