@@ -59,7 +59,8 @@
                     <a class="menu-icon" ng-show="!menuIsOpen" ng-click="menuIsOpen = !menuIsOpen"><img src="imgs/menu.png"></a>
                     <div class="in-level-menu" ng-show="menuIsOpen" ng-click="menuIsOpen = false">
                         <div class="menu-panel">
-                            <a class="lesseasy">less easy</a> <a class="sound"> </a>
+                            <a class="lesseasy" ng-click="handleIncrease()">less easy</a> <a class="sound"> </a>
+                            <a class="lesseasy" ng-click="handleDecrease()">more easy</a> <a class="sound"> </a>
                             <ul class="landings">
                                 <li ng-repeat="level in $root.levels" ng-click='selectLevel(level)' class="{{level.name}}">
                                     <a>{{level.name}}</a>
@@ -111,7 +112,7 @@
                     </div>
 
                     <div class="introPanel" ng-show="showIntroPanel">
-                        <span class="answerText">Look for all {{collectedAnswer}} of the {{currentLevel.name}}</span>
+                        <span class="answerText">Look for all {{collectedAnswer}} of the {{currentLevel.introMsg}}</span>
                     </div>
                 </div>
             </div>
