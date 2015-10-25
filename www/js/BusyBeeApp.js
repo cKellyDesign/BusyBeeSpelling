@@ -421,7 +421,15 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     // timer after audio launches into level screen
   };
   $scope.concludeLevel = function(){
-    alert("CONGRATULATIONS!!"); // todo: we can initialize some level complete screen?
+    //alert("CONGRATULATIONS!!"); // todo: we can initialize some level complete screen?
+    $scope.showSuccessPanel = true;
+    $scope.busyBee.move(50, 50);
+    $timeout(function(){
+      $scope.showSuccessPanel = false;
+
+      $scope.refreshLevel(); // todo: change this to $rootScope.selectLevel(nextLevel)
+
+    }, 3000);
     if ( $scope.levelScore.strikes ) {
       $scope.levelDifficultyControl.currentCorrectStreak = 0;
 
@@ -433,7 +441,6 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         $scope.levelDifficultyControl.currentCorrectStreak = 0;
       }
     }
-    $scope.refreshLevel(); // todo: change this to $rootScope.selectLevel(nextLevel)
   };
   // ***** Level Flow *****
 

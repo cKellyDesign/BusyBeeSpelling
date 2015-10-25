@@ -117,7 +117,7 @@ max width and height?
   background: url('../imgs/menu-sprite.png') left center;
   background-position: -100px 0px;
   width: 34px;
-  height: 40px;
+  height: 30px;
   padding-bottom: 25px;
   display: inline-block;
 }
@@ -126,18 +126,49 @@ max width and height?
   background-position: 0px -50px;
   display: block;
   padding-top: 45px;
+  width: 50px;
+}
+.lowercase-vowel{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 50px -50px;
+  display: block;
+  padding-top: 45px;
+  width: 50px;
+}
+.uppercase-vowel{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 50px -50px;
+  display: block;
+  padding-top: 45px;
+  width: 50px;
+}
+.uppercase-consonant{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 105px -115px;
+  display: block;
+  padding-top: 45px;
+  width: 50px;
 }
 .lowercase{
   background: url('../imgs/menu-sprite.png') left center;
-  background-position: 0px -115px;
+  background-position: 50px -115px;
   display: block;
   padding-top: 45px;
+  width: 50px;
+}
+.consonant{
+  background: url('../imgs/menu-sprite.png') left center;
+  background-position: 50px -115px;
+  display: block;
+  padding-top: 45px;
+  width: 50px;
 }
 .diagraph{
   background: url('../imgs/menu-sprite.png') left center;
   background-position: 0px -190px;
   display: block;
   padding-top: 45px;
+  width: 50px;
 }
 /* end menu screen   */
 
@@ -148,7 +179,7 @@ max width and height?
   top: 0;
   bottom: 0;
   padding-top: 0;
-  z-index: 50;
+  z-index: 100;
   /*transition: left .25s;*/
   left:0;
   background-color: rgba(166,211,245,.8);
@@ -174,7 +205,7 @@ max width and height?
   background: url('../imgs/bee-sprite.png') left center;
   width: 178px;
   height: 220px;
-  z-index: 100;
+  z-index: 95;
   position: absolute;
   left: 150px;
   top: 0;
@@ -219,7 +250,8 @@ max width and height?
 .letterBG_2 {
   background: url("../imgs/letterBG_2.png");
   background-repeat: no-repeat;
-  background-position: -10px -5px;
+  background-position: -6px -10px;
+  /*background-position: -10px -5px;*/
 }
 .letterBG_3 {
   background: url("../imgs/letterBG_3.png");
@@ -439,18 +471,20 @@ max width and height?
 }
 
 /* Answer Collect Panel Styles */
-.collectAnswerPanel, .introPanel{
+.collectAnswerPanel, .introPanel, .successPanel {
   position: fixed;
   top: 0;
   padding: 10% ;
-  /*bottom: 2.5%;
-  left: 5%;
-  right: 5%;*/
   width:100%;
   height:100%;
-  background-color: rgba(80,71,29,.9);
   z-index: 100;
   display: table;
+}
+.collectAnswerPanel {
+  background-color: rgba(80,71,29,.9);
+}
+.successPanel{
+  background-color: rgba(33,158,254,.9);
 }
 .collectAnswerPanel .letters{
   display: inline-block;
@@ -459,7 +493,7 @@ max width and height?
   position: relative;
   zoom: 1.5;
 }
-.collectAnswerPanel .answerText, .introPanel .answerText {
+.collectAnswerPanel .answerText, .introPanel .answerText, .loadingApp .answerText, .successPanel .answerText {
   display: inline-block;
   width: 36%;
   font-size: 2em;
@@ -467,8 +501,36 @@ max width and height?
   color: #f9d00e;
   height: 130px;
 }
-.introPanel .answerText{
+.introPanel, .loadingApp {
+  background: #219efe;
+}
+.loadingApp h1{
+  font-size: 62px;
+  margin:0;
+}
+.loadingApp .loadingAppPanel .answerText{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding-top: 70px;
+  text-align: center;
+  font-size: 48px;
+  z-index: 100;
+  text-shadow:  -2px -2px 0 #000,
+  4px -2px 0 #000,
+  -2px 4px 0 #000,
+  4px 4px 0 #000;
+}
+.introPanel .answerText {
   width: 80%;
+  z-index: 50;
+  padding-top: 100px;
+  /*text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;*/
+  font-size: 48px;
+  text-shadow:  -2px -2px 0 #000,
+  4px -2px 0 #000,
+  -2px 4px 0 #000,
+  4px 4px 0 #000;
 }
 .answerarea li{
   display:inline-block;
