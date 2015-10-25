@@ -36,7 +36,6 @@
         <title>Busy Bee Spelling</title>
     </head>
     <body ng-app="BusyBeeSpelling">
-        <div class="app">
 
             <!-- Start Markup for Level Selection Screen -->
             <div ng-show="state.levelSelectControl" ng-controller="levelSelectControl" class="main levelSelect" ng-init="selectLevel()">
@@ -53,14 +52,21 @@
 
             <!-- Start Markup for Level Screen -->
             <div class="mainshell" ng-show="state.levelControl" ng-controller="levelControl">
+                <!--<div class="loadingApp">-->
+                    <!--<div class="loadingAppPanel" ng-show="showIntroPanel">-->
+                        <!--<div class="answerText"><h1>Wait</h1> <img src="imgs/loading-hand-sm.png"><br> Loading</div>-->
+                        <!--<div class="clouds"></div>-->
+                    <!--</div>-->
+                <!--</div>-->
                 <div class="main" style="width:{{levelWidth}}">
 
                     <!-- In Level Menu -->
                     <a class="menu-icon" ng-show="!menuIsOpen" ng-click="menuIsOpen = !menuIsOpen"><img src="imgs/menu.png"></a>
                     <div class="in-level-menu" ng-show="menuIsOpen" ng-click="menuIsOpen = false">
                         <div class="menu-panel">
-                            <a class="lesseasy" ng-click="handleIncrease()">less easy</a> <a class="sound"> </a>
-                            <a class="lesseasy" ng-click="handleDecrease()">more easy</a> <a class="sound"> </a>
+                            <!--<a class="lesseasy" ng-click="handleIncrease()">less easy</a> -->
+                            <a class="sound"> </a>
+                            <!--<a class="lesseasy" ng-click="handleDecrease()">more easy</a> <a class="sound"> </a>-->
                             <ul class="landings">
                                 <li ng-repeat="level in $root.levels" ng-click='selectLevel(level)' class="{{level.name}}">
                                     <a>{{level.name}}</a>
@@ -112,7 +118,12 @@
                     </div>
 
                     <div class="introPanel" ng-show="showIntroPanel">
-                        <span class="answerText">Look for all {{collectedAnswer}} of the {{currentLevel.introMsg}}</span>
+                        <div class="answerText">Look for {{collectedAnswer}}<br> {{currentLevel.introMsg}}</div>
+                        <div class="clouds"></div>
+                    </div>
+                    <div class="successPanel" ng-show="showSuccessPanel">
+                        <div class="answerText">You did it!</div>
+                        <div class="clouds"></div>
                     </div>
                 </div>
             </div>
