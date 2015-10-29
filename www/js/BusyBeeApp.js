@@ -5,7 +5,6 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
     "levelSelectControl" : true,
     "levelControl" : false
   };
-
   $rootScope.currentLevel = "";
   $rootScope.levelWidth = "100%";
   // CSS class names for different flowers
@@ -411,6 +410,12 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     // show level start panel w/ message
     $scope.showIntroPanel = true;
     $scope.busyBee.move(50, 50);
+
+    // Move this to NEW FUNCTION
+    // $('#introSound').attr('src', 'sound/consonants.mp3');
+    // document.getElementById('introSound').play();
+
+
     $timeout(function(){
       $scope.showIntroPanel = false;
     }, 3000);
