@@ -494,7 +494,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.levelScore.possiblePoints = $scope.getPossiblePoints();
     $scope.levelScore.scoreToWin = $scope.levelScore.possiblePoints;
 
-    if ($scope.levelScore.possiblePoints < 3 && $scope.levelScore.possiblePoints > 5) {
+    if ($scope.levelScore.possiblePoints < 3 || $scope.levelScore.possiblePoints > 5) {
       $scope.generateLetters();
       return;
     }
