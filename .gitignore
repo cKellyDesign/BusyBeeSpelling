@@ -2,3 +2,4 @@ platforms/
 plugins/android.json
 plugins/browser.json
 .idea/workspace.html
+bower_components/
