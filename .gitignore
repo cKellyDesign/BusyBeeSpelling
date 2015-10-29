@@ -2,5 +2,8 @@ platforms/
 plugins/android.json
 plugins/browser.json
 .idea/workspace.html
+<<<<<<< HEAD
 .idea/workspace.xml
+=======
+>>>>>>> master
 bower_components/
