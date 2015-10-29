@@ -124,12 +124,10 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
 //});
 
 BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout){
-
+  $scope.showSuccessPanel = false;
   $rootScope.$watch('currentLevel',
     function(currentLevel){
-      while ( $scope.levelScore.possiblePoints < 3 ) {
-        $scope.generateLetters(currentLevel);
-      }
+      $scope.generateLetters(currentLevel);
     }
   );
 
@@ -326,7 +324,6 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   };
 
   $scope.selectLevel = function(level) {
-    console.log(level);
     $rootScope.currentLevel = level || $rootScope.levels[0];
     $rootScope.state.levelSelectControl = false;
     $rootScope.state.levelControl = true;
@@ -492,6 +489,10 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.levelScore.possiblePoints = $scope.getPossiblePoints();
     $scope.levelScore.scoreToWin = $scope.levelScore.possiblePoints;
 
+    if ($scope.levelScore.possiblePoints < 3 && $scope.levelScore.possiblePoints > 5) {
+      $scope.generateLetters();
+      return;
+    }
     // Can you use this as a level fail buffer if desired
     // $scope.levelScore.scoreToWin = ($scope.levelScore.possiblePoints < 3) ? $scope.levelScore.possiblePoints : $scope.levelScore.scoreToWin;
     $scope.introLevel();
