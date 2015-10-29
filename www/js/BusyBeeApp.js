@@ -5,7 +5,6 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
     "levelSelectControl" : true,
     "levelControl" : false
   };
-
   $rootScope.currentLevel = "";
   $rootScope.levelWidth = "100%";
   // CSS class names for different flowers
@@ -124,12 +123,10 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
 //});
 
 BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout){
-
+  $scope.showSuccessPanel = false;
   $rootScope.$watch('currentLevel',
     function(currentLevel){
-      while ( $scope.levelScore.possiblePoints < 3 ) {
-        $scope.generateLetters(currentLevel);
-      }
+      $scope.generateLetters(currentLevel);
     }
   );
 
@@ -326,7 +323,6 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   };
 
   $scope.selectLevel = function(level) {
-    console.log(level);
     $rootScope.currentLevel = level || $rootScope.levels[0];
     $rootScope.state.levelSelectControl = false;
     $rootScope.state.levelControl = true;
@@ -414,6 +410,12 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     // show level start panel w/ message
     $scope.showIntroPanel = true;
     $scope.busyBee.move(50, 50);
+
+    // Move this to NEW FUNCTION
+    // $('#introSound').attr('src', 'sound/consonants.mp3');
+    // document.getElementById('introSound').play();
+
+
     $timeout(function(){
       $scope.showIntroPanel = false;
     }, 3000);
@@ -492,6 +494,10 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.levelScore.possiblePoints = $scope.getPossiblePoints();
     $scope.levelScore.scoreToWin = $scope.levelScore.possiblePoints;
 
+    if ($scope.levelScore.possiblePoints < 3 && $scope.levelScore.possiblePoints > 5) {
+      $scope.generateLetters();
+      return;
+    }
     // Can you use this as a level fail buffer if desired
     // $scope.levelScore.scoreToWin = ($scope.levelScore.possiblePoints < 3) ? $scope.levelScore.possiblePoints : $scope.levelScore.scoreToWin;
     $scope.introLevel();
