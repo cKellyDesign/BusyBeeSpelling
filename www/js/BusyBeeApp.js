@@ -247,8 +247,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "left": 50,
     "top": 10,
     "faceLeft": false,
+    "zoom": $('#character').css('zoom'),
     move: function(beeTop, beeLeft) {
-      this.top = beeTop;
+      this.top = beeTop - 110;
       this.left = beeLeft - 89;
     },
     takeAnswerToHive: function() {
@@ -289,33 +290,38 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.refreshLevel();
   };
 
-  $scope.hiveClick = function(e) {
-    e.stopPropagation();
-    var clickLeft = e.currentTarget.offsetLeft + (e.offsetX * 2);
-    var clickTop = e.currentTarget.offsetTop + e.offsetY;
-    var index = angular.element(e.currentTarget).parent();
-    $scope.busyBee.move(clickTop, clickLeft);
-  };
-
   $scope.backgroundClick = function(e) {
     e.stopPropagation();
-    var clickLeft = e.offsetX * 2;
-    var clickTop = e.offsetY;
+
+    var clickLeft = e.offsetX / $scope.busyBee.zoom;
+    var clickTop = e.offsetY / $scope.busyBee.zoom;
+
     $scope.busyBee.move(clickTop, clickLeft);
   };
 
   $scope.flowerClick = function(e) {
     e.stopPropagation();
-    var clickLeft = e.currentTarget.offsetLeft + (e.offsetX * 2);
-    var clickTop = e.currentTarget.offsetTop + e.offsetY;
-    var index = angular.element(e.srcElement).parent();
+
+    var flowerZoom = $(e.currentTarget).css('zoom');
+
+    // var clickLeft = ((determin displayed equivielent of flowerLeft) + click offset from left edge of flower) / adjust for scale of bee;
+    var clickLeft = ((e.currentTarget.offsetLeft * flowerZoom) + e.offsetX) / $scope.busyBee.zoom;
+    var clickTop = ((e.currentTarget.offsetTop * flowerZoom) + e.offsetY) / $scope.busyBee.zoom;
+
     $scope.busyBee.move(clickTop, clickLeft);
   };
 
   $scope.letterClick = function(e, i) {
     e.stopPropagation();
-    var clickLeft = e.currentTarget.offsetLeft + e.currentTarget.parentElement.offsetLeft + (e.offsetX * 2);
-    var clickTop = e.currentTarget.offsetTop + e.offsetY - 100;
+
+    var flower = e.currentTarget.parentElement;
+    var letter = e.currentTarget;
+    var flowerZoom = $(flower).css('zoom');
+    var letterZoom = $(letter).css('zoom');
+
+    var clickLeft = ((letter.offsetLeft * letterZoom) + (flower.offsetLeft * flowerZoom) + e.offsetX) / $scope.busyBee.zoom;
+    var clickTop = ((letter.offsetTop * letterZoom) + (flower.offsetTop * flowerZoom) + e.offsetY) / $scope.busyBee.zoom;
+
     $scope.busyBee.move(clickTop, clickLeft);
     $timeout(function(){
       $scope.checkAnswer(i);
@@ -412,7 +418,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.busyBee.move(50, 50);
 
     // Move this to NEW FUNCTION
-    // $('#introSound').attr('src', 'sound/consonants.mp3');
+    // $('#introSound').attr('src', 'sound/consonants.wav');
     // document.getElementById('introSound').play();
 
 
