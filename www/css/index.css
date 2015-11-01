@@ -180,10 +180,14 @@ max width and height?
   bottom: 0;
   padding-top: 0;
   z-index: 100;
-  /*transition: left .25s;*/
-  left:0;
-  background-color: rgba(166,211,245,.8);
+  transition: .25s;
+  left:100%;
+  background-color: rgba(166,211,245,0);
   width:100%;
+}
+.in-level-menu.open {
+  background-color: rgba(166,211,245,.8);
+  left: 0%;
 }
 .menu-panel{
   padding-left: 130px;

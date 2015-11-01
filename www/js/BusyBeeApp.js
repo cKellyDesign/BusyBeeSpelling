@@ -186,9 +186,6 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.showCollectAnswerPanel = false;
   $scope.collectedAnswer = "";
   $scope.levelAnswerIndex = 0;
-
-  // Level Menu State
-  $scope.menuIsOpen = false;
   // ***** Level Contants / States *****
 
 
@@ -345,6 +342,14 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.closeAnswerPanel = function() {
     $scope.showCollectAnswerPanel = false;
   }
+
+  $scope.onMenuOpen = function() {
+    $('.in-level-menu').addClass('open');
+  };
+
+  $scope.onMenuClose = function() {
+    $('.open').removeClass('open');
+  };
   // ***** Handlers *****
 
 
@@ -403,7 +408,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $rootScope.levelWidth = "100%";
     $scope.showCollectAnswerPanel = false;
     $scope.collectedAnswer = "";
-    $scope.menuIsOpen = false;
+    $scope.onMenuClose();
     $scope.levelDifficultyControl.setChallengesCap();
     $scope.generateLetters();
     // $scope.introLevel();
