@@ -61,8 +61,8 @@
                 <div class="main" style="width:{{levelWidth}}">
 
                     <!-- In Level Menu -->
-                    <a class="menu-icon" ng-show="!menuIsOpen" ng-click="menuIsOpen = !menuIsOpen"><img src="imgs/menu.png"></a>
-                    <div class="in-level-menu" ng-show="menuIsOpen" ng-click="menuIsOpen = false">
+                    <a class="menu-icon"  ng-click="onMenuOpen()"><img src="imgs/menu.png"></a>
+                    <div class="in-level-menu" ng-click="onMenuClose()">
                         <div class="menu-panel">
                             <!--<a class="lesseasy" ng-click="handleIncrease()">less easy</a> -->
                             <a class="sound"> </a>
