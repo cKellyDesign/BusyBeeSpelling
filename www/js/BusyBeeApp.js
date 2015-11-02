@@ -395,9 +395,11 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   $scope.onMenuOpen = function() {
     $('.in-level-menu').addClass('open');
+    $('.menu-panel').addClass('open');
   };
 
   $scope.onMenuClose = function() {
+    $('.in-level-menu').removeClass('open');
     $('.open').removeClass('open');
   };
   // ***** Handlers *****
