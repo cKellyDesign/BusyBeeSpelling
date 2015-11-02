@@ -42,22 +42,26 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
         {
           "goal": "Find the uppercase Vowels",
           "slug": "upVow",
-          "introMsg": "Uppercase Vowels"
+          "introMsg": "Uppercase Vowels",
+          "passes": 0
         },
         {
           "goal": "Find the lowercase Vowels",
           "slug": "lowVow",
-          "introMsg": "Lowercase Vowels"
+          "introMsg": "Lowercase Vowels",
+          "passes": 0
         },
         {
           "goal": "Find the uppercase Consonants",
           "slug": "upCons",
-          "introMsg": "Uppercase Consonants"
+          "introMsg": "Uppercase Consonants",
+          "passes": 0
         },
         {
           "goal": "Find the lowercase Consonants",
           "slug": "lowCons",
-          "introMsg": "Lowercase Consonants"
+          "introMsg": "Lowercase Consonants",
+          "passes": 0
         }
       ]
     }, 
@@ -67,12 +71,14 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
         {
           "goal": "Find the Vowels",
           "slug": "mixVow",
-          "introMsg": "Vowels"
+          "introMsg": "Vowels",
+          "passes": 0
         },
         {
           "goal": "Find the Consonants",
           "slug": "mixCons",
-          "introMsg": "Consonants"
+          "introMsg": "Consonants",
+          "passes": 0
         }
       ]
     },
@@ -82,12 +88,14 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
         {
           "goal": "Find the Digraphs",
           "slug": "dig",
-          "introMsg": "Digraphs"
+          "introMsg": "Digraphs",
+          "passes": 0
         },
         {
           "goal": "Find the Blends",
           "slug": "blend",
-          "introMsg": "Blends"
+          "introMsg": "Blends",
+          "passes": 0
         }
       ]
     }
@@ -186,15 +194,13 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.showCollectAnswerPanel = false;
   $scope.collectedAnswer = "";
   $scope.levelAnswerIndex = 0;
-
-  // Level Menu State
-  $scope.menuIsOpen = false;
   // ***** Level Contants / States *****
 
 
 
   // ***** Level Difficulty Controll ***** 
-  $scope.currentLevel = "";
+  // $scope.currentLevel = $rootScope.newLevels[0].challenges[$rootScope.genRanNum(($rootScope.newLevels[0].challenges.length - 1), 0)];
+  $scope.currentLevel = $rootScope.newLevels[0].challenges[0]; 
   $scope.levelDifficultyControl = {
     "currentLevelIndex": 0,
     "currentChallengeIndex": 0,
@@ -235,7 +241,44 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       }
     },
     setCurrentLevel: function(){
-      $scope.currentLevel = $rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex].challenges[$scope.levelDifficultyControl.currentChallengeIndex];
+      $scope.currentLevel = $rootScope.newLevels[this.currentLevelIndex].challenges[this.currentChallengeIndex];
+    },
+    determineLevel: function(){
+      if ($scope.levelScore.strikes) {
+        $rootScope.newLevels[this.currentLevelIndex].challenges[this.currentChallengeIndex].passes = 0;
+      } else {
+        $rootScope.newLevels[this.currentLevelIndex].challenges[this.currentChallengeIndex].passes++;
+      }
+
+      var possibleChallenges = this.getPossibleChallenges();
+
+      if (!possibleChallenges.length) {
+        this.currentLevelIndex++;
+        possibleChallenges = this.getPossibleChallenges();
+      }
+
+      var num = $rootScope.genRanNum((possibleChallenges.length - 1), 0);
+      // console.log("num - ", num);
+      var newChallenge = possibleChallenges[num];
+      this.setNewChallenge(newChallenge);
+    },
+    getPossibleChallenges: function() {
+      var possibleChallenges = [];
+      $.each($rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex].challenges, function(i, thisLevel){
+        if (thisLevel.passes < 3) {
+          possibleChallenges.push(thisLevel);
+        }
+      });
+      return possibleChallenges;
+    },
+    setNewChallenge: function(newChallenge) {
+      for (var i = 0; i < $rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex].challenges.length; i++) {
+        if ( $rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex].challenges[i].slug === newChallenge.slug ) {
+          $scope.levelDifficultyControl.currentChallengeIndex = i;
+        }
+      }
+      this.setCurrentLevel();
+      // console.log("2 - ", $scope.currentLevel);
     }
   };
   // ***** Level Difficulty Controll *****
@@ -247,8 +290,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "left": 50,
     "top": 10,
     "faceLeft": false,
+    "zoom": $('#character').css('zoom'),
     move: function(beeTop, beeLeft) {
-      this.top = beeTop;
+      this.top = beeTop - 110;
       this.left = beeLeft - 89;
     },
     takeAnswerToHive: function() {
@@ -289,33 +333,42 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.refreshLevel();
   };
 
-  $scope.hiveClick = function(e) {
-    e.stopPropagation();
-    var clickLeft = e.currentTarget.offsetLeft + (e.offsetX * 2);
-    var clickTop = e.currentTarget.offsetTop + e.offsetY;
-    var index = angular.element(e.currentTarget).parent();
-    $scope.busyBee.move(clickTop, clickLeft);
-  };
-
   $scope.backgroundClick = function(e) {
     e.stopPropagation();
-    var clickLeft = e.offsetX * 2;
-    var clickTop = e.offsetY;
+
+    var clickLeft = e.offsetX / $scope.busyBee.zoom;
+    var clickTop = e.offsetY / $scope.busyBee.zoom;
+
     $scope.busyBee.move(clickTop, clickLeft);
   };
 
   $scope.flowerClick = function(e) {
     e.stopPropagation();
-    var clickLeft = e.currentTarget.offsetLeft + (e.offsetX * 2);
-    var clickTop = e.currentTarget.offsetTop + e.offsetY;
-    var index = angular.element(e.srcElement).parent();
+
+    var flowerZoom = $(e.currentTarget).css('zoom');
+
+    // var clickLeft = ((determin displayed equivielent of flowerLeft) + click offset from left edge of flower) / adjust for scale of bee;
+    var clickLeft = ((e.currentTarget.offsetLeft * flowerZoom) + e.offsetX) / $scope.busyBee.zoom;
+    var clickTop = ((e.currentTarget.offsetTop * flowerZoom) + e.offsetY) / $scope.busyBee.zoom;
+
     $scope.busyBee.move(clickTop, clickLeft);
   };
 
   $scope.letterClick = function(e, i) {
     e.stopPropagation();
-    var clickLeft = e.currentTarget.offsetLeft + e.currentTarget.parentElement.offsetLeft + (e.offsetX * 2);
-    var clickTop = e.currentTarget.offsetTop + e.offsetY - 100;
+    if (!$scope.canCollectLetter) {
+      return;
+    }
+    $scope.canCollectLetter = false;
+
+    var flower = e.currentTarget.parentElement;
+    var letter = e.currentTarget;
+    var flowerZoom = $(flower).css('zoom');
+    var letterZoom = $(letter).css('zoom');
+
+    var clickLeft = ((letter.offsetLeft * letterZoom) + (flower.offsetLeft * flowerZoom) + e.offsetX) / $scope.busyBee.zoom;
+    var clickTop = ((letter.offsetTop * letterZoom) + (flower.offsetTop * flowerZoom) + e.offsetY) / $scope.busyBee.zoom;
+
     $scope.busyBee.move(clickTop, clickLeft);
     $timeout(function(){
       $scope.checkAnswer(i);
@@ -339,11 +392,20 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.closeAnswerPanel = function() {
     $scope.showCollectAnswerPanel = false;
   }
+
+  $scope.onMenuOpen = function() {
+    $('.in-level-menu').addClass('open');
+  };
+
+  $scope.onMenuClose = function() {
+    $('.open').removeClass('open');
+  };
   // ***** Handlers *****
 
 
 
   // ***** Letter Collection *****
+  $scope.canCollectLetter = true;
   $scope.checkAnswer = function(i) {
     var answerVal = $scope.levelLetters[i].letter; 
 
@@ -358,6 +420,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       $scope.showCollectAnswerPanel = true;      
       $scope.levelLetters[i].show = false;
       $scope.collectedAnswer = answerVal;
+      $scope.canCollectLetter = true;
     }
   };
 
@@ -378,7 +441,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       $scope.collectedLetters.push($scope.levelLetters[i]);
       $( ".hivetubeMove" ).hide();
       $( ".hivetube" ).show();
-      if ( !$scope.levelScore.possiblePoints ) {
+      $scope.canCollectLetter = true;
+      if ( !$scope.levelScore.possiblePoints) { // todo: fix multiple calls when answers are collected too quickly
         $scope.concludeLevel();
       }
     }, 2000);
@@ -397,8 +461,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $rootScope.levelWidth = "100%";
     $scope.showCollectAnswerPanel = false;
     $scope.collectedAnswer = "";
-    $scope.menuIsOpen = false;
-    $scope.levelDifficultyControl.setChallengesCap();
+    $scope.onMenuClose();
     $scope.generateLetters();
     // $scope.introLevel();
 
@@ -410,9 +473,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     // show level start panel w/ message
     $scope.showIntroPanel = true;
     $scope.busyBee.move(50, 50);
-
+    // console.log("1 - ", $scope.currentLevel);
     // Move this to NEW FUNCTION
-    // $('#introSound').attr('src', 'sound/consonants.mp3');
+    // $('#introSound').attr('src', 'sound/consonants.wav');
     // document.getElementById('introSound').play();
 
 
@@ -428,21 +491,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.busyBee.move(50, 50);
     $timeout(function(){
       $scope.showSuccessPanel = false;
-
+      $scope.levelDifficultyControl.determineLevel();
       $scope.refreshLevel(); // todo: change this to $rootScope.selectLevel(nextLevel)
-
     }, 3000);
-    if ( $scope.levelScore.strikes ) {
-      $scope.levelDifficultyControl.currentCorrectStreak = 0;
-
-    } else {
-      $scope.levelDifficultyControl.currentCorrectStreak++;
-
-      if ( $scope.levelDifficultyControl.currentCorrectStreak === 3 ) {
-        $scope.levelDifficultyControl.increaseDifficulty();
-        $scope.levelDifficultyControl.currentCorrectStreak = 0;
-      }
-    }
   };
   // ***** Level Flow *****
 
@@ -450,10 +501,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   // ***** Letter Control *****
   $scope.generateLetters = function() {
-    var level = $rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex];
     $scope.levelLetters = [];
-    $scope.currentLevel = level.challenges[$scope.levelDifficultyControl.currentChallengeIndex];
-    // if ( !level || !$scope.currentLevel) debugger;
     var possible = $scope.letterLegend[$scope.currentLevel.slug];
     
     var flowerHeightCap = window.innerHeight - 250;
