@@ -356,6 +356,10 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   $scope.letterClick = function(e, i) {
     e.stopPropagation();
+    if (!$scope.canCollectLetter) {
+      return;
+    }
+    $scope.canCollectLetter = false;
 
     var flower = e.currentTarget.parentElement;
     var letter = e.currentTarget;
@@ -401,6 +405,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
 
   // ***** Letter Collection *****
+  $scope.canCollectLetter = true;
   $scope.checkAnswer = function(i) {
     var answerVal = $scope.levelLetters[i].letter; 
 
@@ -415,6 +420,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       $scope.showCollectAnswerPanel = true;      
       $scope.levelLetters[i].show = false;
       $scope.collectedAnswer = answerVal;
+      $scope.canCollectLetter = true;
     }
   };
 
@@ -435,6 +441,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       $scope.collectedLetters.push($scope.levelLetters[i]);
       $( ".hivetubeMove" ).hide();
       $( ".hivetube" ).show();
+      $scope.canCollectLetter = true;
       if ( !$scope.levelScore.possiblePoints) { // todo: fix multiple calls when answers are collected too quickly
         $scope.concludeLevel();
       }
