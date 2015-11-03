@@ -43,24 +43,28 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the uppercase Vowels",
           "slug": "upVow",
           "introMsg": "Uppercase Vowels",
+          "sound": "sound/vowel.wav",
           "passes": 0
         },
         {
           "goal": "Find the lowercase Vowels",
           "slug": "lowVow",
           "introMsg": "Lowercase Vowels",
+          "sound": "sound/vowel.wav",
           "passes": 0
         },
         {
           "goal": "Find the uppercase Consonants",
           "slug": "upCons",
           "introMsg": "Uppercase Consonants",
+          "sound": "sound/consonants.wav",
           "passes": 0
         },
         {
           "goal": "Find the lowercase Consonants",
           "slug": "lowCons",
           "introMsg": "Lowercase Consonants",
+          "sound": "sound/consonants.wav",
           "passes": 0
         }
       ]
@@ -477,13 +481,12 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.busyBee.move(50, 50);
     // console.log("1 - ", $scope.currentLevel);
     // Move this to NEW FUNCTION
-    // $('#introSound').attr('src', 'sound/consonants.wav');
-    // document.getElementById('introSound').play();
-
+    $('#introSound').attr('src', $scope.currentLevel.sound);
+    document.getElementById('introSound').play();
 
     $timeout(function(){
       $scope.showIntroPanel = false;
-    }, 3000);
+    }, 3500);
     // play level audio, callback => display play button
     // timer after audio launches into level screen
   };
@@ -495,7 +498,11 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       $scope.showSuccessPanel = false;
       $scope.levelDifficultyControl.determineLevel();
       $scope.refreshLevel(); // todo: change this to $rootScope.selectLevel(nextLevel)
-    }, 3000);
+    }, 4000);
+    // Move this to NEW FUNCTION ?
+    $('#successSound').attr('src', 'sound/UgotIt.wav');
+    document.getElementById('successSound').play();
+
   };
   // ***** Level Flow *****
 

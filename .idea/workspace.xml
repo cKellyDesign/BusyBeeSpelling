@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75626e06-7b4b-4942-9aaa-7fa9010c3f94" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/imgs/letterBG_2.png" afterPath="$PROJECT_DIR$/www/imgs/letterBG_2.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/BusyBeeApp.js" afterPath="$PROJECT_DIR$/www/js/BusyBeeApp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/index.css" afterPath="$PROJECT_DIR$/www/css/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -37,17 +35,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6404959">
-              <caret line="81" column="58" selection-start-line="81" selection-start-column="42" selection-end-line="81" selection-end-column="58" />
+            <state vertical-scroll-proportion="-8.3529415">
+              <caret line="127" column="47" selection-start-line="127" selection-start-column="35" selection-end-line="127" selection-end-column="47" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#li#0;n#ul#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#7;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BusyBeeApp.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/js/BusyBeeApp.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.45781466">
+              <caret line="488" column="9" selection-start-line="488" selection-start-column="9" selection-end-line="488" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -65,8 +73,8 @@
         <option value="$PROJECT_DIR$/www/css/dummy" />
         <option value="$PROJECT_DIR$/../imuduino-3js-bh/lib/service-info.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/css/index.css" />
+        <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/js/BusyBeeApp.js" />
       </list>
     </option>
@@ -697,24 +705,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/BusyBeeApp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6846473">
-          <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6404959">
-          <caret line="81" column="58" selection-start-line="81" selection-start-column="42" selection-end-line="81" selection-end-column="58" />
+        <state vertical-scroll-proportion="-8.3529415">
+          <caret line="127" column="47" selection-start-line="127" selection-start-column="35" selection-end-line="127" selection-end-column="47" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#li#0;n#ul#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#7;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/BusyBeeApp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45781466">
+          <caret line="488" column="9" selection-start-line="488" selection-start-column="9" selection-end-line="488" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
