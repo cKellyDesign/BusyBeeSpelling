@@ -148,17 +148,17 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.letterLegend = {
     "lowercase" : "aAbBdDeEfFgGhHiIjJlLnNqQrRtTyY",
     "uppercase" : "aAbBdDeEfFgGhHiIjJlLnNqQrRtTyY",
-    "vowel" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
-    "consonant": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
+    "vowel" : "abcdefghijklmnopqrstuvwxzaeiouaeiouaeiouaeiou",
+    "consonant": "bcaeioudfghjklaeioumnpqraeioustvwxzaeiou",
     "numbers": "1!2@3#4$5%6^7&8*9(0)11-12+13=14/15ab16cd17ef18uo19ij20kl",
     "diagraph": ["th", "ch", "sh", "ph"],
 
-    "upVow": "ABCDEFGHIJKLMNOPQRSTUVWXYZAEIOUAEIOUAEIOUAEIOU",
-    "lowVow": "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
-    "lowCons": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
-    "upCons": "BCAEIOUDFGHJKLAEIOUMNPQRAEIOUSTVWXYZAEIOU",
-    "mixVow": "ABCDEFGHIJKLMNOPQRSTUVWXYZAEIOUAEIOUAEIOUAEIOUabcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
-    "mixCons": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiouBCAEIOUDFGHJKLAEIOUMNPQRAEIOUSTVWXYZAEIOU",
+    "upVow": "ABCDEFGHIJKLMNOPQRSTUVWXZAEIOUAEIOUAEIOUAEIOU",
+    "lowVow": "abcdefghijklmnopqrstuvwxzaeiouaeiouaeiouaeiou",
+    "lowCons": "bcaeioudfghjklaeioumnpqraeioustvwxzaeiou",
+    "upCons": "BCAEIOUDFGHJKLAEIOUMNPQRAEIOUSTVWXZAEIOU",
+    "mixVow": "ABCDEFGHIJKLMNOPQRSTUVWXZAEIOUAEIOUAEIOUAEIOUabcdefghijklmnopqrstuvwxzaeiouaeiouaeiouaeiou",
+    "mixCons": "bcaeioudfghjklaeioumnpqraeioustvwxzaeiouBCAEIOUDFGHJKLAEIOUMNPQRAEIOUSTVWXZAEIOU",
     "dig": ["st", "sh", "ch", "th", "wh", "ph", "ee", "ea", "ow", "ng", "ck"],
     "blend": ["fl", "bl", "cl", "sl", "pl", "bl", "gr", "tr", "br", "cr", "dr", "fr", "wh", "str", "sw", "sp", "sc", "sn", "sm", "sk"]
   };
@@ -166,18 +166,18 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   // For checking clicked letters
   $scope.answerLegend = {
     "vowel" : "aeiou",
-    "consonant": "bcdfghjklmnpqrstvwxyz",
+    "consonant": "bcdfghjklmnpqrstvwxz",
     "numbers": "1234567890",
-    "lowercase": "abdefghijlnqrty",
-    "uppercase": "ABDEFGHIJLNQRTY",
+    "lowercase": "abdefghijlnqrt",
+    "uppercase": "ABDEFGHIJLNQRT",
     "diagraph": ["th", "ch", "sh", "ph", "wh", "tch", "kn", "gh"],
 
     "lowVow": "aeiou",
     "upVow": "AEIOU",
-    "upCons": "BCDFGHJKLMNPQRSTVWXYZ",
-    "lowCons": "bcdfghjklmnpqrstvwxyz",
+    "upCons": "BCDFGHJKLMNPQRSTVWXZ",
+    "lowCons": "bcdfghjklmnpqrstvwxz",
     "mixVow": "aeiouAEIOU",
-    "mixCons": "BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz",
+    "mixCons": "BCDFGHJKLMNPQRSTVWXZbcdfghjklmnpqrstvwxz",
     "dig": ["st", "sh", "ch", "th", "wh", "ph", "ee", "ea", "ow", "ng", "ck"],
     "blend": ["fl", "bl", "cl", "sl", "pl", "bl", "gr", "tr", "br", "cr", "dr", "fr", "wh", "str", "sw", "sp", "sc", "sn", "sm", "sk"]
   };

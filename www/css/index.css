@@ -241,7 +241,7 @@ max width and height?
   z-index: 40;
 }
 .letters{
-  width: 70px;
+  /*width: 70px;*/
   height: 85px;
   position: absolute;
   font-size: 2.7em;
@@ -256,15 +256,20 @@ max width and height?
 .letterBG_1 {
   background: url("../imgs/letterBG_1.png");
   background-repeat: no-repeat;
+  width: 69px;
+  /*height: 85px;*/
 }
 .letterBG_2 {
-  background: url("../imgs/letterBG_2.png");
+  background: url("../imgs/letterBG_2-orig.png");
   background-repeat: no-repeat;
-  background-position: 0px -10px;
+  background-position: 0px -6px;
+  width: 90px;
+  /*height: 85px;*/
 }
 .letterBG_3 {
   background: url("../imgs/letterBG_3.png");
   background-repeat: no-repeat;
+  width: 70px;
 }
 .letter-a{
   background: url("../imgs/letters/a.png");
@@ -483,7 +488,6 @@ max width and height?
 .collectAnswerPanel, .introPanel, .successPanel {
   position: fixed;
   top: 0;
-  padding: 10% ;
   width:100%;
   height:100%;
   z-index: 100;
@@ -492,14 +496,24 @@ max width and height?
 .collectAnswerPanel {
   background-color: rgba(80,71,29,.9);
 }
+.introPanel {
+  padding: 10% ;
+}
 .successPanel{
   background-color: rgba(33,158,254,1);
-  margin: 0 auto;
+  text-align: center;
 }
+
+.incorrectPanel{
+  padding: 10%;
+  width:100%;
+  height:100%;
+}
+
 .successCharacter{
   position: absolute;
   bottom: 0px;
-  margin: 0 5%;
+  width: 100%;
 }
 .successMove{
   display:inline-block;
@@ -545,13 +559,15 @@ max width and height?
 .collectAnswerPanel .letters{
   display: inline-block;
   float: left;
-  width: 20%;
+  /*width: 24%;  /!*20%*!/*/
   position: relative;
   zoom: 1.5;
 }
 .collectAnswerPanel .answerText, .introPanel .answerText, .loadingApp .answerText, .successPanel .answerText {
   display: inline-block;
-  width: 36%;
+  position: relative;
+  z-index: 100;
+  width: 43%;
   font-size: 2em;
   font-family: titleFontBold;
   color: #f9d00e;
@@ -561,8 +577,15 @@ max width and height?
   -1px 2px 0 #000,
   2px 2px 0 #000;
 }
+.introPanel .answerText {
+  width: 68%;
+  padding-top: 10%;
+}
 .introPanel, .loadingApp {
   background: #219efe;
+}
+.successPanel .answerText {
+  padding-top: 10%
 }
 .loadingApp h1{
   font-size: 62px;
@@ -576,6 +599,10 @@ max width and height?
   text-align: center;
   font-size: 48px;
   z-index: 100;
+}
+.incorrectPanel .subText {
+  color: #f9d00e;
+}
 }
 .introPanel .answerText {
   width: 80%;
@@ -591,5 +618,5 @@ max width and height?
 .answerarea li .letters{
   position: relative;
   float: left;
-  width: 64px;
+  /*width: 64px;*/
 }

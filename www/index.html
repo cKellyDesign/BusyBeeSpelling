@@ -105,13 +105,14 @@
                     <div class="clouds"></div>
 
                     <div class="collectAnswerPanel" ng-show="showCollectAnswerPanel">
-                        <div class="letters letterBG_{{collectedAnswerBG}}">{{collectedAnswer}}</div>
+                        <div class="incorrectPanel" ng-click="showCollectAnswerPanel = false" ng-show="levelScore.possiblePoints">
+                            <div class="letters letterBG_{{collectedAnswerBG}}">{{collectedAnswer}}</div>
 
-                        <span class="answerText">Says "{{collectedAnswer}}" and is not a {{currentLevel.name}}</span>
-                        <button ng-click="showCollectAnswerPanel = false" ng-show="levelScore.possiblePoints">There are {{levelScore.possiblePoints}} Left!!</button>
-
-                        <button ng-click="backToMenu()" ng-hide="levelScore.possiblePoints">YOU DID IT!!</button>
-                        <button ng-click="refreshLevel()" ng-hide="levelScore.possiblePoints">Play Again!</button>
+                            <span class="answerText"> is not one of the {{currentLevel.introMsg}}</span>
+                            <div class="subText">There are {{levelScore.possiblePoints}} Left!!</div>
+                        <!--<button ng-click="backToMenu()" ng-hide="levelScore.possiblePoints">YOU DID IT!!</button>-->
+                        <!--<button ng-click="refreshLevel()" ng-hide="levelScore.possiblePoints">Play Again!</button>-->
+                        </div>
                     </div>
 
                     <div class="introPanel" ng-show="showIntroPanel">
