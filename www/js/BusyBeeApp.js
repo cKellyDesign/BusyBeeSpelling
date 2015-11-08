@@ -44,6 +44,8 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "slug": "upVow",
           "introMsg": "Uppercase Vowels",
           "sound": "sound/vowel.wav",
+          "hint": "AEIOU",
+          "icon": "imgs/navIcons/uppercase-vowels.png",
           "passes": 0
         },
         {
@@ -51,6 +53,8 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "slug": "lowVow",
           "introMsg": "Lowercase Vowels",
           "sound": "sound/vowel.wav",
+          "hint": "aeiou",
+          "icon": "imgs/navIcons/lowercase-vowels.png",
           "passes": 0
         },
         {
@@ -58,6 +62,8 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "slug": "upCons",
           "introMsg": "Uppercase Consonants",
           "sound": "sound/consonants.wav",
+          "icon": "imgs/navIcons/uppercase-consonants.png",
+          "hint": "BCDFG",
           "passes": 0
         },
         {
@@ -65,6 +71,8 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "slug": "lowCons",
           "introMsg": "Lowercase Consonants",
           "sound": "sound/consonants.wav",
+          "hint": "bcdfg",
+          "icon": "imgs/navIcons/uppercase-consonants.png",
           "passes": 0
         }
       ]
@@ -76,12 +84,18 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the Vowels",
           "slug": "mixVow",
           "introMsg": "Vowels",
+          "sound": "sound/vowel.wav",
+          "hint": "AaEeIiOoUu",
+          "icon": "imgs/navIcons/mixed-vowels.png",
           "passes": 0
         },
         {
           "goal": "Find the Consonants",
           "slug": "mixCons",
           "introMsg": "Consonants",
+          "sound": "sound/consonants.wav",
+          "hint": "BbCcDdFfGg",
+          "icon": "imgs/navIcons/mixed-consonants.png",
           "passes": 0
         }
       ]
@@ -93,12 +107,18 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the Digraphs",
           "slug": "dig",
           "introMsg": "Digraphs",
+          "sound": "sound/diagraphs.wav",
+          "hint": "sh ch st th wh",
+          "icon": "imgs/navIcons/diagraphs.png",
           "passes": 0
         },
         {
           "goal": "Find the Blends",
           "slug": "blend",
           "introMsg": "Blends",
+          "sound": "sound/blends.wav",
+          "hint": "bl fl str sw sk",
+          "icon": "imgs/navIcons/blends.png",
           "passes": 0
         }
       ]
@@ -315,6 +335,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         $scope.busyBee.faceLeft = false;
         $('html, body').animate({ scrollLeft: currX }, 500);
       }, 3000);
+
     },
     refresh: function() {
       this.top = 10;
@@ -440,6 +461,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       //   Bee should make BeeLine to hive so we don't have to worry about syncing ups and downs of Bee + Answer
       $( ".hivetubeMove" ).show();
       $( ".hivetube" ).hide();
+      // Move this to NEW FUNCTION ?
+      $('#hiveTubeSound').attr('src', 'sound/honeyTube.mp3');
+      document.getElementById('hiveTubeSound').play();
     }, 500);
     
     // Trigger hive ungulation here

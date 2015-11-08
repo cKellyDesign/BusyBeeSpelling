@@ -85,8 +85,8 @@ max width and height?
 }
 .menu-panel{
   color: #fff;
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 18px;
+  line-height: 16px;
 }
 .easy{
   background: url('../imgs/menu-sprite.png') left center;
@@ -122,49 +122,49 @@ max width and height?
   display: inline-block;
 }
 .vowel{
-  background: url('../imgs/menu-sprite.png') left center;
-  background-position: 0px -50px;
+  background: url('../imgs/navIcons/mixed-vowels.png') left center no-repeat;
+  background-position: 0px 9px;
   display: block;
   padding-top: 45px;
-  width: 50px;
+  width: 104px;
 }
 .lowercase-vowel{
-  background: url('../imgs/menu-sprite.png') left center;
+  background: url('../imgs/navIcons/lowercase-vowels.png') left center no-repeat;
   background-position: 50px -50px;
   display: block;
   padding-top: 45px;
   width: 50px;
 }
 .uppercase-vowel{
-  background: url('../imgs/menu-sprite.png') left center;
+  background: url('../imgs/navIcons/uppercase-vowels.png') left center no-repeat;
   background-position: 50px -50px;
   display: block;
   padding-top: 45px;
   width: 50px;
 }
 .uppercase-consonant{
-  background: url('../imgs/menu-sprite.png') left center;
+  background: url('../imgs/menu-sprite.png') left center no-repeat;
   background-position: 105px -115px;
   display: block;
   padding-top: 45px;
   width: 50px;
 }
 .lowercase{
-  background: url('../imgs/menu-sprite.png') left center;
+  background: url('../imgs/menu-sprite.png') left center no-repeat;
   background-position: 50px -115px;
   display: block;
   padding-top: 45px;
   width: 50px;
 }
 .consonant{
-  background: url('../imgs/menu-sprite.png') left center;
+  background: url('../imgs/menu-sprite.png') left center no-repeat;
   background-position: 50px -115px;
   display: block;
   padding-top: 45px;
   width: 50px;
 }
 .diagraph{
-  background: url('../imgs/menu-sprite.png') left center;
+  background: url('../imgs/menu-sprite.png') left center no-repeat;
   background-position: 0px -190px;
   display: block;
   padding-top: 45px;
@@ -600,8 +600,9 @@ max width and height?
   font-size: 48px;
   z-index: 100;
 }
-.incorrectPanel .subText {
+.subText {
   color: #f9d00e;
+  font-size: 20px;
 }
 }
 .introPanel .answerText {
