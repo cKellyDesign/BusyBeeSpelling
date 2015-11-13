@@ -43,7 +43,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the uppercase Vowels",
           "slug": "upVow",
           "introMsg": "Uppercase Vowels",
-          "sound": "sound/vowel.wav",
+          "sound": "sound/uppercase-vowels.wav",
           "hint": "AEIOU",
           "icon": "imgs/navIcons/uppercase-vowels.png",
           "passes": 0
@@ -52,7 +52,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the lowercase Vowels",
           "slug": "lowVow",
           "introMsg": "Lowercase Vowels",
-          "sound": "sound/vowel.wav",
+          "sound": "sound/lowercase-vowels.wav",
           "hint": "aeiou",
           "icon": "imgs/navIcons/lowercase-vowels.png",
           "passes": 0
@@ -61,7 +61,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the uppercase Consonants",
           "slug": "upCons",
           "introMsg": "Uppercase Consonants",
-          "sound": "sound/consonants.wav",
+          "sound": "sound/uppercase-consonants.wav",
           "icon": "imgs/navIcons/uppercase-consonants.png",
           "hint": "BCDFG",
           "passes": 0
@@ -70,7 +70,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the lowercase Consonants",
           "slug": "lowCons",
           "introMsg": "Lowercase Consonants",
-          "sound": "sound/consonants.wav",
+          "sound": "sound/lowercase-consonants.wav",
           "hint": "bcdfg",
           "icon": "imgs/navIcons/uppercase-consonants.png",
           "passes": 0
@@ -448,6 +448,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       $scope.levelLetters[i].show = false;
       $scope.collectedAnswer = answerVal;
       $scope.canCollectLetter = true;
+      $('#wrongAnswerSound').attr('src', 'sound/nope-try-again.wav');
+      document.getElementById('wrongAnswerSound').play();
     }
   };
 
