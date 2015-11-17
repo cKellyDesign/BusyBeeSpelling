@@ -328,7 +328,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       this.faceLeft = true;
       this.top = 70;
       this.left = 90;
-      // console.log("current Scroll X position: ", currX);
+       console.log("current Scroll X position: ", currX);
       $timeout(function(){
         $scope.busyBee.top = currTop;
         $scope.busyBee.left = currLeft;
@@ -440,6 +440,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       $scope.collectedAnswer = answerVal;
       $scope.collectedAnswerBG = $scope.levelLetters[i].letterBGnumber;
       $scope.levelScore.possiblePoints--;
+      //$scope.takeAnswerToHive(i);
       $scope.acceptAnswer(i);
     } else {
       // Show Answer Panel with true
@@ -455,7 +456,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   $scope.acceptAnswer = function(i) {
     // Animate Letter to Hive opening
-    $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
+     $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
+
 
     $timeout(function(){
       // TODO:
