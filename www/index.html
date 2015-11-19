@@ -67,8 +67,8 @@
                             <a class="sound"> </a>
                             <!--<a class="lesseasy" ng-click="handleDecrease()">more easy</a> <a class="sound"> </a>-->
                             <ul class="landings">
-                                <li ng-repeat="introMsg in newLevels[0].challenges" ng-click='selectLevel(challenges)' class="{{challenges.slug}}">
-                                    <a>{{challenges.introMsg}}</a>
+                                <li ng-repeat="challenge in newLevels[0].challenges" ng-click='selectLevel(challenge.slug)' class="{{challenge.slug}}">
+                                    <a>{{challenge.introMsg}}</a>
                                 </li>
                             </ul>
                         </div>

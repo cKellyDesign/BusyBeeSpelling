@@ -142,7 +142,14 @@ max width and height?
   padding-top: 45px;
   width: 50px;
 }
-.uppercase-consonant{
+.upCons{
+  background: url('../imgs/menu-sprite.png') left center no-repeat;
+  background-position: 105px -115px;
+  display: block;
+  padding-top: 45px;
+  width: 50px;
+}
+.lowCons{
   background: url('../imgs/menu-sprite.png') left center no-repeat;
   background-position: 105px -115px;
   display: block;

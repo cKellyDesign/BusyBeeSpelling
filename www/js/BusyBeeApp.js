@@ -15,25 +15,25 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
     return Math.floor(Math.random() * (maxLength - minLength) + minLength);
   }
 
-  $rootScope.levels = [{
-    "name": "lowercase",
-    "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
-    "letterLeft": $rootScope.genRanNum(66,33),
-    "letterBottom": $rootScope.genRanNum(80, 50),
-    "letterBGnumber": $rootScope.genRanNum(4,1)
-  }, {
-    "name": "diagraph",
-    "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
-    "letterLeft": $rootScope.genRanNum(66,33),
-    "letterBottom": $rootScope.genRanNum(80, 50),
-    "letterBGnumber": $rootScope.genRanNum(4,1)
-  }, {
-    "name": "vowel",
-    "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
-    "letterLeft": $rootScope.genRanNum(66,33),
-    "letterBottom": $rootScope.genRanNum(80, 50),
-    "letterBGnumber": $rootScope.genRanNum(4,1)
-  }];
+  //$rootScope.levels = [{
+  //  "name": "lowercase",
+  //  "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
+  //  "letterLeft": $rootScope.genRanNum(66,33),
+  //  "letterBottom": $rootScope.genRanNum(80, 50),
+  //  "letterBGnumber": $rootScope.genRanNum(4,1)
+  //}, {
+  //  "name": "diagraph",
+  //  "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
+  //  "letterLeft": $rootScope.genRanNum(66,33),
+  //  "letterBottom": $rootScope.genRanNum(80, 50),
+  //  "letterBGnumber": $rootScope.genRanNum(4,1)
+  //}, {
+  //  "name": "vowel",
+  //  "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
+  //  "letterLeft": $rootScope.genRanNum(66,33),
+  //  "letterBottom": $rootScope.genRanNum(80, 50),
+  //  "letterBGnumber": $rootScope.genRanNum(4,1)
+  //}];
 
   $rootScope.newLevels = [
     {
