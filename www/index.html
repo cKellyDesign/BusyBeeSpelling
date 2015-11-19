@@ -66,11 +66,11 @@
                             <!--<a class="lesseasy" ng-click="handleIncrease()">less easy</a> -->
                             <a class="sound"> </a>
                             <!--<a class="lesseasy" ng-click="handleDecrease()">more easy</a> <a class="sound"> </a>-->
-                            <!--<ul class="landings">-->
-                                <!--<li ng-repeat="introMsg in $root.newLevels.challenges" ng-click='selectLevel(level.challenges)' class="{{level.challenges}}">-->
-                                    <!--<a>{{challenges.introMsg}}</a>-->
-                                <!--</li>-->
-                            <!--</ul>-->
+                            <ul class="landings">
+                                <li ng-repeat="challenge in newLevels[0].challenges" ng-click='selectLevel(challenge.slug)' class="{{challenge.slug}}">
+                                    <a>{{challenge.introMsg}}</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
@@ -95,6 +95,7 @@
                                 <div class="letters letterBG_{{letter.letterBGnumber}}" style="left: {{letter.letterLeft}}%; bottom:{{letter.letterBottom}}%;" ng-show="letter.show" ng-click="letterClick($event, $index)">{{letter.letter}}</div>
                             </li>
                         </ul>
+
 
                        <ul class="answerarea">
                             <li ng-repeat="letter in collectedLetters">

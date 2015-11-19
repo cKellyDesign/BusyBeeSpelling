@@ -128,21 +128,28 @@ max width and height?
   padding-top: 45px;
   width: 104px;
 }
-.lowercase-vowel{
+.lowVow{
   background: url('../imgs/navIcons/lowercase-vowels.png') left center no-repeat;
   background-position: 50px -50px;
   display: block;
   padding-top: 45px;
   width: 50px;
 }
-.uppercase-vowel{
+.upVow{
   background: url('../imgs/navIcons/uppercase-vowels.png') left center no-repeat;
   background-position: 50px -50px;
   display: block;
   padding-top: 45px;
   width: 50px;
 }
-.uppercase-consonant{
+.upCons{
+  background: url('../imgs/menu-sprite.png') left center no-repeat;
+  background-position: 105px -115px;
+  display: block;
+  padding-top: 45px;
+  width: 50px;
+}
+.lowCons{
   background: url('../imgs/menu-sprite.png') left center no-repeat;
   background-position: 105px -115px;
   display: block;
@@ -215,7 +222,7 @@ max width and height?
   width: 178px;
   height: 220px;
   z-index: 95;
-  position: absolute;
+  position: absolute;  /*fixed allows the bee to stay in screen*/
   left: 150px;
   top: 0;
   transition: left 1s, top 1s;
