@@ -63,11 +63,9 @@
                     <a class="menu-icon"  ng-click="onMenuOpen()"><img src="imgs/menu.png"></a>
                     <div class="in-level-menu" ng-click="onMenuClose()">
                         <div class="menu-panel">
-                            <!--<a class="lesseasy" ng-click="handleIncrease()">less easy</a> -->
                             <a class="sound"> </a>
-                            <!--<a class="lesseasy" ng-click="handleDecrease()">more easy</a> <a class="sound"> </a>-->
                             <ul class="landings">
-                                <li ng-repeat="challenge in newLevels[0].challenges" ng-click='selectLevel(challenge.slug)' class="{{challenge.slug}}">
+                                <li ng-repeat="challenge in newLevels[levelDifficultyControl.currentLevelIndex].challenges" ng-click='selectLevel(challenge.slug)' class="{{challenge.slug}}">
                                     <a>{{challenge.introMsg}}</a>
                                 </li>
                             </ul>
