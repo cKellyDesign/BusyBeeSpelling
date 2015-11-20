@@ -255,7 +255,7 @@ max width and height?
   /*padding: 18px 0px 0px 20px;*/
   z-index: 5;
   font-family: titleFontBold;
-  /*transition: top 1.5s, left 1.5s;  todo: add easing */
+  transition: top 1.5s, left 1.5s;  /*todo: add easing */
   zoom: 1.25;
   text-align: center;
   padding-top: 20px;

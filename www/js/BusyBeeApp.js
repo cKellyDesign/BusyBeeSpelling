@@ -289,7 +289,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     getPossibleChallenges: function() {
       var possibleChallenges = [];
       $.each($rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex].challenges, function(i, thisLevel){
-        if (thisLevel.passes < 3) {
+        if (thisLevel.passes < 1) {
           possibleChallenges.push(thisLevel);
         }
       });
@@ -434,11 +434,11 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   // ***** Letter Collection *****
   $scope.canCollectLetter = true;
   $scope.checkAnswer = function(i) {
-    var answerVal = $scope.levelLetters[i].letter; 
+    var answerVal = $scope.levelLetters[i].letter;
+    $scope.collectedAnswerBG = $scope.levelLetters[i].letterBGnumber;
+    $scope.collectedAnswer = answerVal;
 
     if ( $scope.answerIsCorrect(answerVal) ) {
-      $scope.collectedAnswer = answerVal;
-      $scope.collectedAnswerBG = $scope.levelLetters[i].letterBGnumber;
       $scope.levelScore.possiblePoints--;
       //$scope.takeAnswerToHive(i);
       $scope.acceptAnswer(i);
@@ -447,7 +447,6 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       $scope.levelScore.strikes++;
       $scope.showCollectAnswerPanel = true;      
       $scope.levelLetters[i].show = false;
-      $scope.collectedAnswer = answerVal;
       $scope.canCollectLetter = true;
       $('#wrongAnswerSound').attr('src', 'sound/nope-try-again.wav');
       document.getElementById('wrongAnswerSound').play();
@@ -519,13 +518,14 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     // timer after audio launches into level screen
   };
   $scope.concludeLevel = function(){
-    //alert("CONGRATULATIONS!!"); // todo: we can initialize some level complete screen?
+    //alert("CONGRATULATIONS!!");
     $scope.showSuccessPanel = true;
     $scope.busyBee.move(50, 50);
     $timeout(function(){
       $scope.showSuccessPanel = false;
       $scope.levelDifficultyControl.determineLevel();
-      $scope.refreshLevel(); // todo: change this to $rootScope.selectLevel(nextLevel)
+      $scope.refreshLevel();
+      // todo: we can initialize some level complete screen if statement
     }, 4000);
     // Move this to NEW FUNCTION ?
     $('#successSound').attr('src', 'sound/UgotIt.wav');
