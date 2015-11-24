@@ -85,8 +85,8 @@ max width and height?
 }
 .menu-panel{
   color: #fff;
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 18px;
+  line-height: 16px;
 }
 .easy{
   background: url('../imgs/menu-sprite.png') left center;
@@ -122,49 +122,56 @@ max width and height?
   display: inline-block;
 }
 .vowel{
-  background: url('../imgs/menu-sprite.png') left center;
-  background-position: 0px -50px;
+  background: url('../imgs/navIcons/mixed-vowels.png') left center no-repeat;
+  background-position: 0px 9px;
   display: block;
   padding-top: 45px;
-  width: 50px;
+  width: 104px;
 }
-.lowercase-vowel{
-  background: url('../imgs/menu-sprite.png') left center;
+.lowVow{
+  background: url('../imgs/navIcons/lowercase-vowels.png') left center no-repeat;
   background-position: 50px -50px;
   display: block;
   padding-top: 45px;
   width: 50px;
 }
-.uppercase-vowel{
-  background: url('../imgs/menu-sprite.png') left center;
+.upVow{
+  background: url('../imgs/navIcons/uppercase-vowels.png') left center no-repeat;
   background-position: 50px -50px;
   display: block;
   padding-top: 45px;
   width: 50px;
 }
-.uppercase-consonant{
-  background: url('../imgs/menu-sprite.png') left center;
+.upCons{
+  background: url('../imgs/menu-sprite.png') left center no-repeat;
+  background-position: 105px -115px;
+  display: block;
+  padding-top: 45px;
+  width: 50px;
+}
+.lowCons{
+  background: url('../imgs/menu-sprite.png') left center no-repeat;
   background-position: 105px -115px;
   display: block;
   padding-top: 45px;
   width: 50px;
 }
 .lowercase{
-  background: url('../imgs/menu-sprite.png') left center;
+  background: url('../imgs/menu-sprite.png') left center no-repeat;
   background-position: 50px -115px;
   display: block;
   padding-top: 45px;
   width: 50px;
 }
 .consonant{
-  background: url('../imgs/menu-sprite.png') left center;
+  background: url('../imgs/menu-sprite.png') left center no-repeat;
   background-position: 50px -115px;
   display: block;
   padding-top: 45px;
   width: 50px;
 }
 .diagraph{
-  background: url('../imgs/menu-sprite.png') left center;
+  background: url('../imgs/menu-sprite.png') left center no-repeat;
   background-position: 0px -190px;
   display: block;
   padding-top: 45px;
@@ -175,27 +182,32 @@ max width and height?
 /* play screen   */
 .in-level-menu {
   position: fixed;
-  left: 100%;
+  /*display: none;*/
   top: 0;
   bottom: 0;
   padding-top: 0;
   z-index: 100;
-  transition: .25s;
+  transition: .1s;
   left:100%;
   background-color: rgba(166,211,245,0);
   width:100%;
 }
 .in-level-menu.open {
+  display: inline-block;
   background-color: rgba(166,211,245,.8);
   left: 0%;
 }
 .menu-panel{
   padding-left: 130px;
+  left:100%;
   height:100%;
   width: 148px;
   background: url('../imgs/menu-back.png') left top no-repeat;
-  left: calc(100% - 275px);
   position: relative;
+}
+.menu-panel.open {
+  transition: .75s;
+  left: calc(100% - 275px);
 }
 .menu-icon{
   width: 58px;
@@ -210,7 +222,7 @@ max width and height?
   width: 178px;
   height: 220px;
   z-index: 95;
-  position: absolute;
+  position: absolute;  /*fixed allows the bee to stay in screen*/
   left: 150px;
   top: 0;
   transition: left 1s, top 1s;
@@ -236,30 +248,35 @@ max width and height?
   z-index: 40;
 }
 .letters{
-  width: 85px;
+  /*width: 70px;*/
   height: 85px;
-  /*margin-top: 100px;*/
   position: absolute;
-  font-size: 3em;
-  padding: 18px 0px 0px 20px;
+  font-size: 2.7em;
+  /*padding: 18px 0px 0px 20px;*/
   z-index: 5;
   font-family: titleFontBold;
-  transition: top 1.5s, left 1.5s; /* todo: add easing */
+  transition: top 1.5s, left 1.5s;  /*todo: add easing */
   zoom: 1.25;
+  text-align: center;
+  padding-top: 20px;
 }
 .letterBG_1 {
   background: url("../imgs/letterBG_1.png");
   background-repeat: no-repeat;
+  width: 69px;
+  /*height: 85px;*/
 }
 .letterBG_2 {
-  background: url("../imgs/letterBG_2.png");
+  background: url("../imgs/letterBG_2-orig.png");
   background-repeat: no-repeat;
-  background-position: -6px -10px;
-  /*background-position: -10px -5px;*/
+  background-position: 0px -6px;
+  width: 90px;
+  /*height: 85px;*/
 }
 .letterBG_3 {
   background: url("../imgs/letterBG_3.png");
   background-repeat: no-repeat;
+  width: 70px;
 }
 .letter-a{
   background: url("../imgs/letters/a.png");
@@ -437,7 +454,7 @@ max width and height?
   zoom:0.55;
   -moz-transform:scale(0.55);
   -moz-transform-origin: 0 0;
-  -webkit-animation: honeytube 4s steps(4) infinite;
+  -webkit-animation: honeytube 1s steps(4) infinite;
   animation: honeytube 1s steps(4) infinite;
 }
 /* The animation code x y coordinates */
@@ -478,7 +495,6 @@ max width and height?
 .collectAnswerPanel, .introPanel, .successPanel {
   position: fixed;
   top: 0;
-  padding: 10% ;
   width:100%;
   height:100%;
   z-index: 100;
@@ -487,26 +503,96 @@ max width and height?
 .collectAnswerPanel {
   background-color: rgba(80,71,29,.9);
 }
+.introPanel {
+  padding: 10% ;
+}
 .successPanel{
-  background-color: rgba(33,158,254,.9);
+  background-color: rgba(33,158,254,1);
+  text-align: center;
+}
+
+.incorrectPanel{
+  padding: 10%;
+  width:100%;
+  height:100%;
+}
+
+.successCharacter{
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+.successMove{
+  display:inline-block;
+  background: url("../imgs/flowers-sprite.png");
+  background-position: 0px 0px, left top;
+  background-repeat: no-repeat;
+  z-index: 20;
+  height: 400px;
+  width: 220px;
+  zoom:0.5;
+  -moz-transform:scale(0.55);
+  -moz-transform-origin: 0 0;
+}
+.successMove1{
+  -webkit-animation: successdance 1s steps(4) infinite;
+  animation: successdance 1s steps(4) infinite;
+}
+
+.successMove2{
+  -webkit-animation: successdance2 1s steps(3) infinite;
+  animation: successdance2 1s steps(3) infinite;
+}
+/* The animation code x y coordinates */
+
+@-webkit-keyframes successdance {
+  100% { background-position: -869px; }
+  /* sprites total width */
+}
+@-webkit-keyframes successdance2 {
+  0% {
+    transform: rotate(-10deg);
+    background-position: 0px 0;
+  }
+  50% {
+    transform: rotate(4deg);
+    background-position: 0px 0;
+  }
+  100% {
+    transform: rotate(-8deg);
+    /*background-position: -440px 0;*/
+  }
 }
 .collectAnswerPanel .letters{
   display: inline-block;
   float: left;
-  width: 20%;
+  /*width: 24%;  /!*20%*!/*/
   position: relative;
   zoom: 1.5;
 }
 .collectAnswerPanel .answerText, .introPanel .answerText, .loadingApp .answerText, .successPanel .answerText {
   display: inline-block;
-  width: 36%;
+  position: relative;
+  z-index: 100;
+  width: 43%;
   font-size: 2em;
   font-family: titleFontBold;
   color: #f9d00e;
   height: 130px;
+  text-shadow:  -1px -1px 0 #000,
+  2px -1px 0 #000,
+  -1px 2px 0 #000,
+  2px 2px 0 #000;
+}
+.introPanel .answerText {
+  width: 68%;
+  padding-top: 10%;
 }
 .introPanel, .loadingApp {
   background: #219efe;
+}
+.successPanel .answerText {
+  padding-top: 10%
 }
 .loadingApp h1{
   font-size: 62px;
@@ -520,21 +606,18 @@ max width and height?
   text-align: center;
   font-size: 48px;
   z-index: 100;
-  text-shadow:  -2px -2px 0 #000,
-  4px -2px 0 #000,
-  -2px 4px 0 #000,
-  4px 4px 0 #000;
+}
+.subText {
+  color: #f9d00e;
+  font-size: 20px;
+}
 }
 .introPanel .answerText {
   width: 80%;
   z-index: 50;
   padding-top: 100px;
   /*text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;*/
-  font-size: 48px;
-  text-shadow:  -2px -2px 0 #000,
-  4px -2px 0 #000,
-  -2px 4px 0 #000,
-  4px 4px 0 #000;
+  font-size: 34px;
 }
 .answerarea li{
   display:inline-block;
@@ -543,5 +626,5 @@ max width and height?
 .answerarea li .letters{
   position: relative;
   float: left;
-  width: 64px;
+  /*width: 64px;*/
 }

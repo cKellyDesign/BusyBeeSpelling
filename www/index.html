@@ -59,17 +59,14 @@
                     <!--</div>-->
                 <!--</div>-->
                 <div class="main" style="width:{{levelWidth}}">
-
                     <!-- In Level Menu -->
                     <a class="menu-icon"  ng-click="onMenuOpen()"><img src="imgs/menu.png"></a>
                     <div class="in-level-menu" ng-click="onMenuClose()">
                         <div class="menu-panel">
-                            <!--<a class="lesseasy" ng-click="handleIncrease()">less easy</a> -->
                             <a class="sound"> </a>
-                            <!--<a class="lesseasy" ng-click="handleDecrease()">more easy</a> <a class="sound"> </a>-->
                             <ul class="landings">
-                                <li ng-repeat="level in $root.levels" ng-click='selectLevel(level)' class="{{level.name}}">
-                                    <a>{{level.name}}</a>
+                                <li ng-repeat="challenge in newLevels[levelDifficultyControl.currentLevelIndex].challenges" ng-click='selectLevel(challenge.slug)' class="{{challenge.slug}}">
+                                    <a>{{challenge.introMsg}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -87,6 +84,7 @@
                         <div class="hivetube"></div>
                         <div class="hivetubeMove"></div>
                         <div class="home"></div>
+                        <audio id="hiveTubeSound"></audio>
                     </div>
 
                     <div class="gamearea">
@@ -95,6 +93,7 @@
                                 <div class="letters letterBG_{{letter.letterBGnumber}}" style="left: {{letter.letterLeft}}%; bottom:{{letter.letterBottom}}%;" ng-show="letter.show" ng-click="letterClick($event, $index)">{{letter.letter}}</div>
                             </li>
                         </ul>
+
 
                        <ul class="answerarea">
                             <li ng-repeat="letter in collectedLetters">
@@ -106,23 +105,28 @@
                     <div class="clouds"></div>
 
                     <div class="collectAnswerPanel" ng-show="showCollectAnswerPanel">
-                        <div class="letters letterBG_{{collectedAnswerBG}}">{{collectedAnswer}}</div>
-
-                        <span class="answerText">Says "{{collectedAnswer}}" and is not a {{currentLevel.name}}</span>
-                        <button ng-click="showCollectAnswerPanel = false" ng-show="levelScore.possiblePoints">There are {{levelScore.possiblePoints}} Left!!</button>
-
-                        <button ng-click="backToMenu()" ng-hide="levelScore.possiblePoints">YOU DID IT!!</button>
-                        <button ng-click="refreshLevel()" ng-hide="levelScore.possiblePoints">Play Again!</button>
+                        <div class="incorrectPanel" ng-click="showCollectAnswerPanel = false" ng-show="levelScore.possiblePoints">
+                            <div class="letters letterBG_{{collectedAnswerBG}}">{{collectedAnswer}}</div>
+                            <span class="answerText"> is not one of the {{currentLevel.introMsg}}</span>
+                            <div class="subText">{{levelScore.possiblePoints}} left!</div>
+                            <audio id="wrongAnswerSound"></audio>
+                        <!--<button ng-click="backToMenu()" ng-hide="levelScore.possiblePoints">YOU DID IT!!</button>-->
+                        <!--<button ng-click="refreshLevel()" ng-hide="levelScore.possiblePoints">Play Again!</button>-->
+                        </div>
                     </div>
 
                     <div class="introPanel" ng-show="showIntroPanel">
                         <audio id="introSound"></audio>
-                        <div class="answerText">Look for {{levelScore.possiblePoints}}<br> {{currentLevel.introMsg}}</div>
+                        <div class="answerText">Look for {{levelScore.possiblePoints}}<br> {{currentLevel.introMsg}} <br> <span class="subText">{{currentLevel.hint}}</span></div>
                         <div class="clouds"></div>
                     </div>
                     <div class="successPanel" ng-show="showSuccessPanel" style="display:none;">
                         <div class="answerText">You did it!</div>
                         <div class="clouds"></div>
+                        <div class="successCharacter">
+                            <div class="successMove successMove2"></div><div class="successMove successMove2"></div><div class="successMove successMove1"></div><div class="successMove successMove2"></div>
+                        </div>
+                        <audio id="successSound"></audio>
                     </div>
                 </div>
             </div>

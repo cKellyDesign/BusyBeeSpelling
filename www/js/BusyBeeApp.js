@@ -15,25 +15,25 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
     return Math.floor(Math.random() * (maxLength - minLength) + minLength);
   }
 
-  $rootScope.levels = [{
-    "name": "lowercase",
-    "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
-    "letterLeft": $rootScope.genRanNum(66,33),
-    "letterBottom": $rootScope.genRanNum(80, 50),
-    "letterBGnumber": $rootScope.genRanNum(4,1)
-  }, {
-    "name": "diagraph",
-    "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
-    "letterLeft": $rootScope.genRanNum(66,33),
-    "letterBottom": $rootScope.genRanNum(80, 50),
-    "letterBGnumber": $rootScope.genRanNum(4,1)
-  }, {
-    "name": "vowel",
-    "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
-    "letterLeft": $rootScope.genRanNum(66,33),
-    "letterBottom": $rootScope.genRanNum(80, 50),
-    "letterBGnumber": $rootScope.genRanNum(4,1)
-  }];
+  //$rootScope.levels = [{
+  //  "name": "lowercase",
+  //  "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
+  //  "letterLeft": $rootScope.genRanNum(66,33),
+  //  "letterBottom": $rootScope.genRanNum(80, 50),
+  //  "letterBGnumber": $rootScope.genRanNum(4,1)
+  //}, {
+  //  "name": "diagraph",
+  //  "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
+  //  "letterLeft": $rootScope.genRanNum(66,33),
+  //  "letterBottom": $rootScope.genRanNum(80, 50),
+  //  "letterBGnumber": $rootScope.genRanNum(4,1)
+  //}, {
+  //  "name": "vowel",
+  //  "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
+  //  "letterLeft": $rootScope.genRanNum(66,33),
+  //  "letterBottom": $rootScope.genRanNum(80, 50),
+  //  "letterBGnumber": $rootScope.genRanNum(4,1)
+  //}];
 
   $rootScope.newLevels = [
     {
@@ -43,24 +43,36 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the uppercase Vowels",
           "slug": "upVow",
           "introMsg": "Uppercase Vowels",
+          "sound": "sound/uppercase-vowels.wav",
+          "hint": "AEIOU",
+          "icon": "imgs/navIcons/uppercase-vowels.png",
           "passes": 0
         },
         {
           "goal": "Find the lowercase Vowels",
           "slug": "lowVow",
           "introMsg": "Lowercase Vowels",
+          "sound": "sound/lowercase-vowels.wav",
+          "hint": "aeiou",
+          "icon": "imgs/navIcons/lowercase-vowels.png",
           "passes": 0
         },
         {
           "goal": "Find the uppercase Consonants",
           "slug": "upCons",
           "introMsg": "Uppercase Consonants",
+          "sound": "sound/uppercase-consonants.wav",
+          "icon": "imgs/navIcons/uppercase-consonants.png",
+          "hint": "BCDFG",
           "passes": 0
         },
         {
           "goal": "Find the lowercase Consonants",
           "slug": "lowCons",
           "introMsg": "Lowercase Consonants",
+          "sound": "sound/lowercase-consonants.wav",
+          "hint": "bcdfg",
+          "icon": "imgs/navIcons/uppercase-consonants.png",
           "passes": 0
         }
       ]
@@ -72,12 +84,18 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the Vowels",
           "slug": "mixVow",
           "introMsg": "Vowels",
+          "sound": "sound/vowel.wav",
+          "hint": "AaEeIiOoUu",
+          "icon": "imgs/navIcons/mixed-vowels.png",
           "passes": 0
         },
         {
           "goal": "Find the Consonants",
           "slug": "mixCons",
           "introMsg": "Consonants",
+          "sound": "sound/consonants.wav",
+          "hint": "BbCcDdFfGg",
+          "icon": "imgs/navIcons/mixed-consonants.png",
           "passes": 0
         }
       ]
@@ -89,12 +107,18 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the Digraphs",
           "slug": "dig",
           "introMsg": "Digraphs",
+          "sound": "sound/diagraphs.wav",
+          "hint": "sh ch st th wh",
+          "icon": "imgs/navIcons/diagraphs.png",
           "passes": 0
         },
         {
           "goal": "Find the Blends",
           "slug": "blend",
           "introMsg": "Blends",
+          "sound": "sound/blends.wav",
+          "hint": "bl fl str sw sk",
+          "icon": "imgs/navIcons/blends.png",
           "passes": 0
         }
       ]
@@ -144,17 +168,17 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   $scope.letterLegend = {
     "lowercase" : "aAbBdDeEfFgGhHiIjJlLnNqQrRtTyY",
     "uppercase" : "aAbBdDeEfFgGhHiIjJlLnNqQrRtTyY",
-    "vowel" : "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
-    "consonant": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
+    "vowel" : "abcdefghijklmnopqrstuvwxzaeiouaeiouaeiouaeiou",
+    "consonant": "bcaeioudfghjklaeioumnpqraeioustvwxzaeiou",
     "numbers": "1!2@3#4$5%6^7&8*9(0)11-12+13=14/15ab16cd17ef18uo19ij20kl",
     "diagraph": ["th", "ch", "sh", "ph"],
 
-    "upVow": "ABCDEFGHIJKLMNOPQRSTUVWXYZAEIOUAEIOUAEIOUAEIOU",
-    "lowVow": "abcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
-    "lowCons": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiou",
-    "upCons": "BCAEIOUDFGHJKLAEIOUMNPQRAEIOUSTVWXYZAEIOU",
-    "mixVow": "ABCDEFGHIJKLMNOPQRSTUVWXYZAEIOUAEIOUAEIOUAEIOUabcdefghijklmnopqrstuvwxyzaeiouaeiouaeiouaeiou",
-    "mixCons": "bcaeioudfghjklaeioumnpqraeioustvwxyzaeiouBCAEIOUDFGHJKLAEIOUMNPQRAEIOUSTVWXYZAEIOU",
+    "upVow": "ABCDEFGHIJKLMNOPQRSTUVWXZAEIOUAEIOUAEIOUAEIOU",
+    "lowVow": "abcdefghijklmnopqrstuvwxzaeiouaeiouaeiouaeiou",
+    "lowCons": "bcaeioudfghjklaeioumnpqraeioustvwxzaeiou",
+    "upCons": "BCAEIOUDFGHJKLAEIOUMNPQRAEIOUSTVWXZAEIOU",
+    "mixVow": "ABCDEFGHIJKLMNOPQRSTUVWXZAEIOUAEIOUAEIOUAEIOUabcdefghijklmnopqrstuvwxzaeiouaeiouaeiouaeiou",
+    "mixCons": "bcaeioudfghjklaeioumnpqraeioustvwxzaeiouBCAEIOUDFGHJKLAEIOUMNPQRAEIOUSTVWXZAEIOU",
     "dig": ["st", "sh", "ch", "th", "wh", "ph", "ee", "ea", "ow", "ng", "ck"],
     "blend": ["fl", "bl", "cl", "sl", "pl", "bl", "gr", "tr", "br", "cr", "dr", "fr", "wh", "str", "sw", "sp", "sc", "sn", "sm", "sk"]
   };
@@ -162,18 +186,18 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   // For checking clicked letters
   $scope.answerLegend = {
     "vowel" : "aeiou",
-    "consonant": "bcdfghjklmnpqrstvwxyz",
+    "consonant": "bcdfghjklmnpqrstvwxz",
     "numbers": "1234567890",
-    "lowercase": "abdefghijlnqrty",
-    "uppercase": "ABDEFGHIJLNQRTY",
+    "lowercase": "abdefghijlnqrt",
+    "uppercase": "ABDEFGHIJLNQRT",
     "diagraph": ["th", "ch", "sh", "ph", "wh", "tch", "kn", "gh"],
 
     "lowVow": "aeiou",
     "upVow": "AEIOU",
-    "upCons": "BCDFGHJKLMNPQRSTVWXYZ",
-    "lowCons": "bcdfghjklmnpqrstvwxyz",
+    "upCons": "BCDFGHJKLMNPQRSTVWXZ",
+    "lowCons": "bcdfghjklmnpqrstvwxz",
     "mixVow": "aeiouAEIOU",
-    "mixCons": "BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz",
+    "mixCons": "BCDFGHJKLMNPQRSTVWXZbcdfghjklmnpqrstvwxz",
     "dig": ["st", "sh", "ch", "th", "wh", "ph", "ee", "ea", "ow", "ng", "ck"],
     "blend": ["fl", "bl", "cl", "sl", "pl", "bl", "gr", "tr", "br", "cr", "dr", "fr", "wh", "str", "sw", "sp", "sc", "sn", "sm", "sk"]
   };
@@ -265,7 +289,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     getPossibleChallenges: function() {
       var possibleChallenges = [];
       $.each($rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex].challenges, function(i, thisLevel){
-        if (thisLevel.passes < 3) {
+        if (thisLevel.passes < 1) {
           possibleChallenges.push(thisLevel);
         }
       });
@@ -304,13 +328,14 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       this.faceLeft = true;
       this.top = 70;
       this.left = 90;
-      // console.log("current Scroll X position: ", currX);
+       console.log("current Scroll X position: ", currX);
       $timeout(function(){
         $scope.busyBee.top = currTop;
         $scope.busyBee.left = currLeft;
         $scope.busyBee.faceLeft = false;
         $('html, body').animate({ scrollLeft: currX }, 500);
       }, 3000);
+
     },
     refresh: function() {
       this.top = 10;
@@ -395,9 +420,11 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   $scope.onMenuOpen = function() {
     $('.in-level-menu').addClass('open');
+    $('.menu-panel').addClass('open');
   };
 
   $scope.onMenuClose = function() {
+    $('.in-level-menu').removeClass('open');
     $('.open').removeClass('open');
   };
   // ***** Handlers *****
@@ -407,26 +434,29 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
   // ***** Letter Collection *****
   $scope.canCollectLetter = true;
   $scope.checkAnswer = function(i) {
-    var answerVal = $scope.levelLetters[i].letter; 
+    var answerVal = $scope.levelLetters[i].letter;
+    $scope.collectedAnswerBG = $scope.levelLetters[i].letterBGnumber;
+    $scope.collectedAnswer = answerVal;
 
     if ( $scope.answerIsCorrect(answerVal) ) {
-      $scope.collectedAnswer = answerVal;
-      $scope.collectedAnswerBG = $scope.levelLetters[i].letterBGnumber;
       $scope.levelScore.possiblePoints--;
+      //$scope.takeAnswerToHive(i);
       $scope.acceptAnswer(i);
     } else {
       // Show Answer Panel with true
       $scope.levelScore.strikes++;
       $scope.showCollectAnswerPanel = true;      
       $scope.levelLetters[i].show = false;
-      $scope.collectedAnswer = answerVal;
       $scope.canCollectLetter = true;
+      $('#wrongAnswerSound').attr('src', 'sound/nope-try-again.wav');
+      document.getElementById('wrongAnswerSound').play();
     }
   };
 
   $scope.acceptAnswer = function(i) {
     // Animate Letter to Hive opening
-    $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
+     $scope.levelLetters[i].letterLeft = ($scope.levelLetters[i].flowerLeft - 89) * -1;
+
 
     $timeout(function(){
       // TODO:
@@ -434,6 +464,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       //   Bee should make BeeLine to hive so we don't have to worry about syncing ups and downs of Bee + Answer
       $( ".hivetubeMove" ).show();
       $( ".hivetube" ).hide();
+      // Move this to NEW FUNCTION ?
+      $('#hiveTubeSound').attr('src', 'sound/honeyTube.mp3');
+      document.getElementById('hiveTubeSound').play();
     }, 500);
     
     // Trigger hive ungulation here
@@ -475,25 +508,29 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.busyBee.move(50, 50);
     // console.log("1 - ", $scope.currentLevel);
     // Move this to NEW FUNCTION
-    // $('#introSound').attr('src', 'sound/consonants.wav');
-    // document.getElementById('introSound').play();
-
+    $('#introSound').attr('src', $scope.currentLevel.sound);
+    document.getElementById('introSound').play();
 
     $timeout(function(){
       $scope.showIntroPanel = false;
-    }, 3000);
+    }, 3500);
     // play level audio, callback => display play button
     // timer after audio launches into level screen
   };
   $scope.concludeLevel = function(){
-    //alert("CONGRATULATIONS!!"); // todo: we can initialize some level complete screen?
+    //alert("CONGRATULATIONS!!");
     $scope.showSuccessPanel = true;
     $scope.busyBee.move(50, 50);
     $timeout(function(){
       $scope.showSuccessPanel = false;
       $scope.levelDifficultyControl.determineLevel();
-      $scope.refreshLevel(); // todo: change this to $rootScope.selectLevel(nextLevel)
-    }, 3000);
+      $scope.refreshLevel();
+      // todo: we can initialize some level complete screen if statement
+    }, 4000);
+    // Move this to NEW FUNCTION ?
+    $('#successSound').attr('src', 'sound/UgotIt.wav');
+    document.getElementById('successSound').play();
+
   };
   // ***** Level Flow *****
 
