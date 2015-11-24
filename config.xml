@@ -19,12 +19,38 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+
+    <preference name="SplashScreen" value="screen" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="2000" />
+
     <platform name="android">
         <allow-intent href="market:*" />
+        
+        <splash src="splash.png" density="land-hdpi"/>
+        <splash src="splash.png" density="land-ldpi"/>
+        <splash src="splash.png" density="land-mdpi"/>
+        <splash src="splash.png" density="land-xhdpi"/>
+
+        <splash src="splash.png" density="port-hdpi"/>
+        <splash src="splash.png" density="port-ldpi"/>
+        <splash src="splash.png" density="port-mdpi"/>
+        <splash src="splash.png" density="port-xhdpi"/>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+
+        <splash src="splash.png" width="320" height="480"/>
+        <splash src="splash.png" width="640" height="960"/>
+        <splash src="splash.png" width="768" height="1024"/>
+        <splash src="splash.png" width="1536" height="2048"/>
+        <splash src="splash.png" width="1024" height="768"/>
+        <splash src="splash.png" width="2048" height="1536"/>
+        <splash src="splash.png" width="640" height="1136"/>
+        <splash src="splash.png" width="750" height="1334"/>
+        <splash src="splash.png" width="1242" height="2208"/>
+        <splash src="splash.png" width="2208" height="1242"/>
     </platform>
     <preference name="Orientation" value="landscape" />
 </widget>
