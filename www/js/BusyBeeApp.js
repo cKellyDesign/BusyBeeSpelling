@@ -274,22 +274,22 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         $rootScope.newLevels[this.currentLevelIndex].challenges[this.currentChallengeIndex].passes++;
       }
 
-      var possibleChallenges = this.getPossibleChallenges();
+      $scope.possibleChallenges = this.getPossibleChallenges();
 
-      if (!possibleChallenges.length) {
+      if (!$scope.possibleChallenges.length) {
         this.currentLevelIndex++;
-        possibleChallenges = this.getPossibleChallenges();
+        $scope.possibleChallenges = this.getPossibleChallenges();
       }
 
-      var num = $rootScope.genRanNum((possibleChallenges.length - 1), 0);
-      // console.log("num - ", num);
-      var newChallenge = possibleChallenges[num];
+      var num = $rootScope.genRanNum(($scope.possibleChallenges.length - 1), 0);
+
+      var newChallenge = $scope.possibleChallenges[num];
       this.setNewChallenge(newChallenge);
     },
     getPossibleChallenges: function() {
       var possibleChallenges = [];
       $.each($rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex].challenges, function(i, thisLevel){
-        if (thisLevel.passes < 1) {
+        if (thisLevel.passes < 1) { // todo: change 1 to 3 to make users pass the challenge 3x before next level
           possibleChallenges.push(thisLevel);
         }
       });
@@ -302,9 +302,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         }
       }
       this.setCurrentLevel();
-      // console.log("2 - ", $scope.currentLevel);
     }
   };
+  $scope.possibleChallenges = $scope.levelDifficultyControl.getPossibleChallenges();
   // ***** Level Difficulty Controll *****
 
 
@@ -400,11 +400,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     }, 1000);
   };
 
-  $scope.selectLevel = function(level) {
-    $rootScope.currentLevel = level || $rootScope.levels[0];
-    $rootScope.state.levelSelectControl = false;
-    $rootScope.state.levelControl = true;
-    $scope.refreshLevel(false);
+  $scope.selectLevel = function(challenge) {
+    $scope.levelDifficultyControl.setNewChallenge(challenge);
+    $scope.refreshLevel();
   };
 
   $scope.backToMenu = function() {
@@ -498,9 +496,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.generateLetters();
     // $scope.introLevel();
 
-    if (!isDifferentLevel) {
-      window.scroll(0,0);
-    }
+    window.scroll(0,0);
   };
   $scope.introLevel = function() {
     // show level start panel w/ message
