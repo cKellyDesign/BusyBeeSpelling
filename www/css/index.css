@@ -1,3 +1,4 @@
+* { outline: none !important; }
 /* fix to landscape mode only
 max width and height?
 */
@@ -16,6 +17,7 @@ max width and height?
   width: 100%;
   overflow-y: hidden;
   font-family: titleFont;
+  /*opacity: 0.1;*/
 }
 .main{
   width: 100%;
@@ -247,18 +249,20 @@ max width and height?
   height:100%;
   z-index: 40;
 }
-.letters{
-  /*width: 70px;*/
-  height: 85px;
-  position: absolute;
-  font-size: 2.7em;
-  /*padding: 18px 0px 0px 20px;*/
-  z-index: 5;
-  font-family: titleFontBold;
+.letterBoundary {
   transition: top 1.5s, left 1.5s;  /*todo: add easing */
+  position: absolute;
+  padding: 20px;
+  /*border: red solid 1px;*/
+}
+.letters{
+  font-family: titleFontBold;
+  font-size: 2.7em;
+  height: 85px;
+  padding-top: 20px;
+  z-index: 5;
   zoom: 1.25;
   text-align: center;
-  padding-top: 20px;
 }
 .letterBG_1 {
   background: url("../imgs/letterBG_1.png");
@@ -278,21 +282,21 @@ max width and height?
   background-repeat: no-repeat;
   width: 70px;
 }
-.letter-a{
-  background: url("../imgs/letters/a.png");
-}
-.letter-b{
-  background: url("../imgs/letters/b.png");
-}
-.letter-c{
-  background: url("../imgs/letters/c.png");
-}
-.letter-e{
-  background: url("../imgs/letters/e.png");
-}
-.letter-i{
-  background: url("../imgs/letters/i.png");
-}
+/*.letter-a{*/
+  /*background: url("../imgs/letters/a.png");*/
+/*}*/
+/*.letter-b{*/
+  /*background: url("../imgs/letters/b.png");*/
+/*}*/
+/*.letter-c{*/
+  /*background: url("../imgs/letters/c.png");*/
+/*}*/
+/*.letter-e{*/
+  /*background: url("../imgs/letters/e.png");*/
+/*}*/
+/*.letter-i{*/
+  /*background: url("../imgs/letters/i.png");*/
+/*}*/
 .landings{
   position: relative;
   display: inline-block; 
@@ -303,6 +307,7 @@ max width and height?
   margin: 0;
   padding: 0;
   /*font-size: 2.5em;*/
+  overflow: scroll;
 }
 
 .main.landings li{
@@ -467,18 +472,25 @@ max width and height?
   100% { background-position: -300px; }
   /* sprites total width */
 }
-.answerarea{
-  background: url("../imgs/honeycomb.png");
-  z-index: 10;
+.answerWrapper{
   position: fixed;
-  margin:0 auto;
-  bottom: 0;
+  z-index: 10;
+  bottom: -30px;
+  left:0;
   height: 130px;
   width: 100%;
+}
+.answerarea{
+  position:absolute;
+  overflow: hidden;
+  background: url("../imgs/honeycomb.png");
   background-repeat: repeat-x;
+  height: 130px;
+  width: 100%;
   zoom:0.75;
   -moz-transform:scale(0.75);
   -moz-transform-origin: 0 0;
+
 }
 .clouds{
   background: url("../imgs/clouds.png");
@@ -495,10 +507,12 @@ max width and height?
 .collectAnswerPanel, .introPanel, .successPanel {
   position: fixed;
   top: 0;
+  left:0;
   width:100%;
   height:100%;
   z-index: 100;
-  display: table;
+  /*display: table;*/
+  -webkit-backface-visibility: hidden;
 }
 .collectAnswerPanel {
   background-color: rgba(80,71,29,.9);
@@ -512,6 +526,7 @@ max width and height?
 }
 
 .incorrectPanel{
+  position:absolute;
   padding: 10%;
   width:100%;
   height:100%;
