@@ -67,7 +67,7 @@
                         <div class="menu-panel">
                             <a class="sound"> </a>
                             <ul class="landings">
-                                <li ng-repeat="challenge in newLevels[levelDifficultyControl.currentLevelIndex].challenges" ng-click='selectLevel(challenge.slug)' class="{{challenge.slug}}">
+                                <li ng-repeat="challenge in possibleChallenges" ng-click='selectLevel(challenge)' class="{{challenge.slug}}">
                                     <a>{{challenge.introMsg}}</a>
                                 </li>
                             </ul>

@@ -84,7 +84,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the Vowels",
           "slug": "mixVow",
           "introMsg": "Vowels",
-          "sound": "sound/vowel.wav",
+          "sound": "sound/vowels.wav",
           "hint": "AaEeIiOoUu",
           "icon": "imgs/navIcons/mixed-vowels.png",
           "passes": 0
@@ -156,6 +156,7 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
 
 BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout){
   $scope.showSuccessPanel = false;
+  $scope.showLevelCompletePanel = false;
   $rootScope.$watch('currentLevel',
     function(currentLevel){
       $scope.generateLetters(currentLevel);
@@ -274,22 +275,22 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         $rootScope.newLevels[this.currentLevelIndex].challenges[this.currentChallengeIndex].passes++;
       }
 
-      var possibleChallenges = this.getPossibleChallenges();
+      $scope.possibleChallenges = this.getPossibleChallenges();
 
-      if (!possibleChallenges.length) {
+      if (!$scope.possibleChallenges.length) {
         this.currentLevelIndex++;
-        possibleChallenges = this.getPossibleChallenges();
+        $scope.possibleChallenges = this.getPossibleChallenges();
       }
 
-      var num = $rootScope.genRanNum((possibleChallenges.length - 1), 0);
-      // console.log("num - ", num);
-      var newChallenge = possibleChallenges[num];
+      var num = $rootScope.genRanNum(($scope.possibleChallenges.length - 1), 0);
+
+      var newChallenge = $scope.possibleChallenges[num];
       this.setNewChallenge(newChallenge);
     },
     getPossibleChallenges: function() {
       var possibleChallenges = [];
       $.each($rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex].challenges, function(i, thisLevel){
-        if (thisLevel.passes < 1) {
+        if (thisLevel.passes < 1) { // todo: change 1 to 3 to make users pass the challenge 3x before next level
           possibleChallenges.push(thisLevel);
         }
       });
@@ -302,9 +303,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         }
       }
       this.setCurrentLevel();
-      // console.log("2 - ", $scope.currentLevel);
     }
   };
+  $scope.possibleChallenges = $scope.levelDifficultyControl.getPossibleChallenges();
   // ***** Level Difficulty Controll *****
 
 
@@ -400,11 +401,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     }, 1000);
   };
 
-  $scope.selectLevel = function(level) {
-    $rootScope.currentLevel = level || $rootScope.levels[0];
-    $rootScope.state.levelSelectControl = false;
-    $rootScope.state.levelControl = true;
-    $scope.refreshLevel(false);
+  $scope.selectLevel = function(challenge) {
+    $scope.levelDifficultyControl.setNewChallenge(challenge);
+    $scope.refreshLevel();
   };
 
   $scope.backToMenu = function() {
@@ -493,23 +492,20 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.busyBee.refresh();
     $rootScope.levelWidth = "100%";
     $scope.showCollectAnswerPanel = false;
+    $scope.showLevelCompletePanel = false;
     $scope.collectedAnswer = "";
     $scope.onMenuClose();
     $scope.generateLetters();
     // $scope.introLevel();
 
-    if (!isDifferentLevel) {
-      window.scroll(0,0);
-    }
+    window.scroll(0,0);
   };
   $scope.introLevel = function() {
     // show level start panel w/ message
     $scope.showIntroPanel = true;
     $scope.busyBee.move(50, 50);
     // console.log("1 - ", $scope.currentLevel);
-    // Move this to NEW FUNCTION
-    $('#introSound').attr('src', $scope.currentLevel.sound);
-    document.getElementById('introSound').play();
+    $scope.playLevelIntroSounds();
 
     $timeout(function(){
       $scope.showIntroPanel = false;
@@ -518,19 +514,54 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     // timer after audio launches into level screen
   };
   $scope.concludeLevel = function(){
-    //alert("CONGRATULATIONS!!");
+    var concludedLevelIndex = $scope.currentLevelIndex; // saving local var to compare after $scope.levelDifficultyControl.determineLevel() updates Level index
+
     $scope.showSuccessPanel = true;
     $scope.busyBee.move(50, 50);
     $timeout(function(){
       $scope.showSuccessPanel = false;
       $scope.levelDifficultyControl.determineLevel();
-      $scope.refreshLevel();
-      // todo: we can initialize some level complete screen if statement
+
+      // initialize some level complete screen 
+      if ( concludedLevelIndex !== $scope.currentLevelIndex ) {
+        $scope.showLevelCompleteScreen();
+      } else {
+        $scope.refreshLevel();
+      }
+
     }, 4000);
     // Move this to NEW FUNCTION ?
     $('#successSound').attr('src', 'sound/UgotIt.wav');
     document.getElementById('successSound').play();
 
+  };
+
+  $scope.showLevelCompleteScreen = function () {
+    // something like $scope.showLevelCompletePanel = true; to show level complete panel (replace elsewhere if chaning variable name)
+    $scope.refreshLevel(); // wrap this in $timeout 
+  }
+
+  $scope.playLevelIntroSounds = function () {
+    var numSound = "";
+    switch ($scope.levelScore.possiblePoints) {
+      case 3 :
+        numSound = "three.wav";
+        break;
+      case 4 :
+        numSound = "four.wav";
+        break;
+      case 5 :
+        numSound = "five.wav";
+        break;
+    }
+    function swapSoundSrc () {
+      $('#introSound').attr('src', $scope.currentLevel.sound);
+      $('#introSound')[0].play();
+      $('#introSound').off("ended", swapSoundSrc);
+    }
+    $('#introSound').attr('src', "sound/" + numSound);
+    $('#introSound')[0].play();
+    $('#introSound').on("ended", swapSoundSrc);
   };
   // ***** Level Flow *****
 
