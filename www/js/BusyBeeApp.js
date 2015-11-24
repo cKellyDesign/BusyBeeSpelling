@@ -156,6 +156,7 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
 
 BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout){
   $scope.showSuccessPanel = false;
+  $scope.showLevelCompletePanel = false;
   $rootScope.$watch('currentLevel',
     function(currentLevel){
       $scope.generateLetters(currentLevel);
@@ -491,6 +492,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.busyBee.refresh();
     $rootScope.levelWidth = "100%";
     $scope.showCollectAnswerPanel = false;
+    $scope.showLevelCompletePanel = false;
     $scope.collectedAnswer = "";
     $scope.onMenuClose();
     $scope.generateLetters();
@@ -512,20 +514,33 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     // timer after audio launches into level screen
   };
   $scope.concludeLevel = function(){
-    //alert("CONGRATULATIONS!!");
+    var concludedLevelIndex = $scope.currentLevelIndex; // saving local var to compare after $scope.levelDifficultyControl.determineLevel() updates Level index
+
     $scope.showSuccessPanel = true;
     $scope.busyBee.move(50, 50);
     $timeout(function(){
       $scope.showSuccessPanel = false;
       $scope.levelDifficultyControl.determineLevel();
-      $scope.refreshLevel();
-      // todo: we can initialize some level complete screen if statement
+
+      // initialize some level complete screen 
+      if ( concludedLevelIndex !== $scope.currentLevelIndex ) {
+        $scope.showLevelCompleteScreen();
+      } else {
+        $scope.refreshLevel();
+      }
+
     }, 4000);
     // Move this to NEW FUNCTION ?
     $('#successSound').attr('src', 'sound/UgotIt.wav');
     document.getElementById('successSound').play();
 
   };
+
+  $scope.showLevelCompleteScreen = function () {
+    // something like $scope.showLevelCompletePanel = true; to show level complete panel (replace elsewhere if chaning variable name)
+    $scope.refreshLevel(); // wrap this in $timeout 
+  }
+
   $scope.playLevelIntroSounds = function () {
     var numSound = "";
     switch ($scope.levelScore.possiblePoints) {
