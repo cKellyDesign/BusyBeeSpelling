@@ -84,7 +84,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the Vowels",
           "slug": "mixVow",
           "introMsg": "Vowels",
-          "sound": "sound/vowel.wav",
+          "sound": "sound/vowels.wav",
           "hint": "AaEeIiOoUu",
           "icon": "imgs/navIcons/mixed-vowels.png",
           "passes": 0
@@ -503,9 +503,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $scope.showIntroPanel = true;
     $scope.busyBee.move(50, 50);
     // console.log("1 - ", $scope.currentLevel);
-    // Move this to NEW FUNCTION
-    $('#introSound').attr('src', $scope.currentLevel.sound);
-    document.getElementById('introSound').play();
+    $scope.playLevelIntroSounds();
 
     $timeout(function(){
       $scope.showIntroPanel = false;
@@ -527,6 +525,28 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $('#successSound').attr('src', 'sound/UgotIt.wav');
     document.getElementById('successSound').play();
 
+  };
+  $scope.playLevelIntroSounds = function () {
+    var numSound = "";
+    switch ($scope.levelScore.possiblePoints) {
+      case 3 :
+        numSound = "three.wav";
+        break;
+      case 4 :
+        numSound = "four.wav";
+        break;
+      case 5 :
+        numSound = "five.wav";
+        break;
+    }
+    function swapSoundSrc () {
+      $('#introSound').attr('src', $scope.currentLevel.sound);
+      $('#introSound')[0].play();
+      $('#introSound').off("ended", swapSoundSrc);
+    }
+    $('#introSound').attr('src', "sound/" + numSound);
+    $('#introSound')[0].play();
+    $('#introSound').on("ended", swapSoundSrc);
   };
   // ***** Level Flow *****
 
