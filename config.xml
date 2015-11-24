@@ -27,8 +27,8 @@
     <preference name="SplashScreenDelay" value="2000" />
 
     <platform name="android">
-        <allow-intent href="market:*" />
-        
+        <!--<allow-intent href="market:*" /> -->
+        <preference name="orientation" value="landscape" />
         <splash src="splash.png" density="land-hdpi"/>
         <splash src="splash.png" density="land-ldpi"/>
         <splash src="splash.png" density="land-mdpi"/>
@@ -42,7 +42,7 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-
+        <preference name="orientation" value="landscape" />
         <splash src="splash.png" width="320" height="480"/>
         <splash src="splash.png" width="640" height="960"/>
         <splash src="splash.png" width="768" height="1024"/>
@@ -54,5 +54,5 @@
         <splash src="splash.png" width="1242" height="2208"/>
         <splash src="splash.png" width="2208" height="1242"/>
     </platform>
-    <preference name="Orientation" value="landscape" />
+    <!--<preference name="Orientation" value="landscape" />-->
 </widget>

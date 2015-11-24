@@ -317,8 +317,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "faceLeft": false,
     "zoom": $('#character').css('zoom'),
     move: function(beeTop, beeLeft) {
-      this.top = beeTop - 110;
-      this.left = beeLeft - 89;
+      this.top = beeTop - 90;
+      this.left = beeLeft - 189;
     },
     takeAnswerToHive: function() {
       // todo: Somehow get window to animated scroll with busyBee, or get every thing else to scroll around busyBee
