@@ -312,13 +312,13 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
   // ***** Busy Bee Control *****
   $scope.busyBee = {
-    "left": 50,
+    "left": 150,
     "top": 10,
     "faceLeft": false,
     "zoom": $('#character').css('zoom'),
     move: function(beeTop, beeLeft) {
-      this.top = beeTop - 90;
-      this.left = beeLeft - 189;
+      this.top = beeTop - 70;
+      this.left = beeLeft - 169;
     },
     takeAnswerToHive: function() {
       // todo: Somehow get window to animated scroll with busyBee, or get every thing else to scroll around busyBee
@@ -340,7 +340,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     },
     refresh: function() {
       this.top = 10;
-      this.left = 50;
+      this.left = 150;
       this.faceLeft = false;
     }
   };
@@ -449,6 +449,9 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       $scope.canCollectLetter = true;
       $('#wrongAnswerSound').attr('src', 'sound/nope-try-again.wav');
       document.getElementById('wrongAnswerSound').play();
+      $timeout(function(){
+        $scope.playLevelIntroSounds();
+      }, 2400);
     }
   };
 
