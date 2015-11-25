@@ -2,18 +2,18 @@
 <widget id="busybeespelling.com.github.ckellydesign" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>BusyBee Spelling</name>
     <description>
-        A simple learning game for children utilizing PhoneGap / Cordova and AngularJS.
+        A learning game for children focusing on phonics.
     </description>
     <author email="ckelly@ckellydesign.net" href="http://ckellydesign.net">
         Conor Kelly
     </author>
-    <author email="" href="">
+    <author email="beth@king-salmon.com" href="http://www.king-salmon.com">
         Beth Hayes
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <plugin name="org.apache.cordova.media" />
-    <!--<plugin name="org.apache.cordova.core.Device"/>-->
+    <!--<plugin name="org.apache.cordova.core.Device"/>  some one suggested this to fix sound issues -->
 
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -32,15 +32,15 @@
     <platform name="android">
         <!--<allow-intent href="market:*" /> -->
         <preference name="orientation" value="landscape" />
-        <splash src="splash.png" density="land-hdpi"/>
-        <splash src="splash.png" density="land-ldpi"/>
-        <splash src="splash.png" density="land-mdpi"/>
-        <splash src="splash.png" density="land-xhdpi"/>
+        <splash src="res/splash.png" density="land-hdpi"/>
+        <splash src="res/splash.png" density="land-ldpi"/>
+        <splash src="res/splash.png" density="land-mdpi"/>
+        <splash src="res/splash.png" density="land-xhdpi"/>
 
-        <icon src="/res/android/ldpi.png" density="ldpi" />
-        <icon src="/res/android/mdpi.png" density="mdpi" />
-        <icon src="/res/android/hdpi.png" density="hdpi" />
-        <icon src="/res/android/xhdpi.png" density="xhdpi" />
+        <icon src="res/android/ldpi.png" density="ldpi" />
+        <icon src="res/android/mdpi.png" density="mdpi" />
+        <icon src="res/android/hdpi.png" density="hdpi" />
+        <icon src="res/android/xhdpi.png" density="xhdpi" />
 
 
     </platform>
@@ -48,16 +48,16 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <preference name="orientation" value="landscape" />
-        <splash src="splash.png" width="320" height="480"/>
-        <splash src="splash.png" width="640" height="960"/>
-        <splash src="splash.png" width="768" height="1024"/>
-        <splash src="splash.png" width="1536" height="2048"/>
-        <splash src="splash.png" width="1024" height="768"/>
-        <splash src="splash.png" width="2048" height="1536"/>
-        <splash src="splash.png" width="640" height="1136"/>
-        <splash src="splash.png" width="750" height="1334"/>
-        <splash src="splash.png" width="1242" height="2208"/>
-        <splash src="splash.png" width="2208" height="1242"/>
+        <splash src="res/splash.png" width="320" height="480"/>
+        <splash src="res/splash.png" width="640" height="960"/>
+        <splash src="res/splash.png" width="768" height="1024"/>
+        <splash src="res/splash.png" width="1536" height="2048"/>
+        <splash src="res/splash.png" width="1024" height="768"/>
+        <splash src="res/splash.png" width="2048" height="1536"/>
+        <splash src="res/splash.png" width="640" height="1136"/>
+        <splash src="res/splash.png" width="750" height="1334"/>
+        <splash src="res/splash.png" width="1242" height="2208"/>
+        <splash src="res/splash.png" width="2208" height="1242"/>
 
         <!-- iOS 8.0+ -->
         <!-- iPhone 6 Plus  -->
