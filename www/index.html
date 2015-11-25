@@ -81,14 +81,12 @@
                         style="left: {{busyBee.left}}px; top: {{busyBee.top}}px;"
                         ng-click="busyBee.takeAnswerToHive()">
                     </div>
-
                     <div class="hiveLayer">
                         <div class="hivetube"></div>
                         <div class="hivetubeMove"></div>
                         <div class="home"></div>
                         <audio id="hiveTubeSound"></audio>
                     </div>
-
                     <div class="gamearea">
                         <ul class="landings" ng-click="backgroundClick($event)">
                             <li ng-repeat="letter in levelLetters" class="flower {{letter.flowerClass}}" style="left: {{letter.flowerLeft}}px; bottom: {{letter.flowerBottom}}px;" ng-click="flowerClick($event)">
@@ -106,7 +104,6 @@
                         </ul>
                     </div>
                     <div class="clouds"></div>
-
                     <div class="collectAnswerPanel" ng-show="showCollectAnswerPanel">
                         <div class="incorrectPanel" ng-click="showCollectAnswerPanel = false" ng-show="levelScore.possiblePoints">
                             <div class="letters letterBG_{{collectedAnswerBG}}">{{collectedAnswer}}</div>
