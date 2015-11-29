@@ -43,7 +43,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the uppercase Vowels",
           "slug": "upVow",
           "introMsg": "Uppercase Vowels",
-          "sound": "sound/uppercase-vowels.wav",
+          "sound": "sound/uppercase-vowels.mp3",
           "hint": "AEIOU",
           "icon": "imgs/navIcons/uppercase-vowels.png",
           "passes": 0
@@ -52,7 +52,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the lowercase Vowels",
           "slug": "lowVow",
           "introMsg": "Lowercase Vowels",
-          "sound": "sound/lowercase-vowels.wav",
+          "sound": "sound/lowercase-vowels.mp3",
           "hint": "aeiou",
           "icon": "imgs/navIcons/lowercase-vowels.png",
           "passes": 0
@@ -61,7 +61,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the uppercase Consonants",
           "slug": "upCons",
           "introMsg": "Uppercase Consonants",
-          "sound": "sound/uppercase-consonants.wav",
+          "sound": "sound/uppercase-consonants.mp3",
           "icon": "imgs/navIcons/uppercase-consonants.png",
           "hint": "BCDFG",
           "passes": 0
@@ -70,7 +70,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the lowercase Consonants",
           "slug": "lowCons",
           "introMsg": "Lowercase Consonants",
-          "sound": "sound/lowercase-consonants.wav",
+          "sound": "sound/lowercase-consonants.mp3",
           "hint": "bcdfg",
           "icon": "imgs/navIcons/uppercase-consonants.png",
           "passes": 0
@@ -84,7 +84,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the Vowels",
           "slug": "mixVow",
           "introMsg": "Vowels",
-          "sound": "sound/vowels.wav",
+          "sound": "sound/vowels.mp3",
           "hint": "AaEeIiOoUu",
           "icon": "imgs/navIcons/mixed-vowels.png",
           "passes": 0
@@ -93,7 +93,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the Consonants",
           "slug": "mixCons",
           "introMsg": "Consonants",
-          "sound": "sound/consonants.wav",
+          "sound": "sound/consonants.mp3",
           "hint": "BbCcDdFfGg",
           "icon": "imgs/navIcons/mixed-consonants.png",
           "passes": 0
@@ -107,7 +107,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the Digraphs",
           "slug": "dig",
           "introMsg": "Digraphs",
-          "sound": "sound/diagraphs.wav",
+          "sound": "sound/diagraphs.mp3",
           "hint": "sh ch st th wh",
           "icon": "imgs/navIcons/diagraphs.png",
           "passes": 0
@@ -116,7 +116,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the Blends",
           "slug": "blend",
           "introMsg": "Blends",
-          "sound": "sound/blends.wav",
+          "sound": "sound/blends.mp3",
           "hint": "bl fl str sw sk",
           "icon": "imgs/navIcons/blends.png",
           "passes": 0
@@ -447,7 +447,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       $scope.showCollectAnswerPanel = true;      
       $scope.levelLetters[i].show = false;
       $scope.canCollectLetter = true;
-      $('#wrongAnswerSound').attr('src', 'sound/nope-try-again.wav');
+      $('#wrongAnswerSound').attr('src', 'sound/nope-try-again.mp3');
       document.getElementById('wrongAnswerSound').play();
       $timeout(function(){
         $scope.playLevelIntroSounds();
@@ -534,7 +534,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
     }, 4000);
     // Move this to NEW FUNCTION ?
-    $('#successSound').attr('src', 'sound/UgotIt.wav');
+    $('#successSound').attr('src', 'sound/UgotIt.mp3');
     document.getElementById('successSound').play();
 
   };
@@ -548,21 +548,24 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     var numSound = "";
     switch ($scope.levelScore.possiblePoints) {
       case 3 :
-        numSound = "three.wav";
+        numSound = "sound/three.mp3";
         break;
       case 4 :
-        numSound = "four.wav";
+        numSound = "sound/four.mp3";
         break;
       case 5 :
-        numSound = "five.wav";
+        numSound = "sound/five.mp3";
         break;
     }
+      console.log("$('#introSound')[0]", $('#introSound')[0]);
+
     function swapSoundSrc () {
+      console.log("$('#introSound')[0]", $('#introSound')[0]);
       $('#introSound').attr('src', $scope.currentLevel.sound);
       $('#introSound')[0].play();
       $('#introSound').off("ended", swapSoundSrc);
     }
-    $('#introSound').attr('src', "sound/" + numSound);
+    $('#introSound').attr('src', numSound);
     $('#introSound')[0].play();
     $('#introSound').on("ended", swapSoundSrc);
   };
