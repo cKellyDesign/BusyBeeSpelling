@@ -30,6 +30,10 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
+
+    //document.addEventListener("deviceready", function(){
+    //    alert("123");
+    //},true);
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
@@ -40,6 +44,9 @@ var app = {
         // Option plugin - io.litehelpers.cordova.sqlite
         // window.myDB = window.sqlitePlugin.openDatabase({ name: "my.db" });
     },
+
+
+
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         // var parentElement = document.getElementById(id);

@@ -31,7 +31,9 @@
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+
+        <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">-->
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Busy Bee Spelling</title>
     </head>
@@ -60,17 +62,17 @@
                 <!--</div>-->
                 <div class="main" style="width:{{levelWidth}}">
                     <!-- In Level Menu -->
-                    <a class="menu-icon"  ng-click="onMenuOpen()"><img src="imgs/menu.png"></a>
-                    <div class="in-level-menu" ng-click="onMenuClose()">
-                        <div class="menu-panel">
-                            <a class="sound"> </a>
-                            <ul class="landings">
-                                <li ng-repeat="challenge in possibleChallenges" ng-click='selectLevel(challenge)' class="{{challenge.slug}}">
-                                    <a>{{challenge.introMsg}}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                   <!--<a class="menu-icon"  ng-click="onMenuOpen()"><img src="imgs/menu.png"></a>-->
+                    <!--<div class="in-level-menu" ng-click="onMenuClose()">-->
+                        <!--<div class="menu-panel">-->
+                            <!--<a class="sound"> </a>-->
+                            <!--<ul class="landings">-->
+                                <!--<li ng-repeat="challenge in possibleChallenges" ng-click='selectLevel(challenge)' class="{{challenge.slug}}">-->
+                                    <!--<a>{{challenge.introMsg}}</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <!-- BusyBee -->
                     <div
@@ -79,36 +81,34 @@
                         style="left: {{busyBee.left}}px; top: {{busyBee.top}}px;"
                         ng-click="busyBee.takeAnswerToHive()">
                     </div>
-
                     <div class="hiveLayer">
                         <div class="hivetube"></div>
                         <div class="hivetubeMove"></div>
                         <div class="home"></div>
                         <audio id="hiveTubeSound"></audio>
                     </div>
-
                     <div class="gamearea">
                         <ul class="landings" ng-click="backgroundClick($event)">
                             <li ng-repeat="letter in levelLetters" class="flower {{letter.flowerClass}}" style="left: {{letter.flowerLeft}}px; bottom: {{letter.flowerBottom}}px;" ng-click="flowerClick($event)">
-                                <div class="letters letterBG_{{letter.letterBGnumber}}" style="left: {{letter.letterLeft}}%; bottom:{{letter.letterBottom}}%;" ng-show="letter.show" ng-click="letterClick($event, $index)">{{letter.letter}}</div>
+                                <div class="letterBoundary" style="left: {{letter.letterLeft}}%; bottom:{{letter.letterBottom}}%;" ng-show="letter.show" ng-click="letterClick($event, $index)">
+                                    <div class="letters letterBG_{{letter.letterBGnumber}}">{{letter.letter}}</div>
+                                </div>
                             </li>
                         </ul>
-
-
-                       <ul class="answerarea">
+                    </div>
+                    <div class="answerWrapper">
+                        <ul class="answerarea">
                             <li ng-repeat="letter in collectedLetters">
                                 <div class="letters letterBG_{{letter.letterBGnumber}}">{{letter.letter}}</div>
                             </li>
                         </ul>
-
                     </div>
                     <div class="clouds"></div>
-
                     <div class="collectAnswerPanel" ng-show="showCollectAnswerPanel">
                         <div class="incorrectPanel" ng-click="showCollectAnswerPanel = false" ng-show="levelScore.possiblePoints">
                             <div class="letters letterBG_{{collectedAnswerBG}}">{{collectedAnswer}}</div>
-                            <span class="answerText"> is not one of the {{currentLevel.introMsg}}</span>
-                            <div class="subText">{{levelScore.possiblePoints}} left!</div>
+                            <span class="answerText"> is not one of the {{currentLevel.introMsg}} </span>
+                            <div class="subText">{{currentLevel.hint}} - {{levelScore.possiblePoints}} left!</div>
                             <audio id="wrongAnswerSound"></audio>
                         <!--<button ng-click="backToMenu()" ng-hide="levelScore.possiblePoints">YOU DID IT!!</button>-->
                         <!--<button ng-click="refreshLevel()" ng-hide="levelScore.possiblePoints">Play Again!</button>-->
