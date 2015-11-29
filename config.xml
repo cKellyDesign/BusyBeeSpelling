@@ -26,8 +26,7 @@
     <icon src="logo.png" />
 
     <preference name="SplashScreen" value="screen" />
-    <preference name="AutoHideSplashScreen" value="true" />
-    <preference name="SplashScreenDelay" value="2000" />
+    <preference name="AutoHideSplashScreen" value="false" />
 
     <platform name="android">
         <!--<allow-intent href="market:*" /> -->
