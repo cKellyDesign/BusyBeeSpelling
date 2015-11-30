@@ -231,6 +231,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     "currentChallengeIndex": 0,
     "currentCorrectStreak": 0,
     "challengesCap": 0,
+    "playRandomLevel": false,
     setChallengesCap: function() {
       this.challengesCap = $rootScope.newLevels[this.currentLevelIndex].challenges.length - 1;
     },
@@ -275,11 +276,16 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         $rootScope.newLevels[this.currentLevelIndex].challenges[this.currentChallengeIndex].passes++;
       }
 
-      $scope.possibleChallenges = this.getPossibleChallenges();
+      $scope.possibleChallenges = !this.playRandomLevel ? this.getPossibleChallenges() : this.getAllChallenges();
 
-      if (!$scope.possibleChallenges.length) {
-        this.currentLevelIndex++;
-        $scope.possibleChallenges = this.getPossibleChallenges();
+      if (!$scope.possibleChallenges.length) { // if the possibleChallenges array is empty
+        if ( this.currentLevelIndex === ( $rootScope.newLevels[this.currentLevelIndex].challenges.length ) ) { // If this is the last level
+          $scope.possibleChallenges = this.getAllChallenges();
+          this.playRandomLevel = true;
+        } else {
+          this.currentLevelIndex++;
+          $scope.possibleChallenges = this.getPossibleChallenges();
+        }
       }
 
       var num = $rootScope.genRanNum(($scope.possibleChallenges.length - 1), 0);
@@ -289,12 +295,23 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     },
     getPossibleChallenges: function() {
       var possibleChallenges = [];
-      $.each($rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex].challenges, function(i, thisLevel){
+      $.each($rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex].challenges, function (i, thisLevel) {
         if (thisLevel.passes < 1) { // todo: change 1 to 3 to make users pass the challenge 3x before next level
           possibleChallenges.push(thisLevel);
         }
       });
       return possibleChallenges;
+    },
+    getAllChallenges: function() {
+      var allChallenges = [];
+      $.each($rootScope.newLevels, function (i, thisLevel) {
+        var len = thisLevel.challenges && thisLevel.challenges.length;
+        while (--len >= 0) {
+          allChallenges.push(thisLevel.challenges[len]);
+        }
+      });
+
+      return allChallenges;
     },
     setNewChallenge: function(newChallenge) {
       for (var i = 0; i < $rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex].challenges.length; i++) {
@@ -329,7 +346,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
       this.faceLeft = true;
       this.top = 70;
       this.left = 90;
-       console.log("current Scroll X position: ", currX);
+
       $timeout(function(){
         $scope.busyBee.top = currTop;
         $scope.busyBee.left = currLeft;
@@ -557,10 +574,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         numSound = "sound/five.mp3";
         break;
     }
-      console.log("$('#introSound')[0]", $('#introSound')[0]);
 
     function swapSoundSrc () {
-      console.log("$('#introSound')[0]", $('#introSound')[0]);
       $('#introSound').attr('src', $scope.currentLevel.sound);
       $('#introSound')[0].play();
       $('#introSound').off("ended", swapSoundSrc);
