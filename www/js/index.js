@@ -40,7 +40,9 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-
+        setTimeout(function(){
+            navigator.splashscreen.hide();            
+        }, 750);
         // Option plugin - io.litehelpers.cordova.sqlite
         // window.myDB = window.sqlitePlugin.openDatabase({ name: "my.db" });
     },
