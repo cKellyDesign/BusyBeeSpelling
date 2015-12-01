@@ -619,8 +619,8 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
         "flowerLeft": i === 0 ? 200 : $scope.levelLetters[i - 1].flowerLeft + $rootScope.genRanNum(350, 250),
         "flowerBottom": $rootScope.genRanNum(flowerHeightCap, 50),
-        "letterLeft": $rootScope.genRanNum(66,33),
-        "letterBottom": $rootScope.genRanNum(80, 50),
+        "letterLeft": $rootScope.genRanNum(66,33), //66,33
+        "letterBottom": $rootScope.genRanNum(70, 40), //80,50
         "letterBGnumber": $rootScope.genRanNum(4,1),
         "show": true
       });
