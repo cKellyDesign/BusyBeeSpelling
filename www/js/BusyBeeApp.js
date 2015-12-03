@@ -5,35 +5,6 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
     "levelSelectControl" : true,
     "levelControl" : false
   };
-  $rootScope.currentLevel = "";
-  $rootScope.levelWidth = "100%";
-  // CSS class names for different flowers
-  $rootScope.flowerLegend = ['flower-reddaisy', 'flower-purpletulip', 'flower-yellowdahlia'];
-
-  $rootScope.genRanNum = function(maxLength, minLength) {
-    minLength = minLength || 0;
-    return Math.floor(Math.random() * (maxLength - minLength) + minLength);
-  }
-
-  //$rootScope.levels = [{
-  //  "name": "lowercase",
-  //  "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
-  //  "letterLeft": $rootScope.genRanNum(66,33),
-  //  "letterBottom": $rootScope.genRanNum(80, 50),
-  //  "letterBGnumber": $rootScope.genRanNum(4,1)
-  //}, {
-  //  "name": "diagraph",
-  //  "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
-  //  "letterLeft": $rootScope.genRanNum(66,33),
-  //  "letterBottom": $rootScope.genRanNum(80, 50),
-  //  "letterBGnumber": $rootScope.genRanNum(4,1)
-  //}, {
-  //  "name": "vowel",
-  //  "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
-  //  "letterLeft": $rootScope.genRanNum(66,33),
-  //  "letterBottom": $rootScope.genRanNum(80, 50),
-  //  "letterBGnumber": $rootScope.genRanNum(4,1)
-  //}];
 
   $rootScope.newLevels = [
     {
@@ -123,7 +94,16 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
         }
       ]
     }
-  ]
+  ];
+  $rootScope.currentLevel = "";
+  $rootScope.levelWidth = "100%";
+  // CSS class names for different flowers
+  $rootScope.flowerLegend = ['flower-reddaisy', 'flower-purpletulip', 'flower-yellowdahlia'];
+
+  $rootScope.genRanNum = function(maxLength, minLength) {
+    minLength = minLength || 0;
+    return Math.floor(Math.random() * (maxLength - minLength) + minLength);
+  }
 
 });
 
@@ -141,18 +121,6 @@ BusyBeeSpelling.controller('levelSelectControl', function($scope, $rootScope, $t
     $rootScope.state.levelControl = true;
   };
 });
-//
-//BusyBeeSpelling.controller('soundLoad', function($scope, $rootScope, $timeout){
-//  $scope.currentLevel = "";
-//  playStream: function() {
-//  var myaudio = new Audio('../sound/consonants.mp3');
-//    myaudio.id = 'playerMyAudio';
-//    myaudio.play();
-//  };
-//  catch (e) {
-//    alert('no audio support!');
-//  };
-//});
 
 BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout){
   $scope.showSuccessPanel = false;
@@ -323,19 +291,19 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     }
   };
   $scope.possibleChallenges = $scope.levelDifficultyControl.getPossibleChallenges();
-  // ***** Level Difficulty Controll *****
+  // ***** Level Difficulty Control *****
 
 
 
   // ***** Busy Bee Control *****
   $scope.busyBee = {
-    "left": 150,
-    "top": 10,
+    "left": 150, //was 150
+    "top": 70, // was 10
     "faceLeft": false,
     "zoom": $('#character').css('zoom'),
     move: function(beeTop, beeLeft) {
-      this.top = beeTop - 70;
-      this.left = beeLeft - 169;
+      this.top = beeTop - 200; // was -79 -190
+      this.left = beeLeft + 30; //was -169 and -1
     },
     takeAnswerToHive: function() {
       // todo: Somehow get window to animated scroll with busyBee, or get every thing else to scroll around busyBee
@@ -356,7 +324,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
     },
     refresh: function() {
-      this.top = 10;
+      this.top = 50;  // was 10
       this.left = 150;
       this.faceLeft = false;
     }
@@ -529,7 +497,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
 
     $timeout(function(){
       $scope.showIntroPanel = false;
-    }, 3500);
+    }, 4500);
     // play level audio, callback => display play button
     // timer after audio launches into level screen
   };
@@ -619,7 +587,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
         "flowerClass": $rootScope.flowerLegend[$rootScope.genRanNum($rootScope.flowerLegend.length)],
         "flowerLeft": i === 0 ? 200 : $scope.levelLetters[i - 1].flowerLeft + $rootScope.genRanNum(350, 250),
         "flowerBottom": $rootScope.genRanNum(flowerHeightCap, 50),
-        "letterLeft": $rootScope.genRanNum(66,33), //66,33
+        "letterLeft": $rootScope.genRanNum(33,0), //66,33
         "letterBottom": $rootScope.genRanNum(70, 40), //80,50
         "letterBGnumber": $rootScope.genRanNum(4,1),
         "show": true
