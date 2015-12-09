@@ -1,6 +1,6 @@
 var BusyBeeSpelling = angular.module('BusyBeeSpelling', ['ngCordova']);
 
-BusyBeeSpelling.run(function($rootScope, $timeout){ 
+BusyBeeSpelling.run(function($rootScope, $timeout){
   $rootScope.state = {
     "levelSelectControl" : true,
     "levelControl" : false
@@ -14,7 +14,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the uppercase Vowels",
           "slug": "upVow",
           "introMsg": "Uppercase Vowels",
-          "sound": "sound/uppercase-vowels.mp3",
+          "sound": "sound/lowercase-vowels.ogg",
           "hint": "AEIOU",
           "icon": "imgs/navIcons/uppercase-vowels.png",
           "passes": 0
@@ -23,7 +23,7 @@ BusyBeeSpelling.run(function($rootScope, $timeout){
           "goal": "Find the lowercase Vowels",
           "slug": "lowVow",
           "introMsg": "Lowercase Vowels",
-          "sound": "sound/lowercase-vowels.mp3",
+          "sound": "sound/lowercase-vowels.ogg",
           "hint": "aeiou",
           "icon": "imgs/navIcons/lowercase-vowels.png",
           "passes": 0

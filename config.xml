@@ -13,6 +13,7 @@
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <plugin name="org.apache.cordova.media" />
+    <!--<plugin name="com.rjfun.cordova.plugin.lowlatencyaudio" /> some one suggested this to fix sound issues -->
     <!--<plugin name="org.apache.cordova.core.Device"/>  some one suggested this to fix sound issues -->
 
     <access origin="*" />
