@@ -1,6 +1,6 @@
 var BusyBeeSpelling = angular.module('BusyBeeSpelling', ['ngCordova']);
 
-BusyBeeSpelling.run(function($rootScope, $timeout){ 
+BusyBeeSpelling.run(function($rootScope, $timeout){
   $rootScope.state = {
     "levelSelectControl" : true,
     "levelControl" : false

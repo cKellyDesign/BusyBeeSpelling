@@ -3,4 +3,4 @@ plugins/android.json
 plugins/browser.json
 .idea/workspace.html
 .idea/workspace.xml
-bower_components/
+bower_components/ 
