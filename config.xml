@@ -20,7 +20,7 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
+    <allow-intent href="sms:*" />f
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
 
@@ -28,6 +28,8 @@
 
     <preference name="SplashScreen" value="screen" />
     <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="orientation" value="landscape" />
+    <preference name="fullscreen" value="true" />
 
     <platform name="android">
         <!--<allow-intent href="market:*" /> -->
@@ -48,6 +50,10 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <preference name="orientation" value="landscape" />
+        <preference name="exit-on-suspend" value="true" />
+        <preference name="android-minSdkVersion" value="19" />
+        <preference name="target-device" value="handset" />
+
         <splash src="res/splash.png" width="320" height="480"/>
         <splash src="res/splash.png" width="640" height="960"/>
         <splash src="res/splash.png" width="768" height="1024"/>
