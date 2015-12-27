@@ -264,7 +264,7 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     getPossibleChallenges: function() {
       var possibleChallenges = [];
       $.each($rootScope.newLevels[$scope.levelDifficultyControl.currentLevelIndex].challenges, function (i, thisLevel) {
-        if (thisLevel.passes < 1) { // todo: change 1 to 3 to make users pass the challenge 3x before next level
+        if (thisLevel.passes < 3) { // todo: change 1 to 3 to make users pass the challenge 3x before next level
           possibleChallenges.push(thisLevel);
         }
       });
@@ -553,8 +553,6 @@ BusyBeeSpelling.controller('levelControl', function($scope, $rootScope, $timeout
     $('#introSound').on("ended", swapSoundSrc);
   };
   // ***** Level Flow *****
-
-
 
   // ***** Letter Control *****
   $scope.generateLetters = function() {
