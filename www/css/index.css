@@ -28,6 +28,7 @@ max width and height?
   position: absolute;
   top: 0;
   bottom: 0;
+  overflow-y: hidden;
 }
 .main h1 {
   position: absolute;
